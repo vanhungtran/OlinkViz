@@ -1,0 +1,91 @@
+url: https://vanhungtran.github.io/OlinkViz
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  light-switch: true
+
+title: OlinkViz
+subtitle: Visualization Toolkit for Olink Proteomics Data
+
+authors:
+  Lucas VHH TRAN:
+    href: https://github.com/vanhungtran
+
+development:
+  mode: auto
+
+reference:
+- title: Differential Expression
+  desc: Volcano plots and multi-protein dot plots
+  contents:
+  - plot_volcano
+  - plot_dotplot
+
+- title: Dimensionality Reduction
+  desc: PCA, UMAP, and heatmap projections
+  contents:
+  - plot_pca
+  - plot_umap
+  - plot_heatmap
+
+- title: Single-Protein & Longitudinal
+  desc: Boxplots and trajectory plots
+  contents:
+  - plot_boxplot
+  - plot_trajectory
+
+- title: Multi-Protein Survey
+  desc: Correlation matrices
+  contents:
+  - plot_corr
+
+- title: Data Utilities
+  desc: Validate, pivot, and explore NPX data
+  contents:
+  - validate_npx
+  - to_wide
+  - to_long
+
+- title: Themes & Palettes
+  desc: Styling for publication-ready plots
+  contents:
+  - theme_olinkviz
+  - olinkviz_palette
+
+- title: Shiny App
+  desc: Interactive exploration dashboard
+  contents:
+  - run_shiny
+
+- title: Datasets
+  desc: Curated Olink proteomics data from published studies
+  contents:
+  - iris_longcovid
+  - pcnsl_olink
+  - beatmg_npx
+  - beatmg_demo
+  - beatmg_npx_merged
+  - bansal_baseline57
+  - bansal_univariate
+  - bansal_longitudinal
+  - qinfeng_npx
+  - tofa_data
+  - tofa_dictionary
+
+articles:
+- title: Get Started
+  navbar: ~
+  contents:
+  - OlinkViz
+
+- title: Tutorials
+  desc: Step-by-step guides
+  contents:
+  - workflow
+
+home:
+  links:
+  - text: Olink Proteomics
+    href: https://olink.com
+  - text: NPX Data Format
+    href: https://olink.com/faq/what-is-npx/

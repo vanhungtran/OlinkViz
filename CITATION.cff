@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use OlinkViz in your research, please cite it as below."
+authors:
+  - family-names: "TRAN"
+    given-names: "Lucas VHH"
+    email: "tranhungydhcm@gmail.com"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "OlinkViz: Visualization Toolkit for Olink Proteomics Data"
+version: 0.1.0
+date-released: 2026-07-30
+url: "https://github.com/vanhungtran/OlinkViz"
+preferred-citation:
+  type: manual
+  title: "OlinkViz: Visualization Toolkit for Olink Proteomics Data"
+  authors:
+    - family-names: "TRAN"
+      given-names: "Lucas VHH"
+      email: "tranhungydhcm@gmail.com"
+  version: 0.1.0
+  year: 2026
+  url: "https://github.com/vanhungtran/OlinkViz"
+abstract: "Ready-made, publication-quality visualization functions for Olink NPX proteomics data. Includes volcano plots, heatmaps, PCA and UMAP projections, boxplots, dot plots, correlation matrices, and longitudinal trajectory plots. Bundles 11 curated Olink datasets from published studies and provides an interactive Shiny application."
+keywords:
+  - "Olink"
+  - "proteomics"
+  - "NPX"
+  - "visualization"
+  - "ggplot2"
+  - "bioinformatics"
+  - "biomarker"
+  - "R"
+  - "Shiny"
+license: "MIT"
+repository-code: "https://github.com/vanhungtran/OlinkViz"

@@ -1,0 +1,33 @@
+{
+  "title": "OlinkViz: Visualization Toolkit for Olink Proteomics Data",
+  "description": "Ready-made, publication-quality visualization functions for Olink NPX proteomics data. Includes volcano plots, heatmaps, PCA and UMAP projections, boxplots, dot plots, correlation matrices, and longitudinal trajectory plots. Bundles 11 curated Olink datasets from published studies and provides an interactive Shiny application.",
+  "creators": [
+    {
+      "name": "TRAN, Lucas VHH",
+      "affiliation": "Independent Researcher",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "keywords": [
+    "Olink",
+    "proteomics",
+    "NPX",
+    "visualization",
+    "ggplot2",
+    "bioinformatics",
+    "biomarker",
+    "R",
+    "Shiny"
+  ],
+  "license": "MIT",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/vanhungtran/OlinkViz",
+      "relation": "isSupplementTo"
+    }
+  ],
+  "access_right": "open",
+  "upload_type": "software",
+  "language": "eng"
+}

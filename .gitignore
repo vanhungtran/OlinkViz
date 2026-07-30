@@ -1,0 +1,27 @@
+
+# R local files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.Rprofile
+.DS_Store
+
+# Environment files
+.env
+*.env
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Build artifacts — do not commit
+/doc/
+/Meta/
+
+# pkgdown output — deployed via GitHub Actions
+docs/
+
+# Zenodo local archiving materials
+zenodo/
+generate_readme_figures.R

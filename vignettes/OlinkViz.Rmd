@@ -1,0 +1,366 @@
+---
+title: "Getting Started with OlinkViz"
+author: "OlinkViz Authors"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with OlinkViz}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 8,
+  fig.height = 5,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+## Overview
+
+**OlinkViz** provides ready-made, publication-quality visualization functions
+tailored to [Olink](https://olink.com) NPX proteomics data. It bundles 11
+curated datasets from published studies and includes an interactive Shiny
+application for data exploration.
+
+### Installation
+
+```{r, eval = FALSE}
+# From source:
+install.packages("OlinkViz_0.1.0.tar.gz", repos = NULL, type = "source")
+
+# Or with devtools:
+# devtools::install("path/to/OlinkViz")
+```
+
+### Bundled Datasets
+
+| Dataset              | Study           | Rows      | Cols  | Description                         |
+|----------------------|-----------------|-----------|-------|-------------------------------------|
+| `iris_longcovid`     | IRIS            | 16,020    | 7     | Long COVID NPX data (7 time points) |
+| `pcnsl_olink`        | Study 20815686  | 172       | 1,010 | Primary CNS lymphoma (wide)         |
+| `beatmg_npx`         | BeatMG          | 112,176   | 19    | Myasthenia Gravis NPX (long)        |
+| `beatmg_demo`        | BeatMG          | 52        | 42    | MG demographics                     |
+| `beatmg_npx_merged`  | BeatMG          | 112,176   | 60    | MG NPX + demographics merged        |
+| `bansal_baseline57`  | Bansal          | 10,374    | 24    | Long COVID baseline (182 proteins)  |
+| `bansal_univariate`  | Bansal          | 182       | 14    | Per-protein Wilcoxon test results   |
+| `bansal_longitudinal`| Bansal          | 18,294    | 24    | Long COVID paired longitudinal      |
+| `qinfeng_npx`        | Qinfeng 2025    | 66        | 97    | Tuberculosis biomarkers (wide)      |
+| `tofa_data`          | TOFA            | 453,684   | 16    | Down Syndrome NPX (long)            |
+| `tofa_dictionary`    | TOFA            | 15        | 3     | TOFA variable descriptions          |
+
+## Quick Start
+
+```{r}
+library(OlinkViz)
+library(ggplot2)
+```
+
+### Inspecting a Dataset
+
+Each dataset can be examined directly. Let's look at the IRIS Long COVID data:
+
+```{r}
+str(iris_longcovid)
+```
+
+```{r}
+# Unique assays in the dataset
+length(unique(iris_longcovid$Assay))
+```
+
+```{r}
+# Groups and time points available
+table(iris_longcovid$long_covid, iris_longcovid$timing_month)
+```
+
+---
+
+## Plotting Functions
+
+### 1. Boxplot — Single Protein by Group
+
+Compare NPX values for a single protein across groups, with optional
+statistical test annotations.
+
+```{r}
+plot_boxplot(iris_longcovid, assay = "CD27", group = "long_covid")
+```
+
+With custom comparisons (requires the `ggpubr` package):
+
+```{r, eval = FALSE}
+plot_boxplot(
+  iris_longcovid,
+  assay       = "CD27",
+  group       = "timing_month",
+  test        = "wilcox.test",
+  comparisons = list(c("0", "3"), c("3", "12")),
+  title       = "CD27 Expression Over Time"
+)
+```
+
+### 2. Volcano Plot — Differential Expression
+
+Visualize fold change versus significance for each protein. The function
+validates p-values and handles exact zeros gracefully.
+
+```{r}
+# Using the Bansal univariate test results
+plot_volcano(
+  bansal_univariate,
+  pval_col       = "p.value",
+  fc_col         = "estimate",
+  assay_col      = "Assay",
+  pval_threshold = 0.05,
+  fc_threshold   = 0.5,
+  max_labels     = 10,
+  title          = "Long COVID: Protein Differential Expression"
+)
+```
+
+For raw fold-change ratios (not yet log2-transformed), set `transform_fc = TRUE`:
+
+```{r, eval = FALSE}
+plot_volcano(de_results, pval_col = "pval", fc_col = "FC",
+             transform_fc = TRUE)
+```
+
+### 3. PCA — Dimensionality Reduction
+
+Project samples onto the first two principal components, colored by a
+grouping variable with optional confidence ellipses.
+
+```{r}
+plot_pca(beatmg_npx_merged, color_by = "Timepoint",
+         title = "BeatMG: PCA by Timepoint")
+```
+
+Without grouping, all points are shown in a single color:
+
+```{r}
+plot_pca(beatmg_npx_merged[beatmg_npx_merged$Timepoint == "Baseline", ],
+         title = "BeatMG Baseline Samples")
+```
+
+### 4. UMAP — Non-Linear Projection
+
+UMAP captures non-linear structure that PCA may miss. The `seed` parameter
+ensures reproducibility.
+
+```{r}
+plot_umap(beatmg_npx_merged, color_by = "Timepoint",
+          n_neighbors = 10, seed = 42,
+          title = "BeatMG: UMAP by Timepoint")
+```
+
+### 5. Heatmap — Clustered Expression Matrix
+
+Proteins are clustered by expression pattern. NAs are imputed with column
+means and a warning is issued. The function accepts both long and wide
+formats.
+
+```{r}
+# Long-format input (rows clustered, columns as samples)
+plot_heatmap(
+  beatmg_npx_merged[beatmg_npx_merged$Timepoint == "Baseline", ],
+  sample_col = "SampleID",
+  scale      = "row",
+  show_rownames = FALSE,
+  main       = "BeatMG Baseline Protein Expression"
+)
+```
+
+Wide-format input with `wide = TRUE`:
+
+```{r, eval = FALSE}
+# qinfeng_npx is already wide: 66 samples x 92 proteins
+plot_heatmap(qinfeng_npx, wide = TRUE, sample_col = "SampleID",
+             scale = "column", show_colnames = FALSE,
+             main = "Tuberculosis Biomarker Profiles")
+```
+
+### 6. Dot Plot — Multi-Protein Comparison
+
+Dot size encodes significance (-log10 p-value); color encodes direction of
+change. Useful for survey-level views across many proteins.
+
+```{r}
+plot_dotplot(
+  beatmg_npx_merged,
+  group   = "Timepoint",
+  assays  = c("CD27", "CD28", "CD40", "CD70", "TNFRSF9",
+              "TNFRSF4", "ICOS", "IL6", "CXCL10", "IFNG",
+              "CCL3", "CCL4", "IL10", "TGFB1", "VEGFA"),
+  top_n   = 15,
+  title   = "BeatMG: Protein Changes vs Baseline"
+)
+```
+
+If an assay name is misspelled, a warning is now emitted instead of silently
+omitting it.
+
+### 7. Correlation Matrix
+
+Compute pairwise correlations between the most variable proteins.
+
+```{r}
+plot_corr(
+  beatmg_npx_merged[beatmg_npx_merged$Timepoint == "Baseline", ],
+  method    = "spearman",
+  top_n     = 25,
+  corr_type = "upper",
+  title     = "BeatMG Baseline Protein Correlations"
+)
+```
+
+The new `display_method` parameter allows alternative visual encodings:
+
+```{r, eval = FALSE}
+plot_corr(beatmg_npx_merged, method = "spearman", top_n = 15,
+          display_method = "ellipse", title = "Correlation Ellipses")
+plot_corr(beatmg_npx_merged, method = "pearson",  top_n = 10,
+          display_method = "number",  title = "Numeric Correlations")
+```
+
+Valid `display_method` options are: `"color"`, `"circle"`, `"ellipse"`,
+`"number"`, `"shade"`, and `"pie"`.
+
+### 8. Longitudinal Trajectories
+
+Individual spaghetti plots with optional group-level smoothing lines.
+
+```{r}
+# Subset to a manageable number of proteins for demonstration
+plot_trajectory(
+  bansal_longitudinal,
+  subject_id    = "Assigned Participant  ID",
+  time          = "Time",
+  assay         = "HAGH",
+  group         = "Long_COVID status",
+  smooth_method = "loess",
+  title         = "HAGH Trajectory by Long COVID Status"
+)
+```
+
+---
+
+## Data Utilities
+
+### Validating NPX Data
+
+`validate_npx()` checks that your data has the minimum required columns:
+
+```{r}
+validate_npx(iris_longcovid)
+```
+
+```{r}
+# With a missing column — warns rather than stops
+validate_npx(mtcars, fail_on_missing = FALSE)
+```
+
+### Converting Between Long and Wide Formats
+
+**Long to wide:**
+
+```{r}
+# Pivot a subset for demonstration
+iris_sub <- iris_longcovid[iris_longcovid$timing_month == 0, ]
+wide <- to_wide(iris_sub, sample_col = "IRIS_number")
+wide[1:5, 1:6]
+```
+
+Duplicate sample-assay combinations are automatically averaged with a message:
+
+```{r}
+# Create artificial duplicate to demonstrate replicate averaging
+dup_row <- iris_sub[1, ]
+iris_dup <- rbind(iris_sub, dup_row)
+wide_dedup <- to_wide(iris_dup, sample_col = "IRIS_number")
+```
+
+**Wide to long:**
+
+```{r}
+# With automatic assay column detection
+long <- to_long(wide, id_cols = "IRIS_number")
+head(long)
+```
+
+The new `exclude_cols` parameter lets you control which columns are excluded
+from auto-detection when pivoting:
+
+```{r}
+to_long(wide, id_cols = "IRIS_number",
+        exclude_cols = "Sex")  # explicit: only exclude "Sex"
+```
+
+### Custom Themes and Palettes
+
+`theme_olinkviz()` provides a clean, publication-ready ggplot2 theme:
+
+```{r}
+ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
+  geom_point(size = 3) +
+  labs(title = "Custom OlinkViz Theme",
+       subtitle = "Using theme_olinkviz()") +
+  theme_olinkviz()
+```
+
+`olinkviz_palette()` returns colorblind-friendly categorical colors using
+RColorBrewer's Dark2 palette, extended via interpolation when more colors
+are needed:
+
+```{r}
+# Standard 8-color palette
+scales::show_col(olinkviz_palette(8))
+
+# Interpolated 12-color extension
+scales::show_col(olinkviz_palette(12))
+```
+
+---
+
+## Interactive Exploration
+
+Launch the Shiny app for interactive data exploration:
+
+```{r, eval = FALSE}
+OlinkViz::run_shiny()
+```
+
+The Shiny app allows you to:
+
+- Browse all 11 built-in datasets with variable descriptions
+- Upload your own CSV or Excel NPX files
+- Select from 8 plot types with adjustable parameters
+- Filter by assay, timepoint, and group
+- Download publication-ready plots as PNG or PDF
+
+---
+
+## Typical Workflow
+
+A common analysis workflow using OlinkViz:
+
+1. **Inspect** your data with `str()` and `validate_npx()`
+2. **Explore global structure** with `plot_pca()` or `plot_umap()`
+3. **Survey many proteins** with `plot_dotplot()` or `plot_heatmap()`
+4. **Identify hits** with `plot_volcano()` on statistical test results
+5. **Investigate candidates** with `plot_boxplot()` for single proteins
+6. **Track over time** with `plot_trajectory()` for longitudinal data
+7. **Check relationships** with `plot_corr()` between top proteins
+
+---
+
+## Next Steps
+
+- See the function reference: `?plot_volcano`, `?plot_heatmap`, etc.
+- See dataset documentation: `?iris_longcovid`, `?beatmg_npx`, etc.
+- Run `OlinkViz::run_shiny()` for interactive exploration
+- Visit the [OlinkViz GitHub](https://github.com/example/OlinkViz) for updates
