@@ -304,4 +304,4 @@ Curated Olink proteomics data from published studies
 - [`tofa_dictionary`](https://vanhungtran.github.io/OlinkViz/reference/tofa_dictionary.md)
   : TOFA Data Dictionary
 - [`probc`](https://vanhungtran.github.io/OlinkViz/reference/probc.md) :
-  Simulated Two-Group Longitudinal Olink Data (NUMAB project B design)
+  Simulated Two-Group Longitudinal Olink Data

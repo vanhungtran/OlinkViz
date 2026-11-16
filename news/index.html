@@ -21,6 +21,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
+    <li><a class="dropdown-item" href="../articles/all_plots_one_dataset.html">All OlinkViz Plots on One Dataset (probc)</a></li>
     <li><a class="dropdown-item" href="../articles/journal_figures.html">Journal Specifications, Pre-Flight QA, and Publication Figures</a></li>
     <li><a class="dropdown-item" href="../articles/biomarker_discovery.html">Best Practices for Olink Protein Biomarker Discovery and Validation</a></li>
     <li><a class="dropdown-item" href="../articles/plots_using_simulated_data.html">Plots Generated from the Simulated Dataset (PROBC)</a></li>
@@ -51,9 +52,8 @@
 <h2 class="pkg-version" data-toc-text="0.1.2" id="olinkviz-012">OlinkViz 0.1.2<a class="anchor" aria-label="anchor" href="#olinkviz-012"></a></h2>
 <div class="section level3">
 <h3 id="data-0-1-2">Data<a class="anchor" aria-label="anchor" href="#data-0-1-2"></a></h3>
-<ul><li>
-<code>probc</code> is now fully simulated (<code>data-raw/build_numab_probc.R</code>). Earlier versions held the real NUMAB project-B NPX data as “Group1” plus a jittered clone of it. The new version keeps the same 22 columns, 35,328 rows and study layout, so existing examples run unchanged. It has built-in group, time and group x time effects (always present for IL6, TNF and IL8, the assay that newer Olink panels call CXCL8).</li>
-</ul></div>
+<p>clone of it. The new version keeps the same 22 columns, 35,328 rows and study layout, so existing examples run unchanged. It has built-in group, time and group x time effects (always present for IL6, TNF and IL8, the assay that newer Olink panels call CXCL8).</p>
+</div>
 <div class="section level3">
 <h3 id="new-features-0-1-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-2"></a></h3>
 <ul><li>New <code>OlinkExperiment</code> S4 class for representing Olink proteomics data, designed to mirror the <code>SingleCellExperiment</code> package (github.com/drisso/SingleCellExperiment). Rows are proteins, columns are samples; NPX/LOD/protein-count quantifications live in <code>assays</code>, sample and protein annotation in <code>colData</code>/<code>rowData</code>, and dimensionality reductions in <code>reducedDims</code>. Includes named assay accessors <code><a href="../reference/npx.html">npx()</a></code>, <code><a href="../reference/npx.html">lod()</a></code>, <code><a href="../reference/npx.html">pcount()</a></code>, the full <code><a href="../reference/reducedDims.html">reducedDims()</a></code>/<code><a href="../reference/reducedDims.html">reducedDim()</a></code> API, internal-slot accessors (<code>int_colData</code>, <code>int_elementMetadata</code>, <code>int_metadata</code>), subsetting (<code>x[i, j]</code>), combining (<code>cbind</code>/<code>rbind</code>), coercion to/from <code>SummarizedExperiment</code>, and a <code>show</code> method.</li>

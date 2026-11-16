@@ -102,25 +102,24 @@ retrieve the assay named <code>"NPX"</code>.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">OlinkExperiment</span>, echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># Using the class example</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no help found for 'OlinkExperiment'</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 184 192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200  20</span>
 <span class="r-in"><span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             S001    S002    S003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID01009 3.57678 4.56419 3.05829</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID01000 2.81671 4.18382 4.74850</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID00996 5.22551 5.05974 6.20089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Sample1  Sample2  Sample3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID1 4.497808 5.028172 3.715171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID2 5.131531 4.643297 4.858218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID3 4.921083 5.852626 6.438785</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The getter/setter wraps assay("NPX")</span></span></span>
 <span class="r-in"><span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># LOD accessor</span></span></span>
 <span class="r-in"><span><span class="fu">lod</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              S001     S002     S003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID01009 3.450736 3.450736 3.450736</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID01000 0.992502 0.992502 0.992502</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OID00996 5.467802 5.467802 5.467802</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Sample1 Sample2 Sample3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID1     0.5     0.5     0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID2     0.5     0.5     0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID3     0.5     0.5     0.5</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

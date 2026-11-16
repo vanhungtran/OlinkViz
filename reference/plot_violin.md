@@ -2,8 +2,8 @@
 
 Creates a violin plot with an overlaid boxplot for one or more assays
 across a categorical x-axis (e.g. time point), optionally filled by
-group. Mirrors the "distribution of NPX over time" figures in the NUMAB
-reports.
+group. Visualizes the distribution of NPX values over time or across
+groups.
 
 ## Usage
 
@@ -150,7 +150,7 @@ A ggplot object.
 ``` r
 if (FALSE) { # \dontrun{
 plot_violin(
-  numab_probc, assay = "IL6", x = "Timepoint", group = "TreatGroup"
+  probc, assay = "IL6", x = "Timepoint", group = "Project"
 )
 } # }
 ```

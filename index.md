@@ -351,7 +351,7 @@ package:
 | `qinfeng_npx` | Song 2025 — [10.1007/s00011-025-02020-9](https://doi.org/10.1007/s00011-025-02020-9) | 92 | 66 | Tuberculosis biomarkers |
 | `tofa_data` | TOFA — [10.7554/elife.99323](https://doi.org/10.7554/elife.99323) | Multiple | — | Down Syndrome NPX |
 | `tofa_dictionary` | TOFA — [10.7554/elife.99323](https://doi.org/10.7554/elife.99323) | — | — | TOFA variable dictionary |
-| `probc` | NUMAB project B (simulated) | 184 | 192 | Simulated 2-group longitudinal NPX |
+| `probc` | Simulated cohort (PROBC) | 184 | 192 | Simulated 2-group longitudinal NPX |
 
 ``` r
 data(package = "OlinkViz")   # list all datasets

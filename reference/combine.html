@@ -116,54 +116,49 @@ synchronized when samples or proteins are added or removed.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">OlinkExperiment</span>, echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># using the class example</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no help found for 'OlinkExperiment'</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Combining:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">oe</span>, <span class="va">oe</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: OlinkExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 368 192 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 400 20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(2): NPX LOD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(368): OID01009 OID01000 ... OID00481 OID00472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): OlinkID Assay ... Normalization Olink NPX Signature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(192): S001 S002 ... S191 S192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(12): SampleID Index ... Project Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(400): OID1 OID2 ... OID199 OID200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(2): OlinkID Panel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(20): Sample1 Sample2 ... Sample19 Sample20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(2): SampleID Group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">oe</span>, <span class="va">oe</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: OlinkExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 184 384 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 200 40 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(2): NPX LOD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(184): OID01009 OID01000 ... OID00481 OID00472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): OlinkID Assay ... Normalization Olink NPX Signature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(384): S001 S002 ... S191 S192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(12): SampleID Index ... Project Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(200): OID1 OID2 ... OID199 OID200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(2): OlinkID Panel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(40): Sample1 Sample2 ... Sample19 Sample20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(2): SampleID Group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Subsetting:</span></span></span>
 <span class="r-in"><span><span class="va">oe</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: OlinkExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 10 192 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 10 20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(2): NPX LOD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(10): OID01009 OID01000 ... OID00960 OID00985</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): OlinkID Assay ... Normalization Olink NPX Signature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(192): S001 S002 ... S191 S192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(12): SampleID Index ... Project Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(10): OID1 OID2 ... OID9 OID10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(2): OlinkID Panel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(20): Sample1 Sample2 ... Sample19 Sample20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(2): SampleID Group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
 <span class="r-in"><span><span class="va">oe</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class: OlinkExperiment </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 184 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dim: 200 5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metadata(0):</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> assays(2): NPX LOD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(184): OID01009 OID01000 ... OID00481 OID00472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(8): OlinkID Assay ... Normalization Olink NPX Signature</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Version</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(5): S001 S002 S003 S004 S005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(12): SampleID Index ... Project Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rownames(200): OID1 OID2 ... OID199 OID200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rowData names(2): OlinkID Panel</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colnames(5): Sample1 Sample2 Sample3 Sample4 Sample5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> colData names(2): SampleID Group</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reducedDimNames(0):</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

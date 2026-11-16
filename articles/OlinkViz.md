@@ -32,7 +32,7 @@ install.packages("OlinkViz_0.1.0.tar.gz", repos = NULL, type = "source")
 | `qinfeng_npx` | Song 2025 — [10.1007/s00011-025-02020-9](https://doi.org/10.1007/s00011-025-02020-9) | 66 | 97 | Tuberculosis biomarkers (wide) |
 | `tofa_data` | TOFA — [10.7554/elife.99323](https://doi.org/10.7554/elife.99323) | 453,684 | 16 | Down Syndrome NPX (long) |
 | `tofa_dictionary` | TOFA — [10.7554/elife.99323](https://doi.org/10.7554/elife.99323) | 15 | 3 | TOFA variable descriptions |
-| `probc` | NUMAB project B (simulated) | 35,328 | 22 | Simulated 2-group longitudinal NPX |
+| `probc` | Simulated cohort (PROBC) | 35,328 | 22 | Simulated 2-group longitudinal NPX |
 
 ## Quick Start
 
@@ -1257,27 +1257,27 @@ from a bar chart of intersection sizes plus a dot matrix, both in
 `ggplot2`:
 
 ``` r
-roc_score    <- roc(km_dt$resolved, km_dt$risk_score, quiet = TRUE)
-roc_score_ci <- as.numeric(ci.auc(roc_score))
-sc_co <- coords(roc_score, seq(0, 1, length.out = 150), ret = c("specificity", "sensitivity"))
-
-ind_rocs <- rbindlist(lapply(top_risk, function(a) {
-  ro <- roc(km_dt$resolved, km_dt[[a]], quiet = TRUE)
-  co <- coords(ro, seq(0, 1, length.out = 60), ret = c("specificity", "sensitivity"))
-  data.table(Assay = a, spec = co$specificity, sens = co$sensitivity)
-}))
-
-p_roc <- ggplot() +
-  geom_abline(linetype = "dashed", colour = "grey65") +
-  geom_path(data = ind_rocs, aes(1 - spec, sens, group = Assay), colour = "grey55",
-            linewidth = 0.35, alpha = 0.4) +
-  geom_path(data = sc_co, aes(1 - specificity, sensitivity), colour = "darkorange", linewidth = 1.4) +
-  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
-  labs(x = "1 - Specificity", y = "Sensitivity",
-       title = "Predicting Resolution from Month-3 Proteins",
-       subtitle = sprintf("8-protein signature AUC = %.2f (95%% CI %.2f-%.2f)",
-                          as.numeric(auc(roc_score)), roc_score_ci[1], roc_score_ci[3])) +
-  theme_olinkviz()
+roc_dt <- data.table(
+  IRIS_number = km_dt$IRIS_number,
+  resolved    = factor(km_dt$resolved, levels = c(0, 1)),
+  Assay       = "8-protein signature",
+  score       = km_dt$risk_score
+)
+p_roc <- plot_roc(
+  roc_dt,
+  assays     = "8-protein signature",
+  group      = "resolved",
+  positive   = "1",
+  assay_col  = "Assay",
+  value_col  = "score",
+  sample_col = "IRIS_number",
+  add_ci     = TRUE,
+  boot_n     = 100,
+  palette    = "darkorange",
+  title      = "Predicting Resolution from Month-3 Proteins"
+) +
+  labs(subtitle = sprintf("n = %d (%d resolved); 95%% bootstrap sensitivity CI shaded",
+                          nrow(km_dt), sum(km_dt$resolved)))
 ```
 
 ``` r

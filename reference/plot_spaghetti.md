@@ -2,7 +2,8 @@
 
 Plots one line per subject across time (a "spaghetti" plot), optionally
 faceted by a grouping variable (e.g. treatment group) with an overlaid
-LOESS trend line. Mirrors the trajectory figures in the NUMAB reports.
+LOESS trend line. Useful for visualizing subject-level longitudinal
+trajectories.
 
 ## Usage
 

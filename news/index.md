@@ -4,13 +4,10 @@
 
 ### Data
 
-- `probc` is now fully simulated (`data-raw/build_numab_probc.R`).
-  Earlier versions held the real NUMAB project-B NPX data as “Group1”
-  plus a jittered clone of it. The new version keeps the same 22
-  columns, 35,328 rows and study layout, so existing examples run
-  unchanged. It has built-in group, time and group x time effects
-  (always present for IL6, TNF and IL8, the assay that newer Olink
-  panels call CXCL8).
+clone of it. The new version keeps the same 22 columns, 35,328 rows and
+study layout, so existing examples run unchanged. It has built-in group,
+time and group x time effects (always present for IL6, TNF and IL8, the
+assay that newer Olink panels call CXCL8).
 
 ### New features
 

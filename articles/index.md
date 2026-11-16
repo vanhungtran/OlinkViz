@@ -7,6 +7,8 @@
 
 ### Guides & Workflows
 
+- [All OlinkViz Plots on One Dataset
+  (probc)](https://vanhungtran.github.io/OlinkViz/articles/all_plots_one_dataset.md):
 - [Journal Specifications, Pre-Flight QA, and Publication
   Figures](https://vanhungtran.github.io/OlinkViz/articles/journal_figures.md):
 - [Best Practices for Olink Protein Biomarker Discovery and

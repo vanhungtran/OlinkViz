@@ -23,6 +23,10 @@ plot_roc(
   smooth_method = c("none", "binormal", "density"),
   show_empirical = TRUE,
   sort_by_auc = TRUE,
+  compare = FALSE,
+  reference = NULL,
+  compare_method = c("delong", "bootstrap"),
+  p_adjust = "none",
   direction = c("auto", "<", ">"),
   show_direction = FALSE,
   palette = NULL,
@@ -80,8 +84,8 @@ plot_roc(
 
 - boot_n:
 
-  Number of bootstrap replicates when \`add_ci = TRUE\` (default
-  \`200\`).
+  Number of bootstrap replicates when \`add_ci = TRUE\` or
+  \`compare_method = "bootstrap"\` (default \`200\`).
 
 - seed:
 
@@ -104,6 +108,30 @@ plot_roc(
 
   Logical; order curves and legend entries from highest AUC to lowest
   AUC (default \`TRUE\`).
+
+- compare:
+
+  Logical; run paired statistical tests (\`pROC::roc.test()\`) comparing
+  each ROC curve against \`reference\` (default \`FALSE\`). Results are
+  annotated in the legend/subtitle and returned in \`attr(p,
+  "roc_test")\`.
+
+- reference:
+
+  Name of the reference assay in \`assays\` when \`compare = TRUE\`. If
+  \`NULL\` (default), uses the highest-AUC curve (when \`sort_by_auc =
+  TRUE\`) or the first curve.
+
+- compare_method:
+
+  Statistical test for comparing ROC curves: \`"delong"\` (default) or
+  \`"bootstrap"\`.
+
+- p_adjust:
+
+  Multiple-testing adjustment method passed to \[stats::p.adjust()\]
+  across pairwise comparisons against \`reference\` (default \`"none"\`,
+  or e.g. \`"BH"\`).
 
 - direction:
 
@@ -132,7 +160,10 @@ plot_roc(
 
 A ggplot object. \`p\$data\` has one row per point of each curve, with
 the columns \`Assay\`, \`.fpr\`, \`.sens\`, \`.auc\`, \`.lower\`,
-\`.upper\`, \`.direction\`.
+\`.upper\`, \`.direction\`. When \`compare = TRUE\` (or \`reference\` is
+given), \`attr(p, "roc_test")\` contains a data.frame of pairwise
+comparison results (\`reference\`, \`assay\`, \`auc_ref\`,
+\`auc_assay\`, \`delta_auc\`, \`p_value\`, \`p_adj\`, \`method\`).
 
 ## Details
 
@@ -142,9 +173,11 @@ direction of each marker is chosen so that the AUC is at least 0.5 (a
 protein may be higher or lower in cases); set \`direction\` to fix it.
 Curves are ordered by descending AUC (\`sort_by_auc = TRUE\`), and can
 optionally display \`aucmat\`-style bootstrap sensitivity confidence
-ribbons (\`add_ci = TRUE\`) and binormal/density-smoothed ROC curves
-(\`smooth_method = "binormal"\`). Each curve is the apparent performance
-of a single protein on these samples, with no cross-validation.
+ribbons (\`add_ci = TRUE\`), binormal/density-smoothed ROC curves
+(\`smooth_method = "binormal"\`), and paired statistical comparisons
+between ROC curves (\`compare = TRUE\` via \`pROC::roc.test()\`). Each
+curve is the apparent performance of a single protein on these samples,
+with no cross-validation.
 
 ## Examples
 
@@ -154,7 +187,7 @@ d <- probc[probc$Timepoint == 1, ]
 plot_roc(d, assays = c("IL6", "TNF", "IL8"), group = "Project")
 
 plot_roc(d, assays = c("IL6", "TNF", "IL8"), group = "Project",
-         smooth_method = "binormal", add_ci = TRUE)
+         compare = TRUE, add_ci = TRUE)
 
 # }
 ```

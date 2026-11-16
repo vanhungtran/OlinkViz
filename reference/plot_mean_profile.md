@@ -3,7 +3,7 @@
 Computes the mean and confidence interval of one or more proteins at
 each level of an x-axis variable (e.g. time point), separately for each
 group, and plots points with error bars connected by lines. This is the
-classic "mean NPX trajectory" plot used throughout the NUMAB reports.
+classic "mean NPX trajectory" plot for longitudinal group comparisons.
 
 ## Usage
 
@@ -169,7 +169,7 @@ A ggplot object.
 ``` r
 if (FALSE) { # \dontrun{
 plot_mean_profile(
-  numab_probc, assay = "IL6", x = "Timepoint", group = "TreatGroup"
+  probc, assay = "IL6", x = "Timepoint", group = "Project"
 )
 } # }
 ```

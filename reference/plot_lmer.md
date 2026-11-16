@@ -1,11 +1,11 @@
 # LMER point-range plot
 
-Produces the "point-range" plot used in the NUMAB reports to visualize a
-linear mixed model: observed mean +/- SE per combination of an x-axis
-variable and a grouping variable, faceted by protein. If \`lme4\` is
-available and a random-effect subject column is supplied, a linear mixed
-model \`value ~ x \* group + (1 \| random)\` is fitted per protein and
-the group-effect p-value is annotated on each panel.
+Produces the "point-range" plot to visualize a linear mixed model:
+observed mean +/- SE per combination of an x-axis variable and a
+grouping variable, faceted by protein. If \`lme4\` is available and a
+random-effect subject column is supplied, a linear mixed model \`value ~
+x \* group + (1 \| random)\` is fitted per protein and the group-effect
+p-value is annotated on each panel.
 
 ## Usage
 
@@ -108,7 +108,7 @@ A ggplot object.
 ``` r
 if (FALSE) { # \dontrun{
 plot_lmer(
-  numab_probc, assay = "IL6", x = "Timepoint",
+  probc, assay = "IL6", x = "Timepoint",
   group = "TreatGroup", random = "PPID"
 )
 } # }

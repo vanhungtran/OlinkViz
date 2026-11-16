@@ -92,7 +92,7 @@ A ggplot object.
 ``` r
 if (FALSE) { # \dontrun{
 plot_regression(
-  numab_probc, assay = "IL6", x = "Time",
+  probc, assay = "IL6", x = "Time",
   color_by = "TreatGroup", facet_by = "TreatGroup"
 )
 } # }
