@@ -42,6 +42,13 @@ once per session:
 “\` options(olinkviz.base_size = 7) \# 7 pt body text for a 89 mm column
 options(olinkviz.axes = "l") \# left and bottom axis lines, no frame “\`
 
+## See also
+
+Other themes:
+[`theme_editorial()`](https://vanhungtran.github.io/OlinkViz/reference/theme_editorial.md),
+[`theme_journal()`](https://vanhungtran.github.io/OlinkViz/reference/theme_journal.md),
+[`theme_journal_text()`](https://vanhungtran.github.io/OlinkViz/reference/theme_journal_text.md)
+
 ## Examples
 
 ``` r

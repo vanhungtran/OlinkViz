@@ -21,6 +21,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
+    <li><a class="dropdown-item" href="../articles/journal_figures.html">Journal Specifications, Pre-Flight QA, and Publication Figures</a></li>
     <li><a class="dropdown-item" href="../articles/biomarker_discovery.html">Best Practices for Olink Protein Biomarker Discovery and Validation</a></li>
     <li><a class="dropdown-item" href="../articles/plots_using_simulated_data.html">Plots Generated from the Simulated Dataset (PROBC)</a></li>
   </ul></li>
@@ -62,9 +63,9 @@
         </dt>
         <dd>OlinkViz: Visualization Toolkit for Olink Proteomics Data</dd>
       </dl></div><div class="section level2">
-      <h2 id="differential-expression">Differential Expression<a class="anchor" aria-label="anchor" href="#differential-expression"></a></h2>
+      <h2 id="differential-expression-concordance">Differential Expression &amp; Concordance<a class="anchor" aria-label="anchor" href="#differential-expression-concordance"></a></h2>
 
-      <div class="section-desc"><p>Volcano plots and multi-protein dot plots</p></div>
+      <div class="section-desc"><p>Volcano plots, MA plots, multi-protein dot plots, forest plots, and cross-cohort comparisons</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -80,10 +81,38 @@
 
         <dt>
 
+          <code><a href="plot_ma.html">plot_ma()</a></code>
+
+        </dt>
+        <dd>MA plot: NPX difference (log2 fold change) against mean NPX abundance</dd>
+
+        <dt>
+
           <code><a href="plot_dotplot.html">plot_dotplot()</a></code>
 
         </dt>
         <dd>Dot plot for multiple proteins grouped by condition</dd>
+
+        <dt>
+
+          <code><a href="plot_forest.html">plot_forest()</a></code>
+
+        </dt>
+        <dd>Forest plot of protein effect sizes and confidence intervals</dd>
+
+        <dt>
+
+          <code><a href="plot_concordance.html">plot_concordance()</a></code>
+
+        </dt>
+        <dd>Cross-cohort or cross-contrast effect-size concordance scatter plot</dd>
+
+        <dt>
+
+          <code><a href="plot_upset.html">plot_upset()</a></code>
+
+        </dt>
+        <dd>UpSet plot of overlapping protein sets</dd>
       </dl></div><div class="section level2">
       <h2 id="dimensionality-reduction">Dimensionality Reduction<a class="anchor" aria-label="anchor" href="#dimensionality-reduction"></a></h2>
 
@@ -100,6 +129,13 @@
 
         </dt>
         <dd>Plot one or more dimensionality reductions of an OlinkExperiment</dd>
+
+        <dt>
+
+          <code><a href="plot_pca.html">plot_pca()</a></code>
+
+        </dt>
+        <dd>PCA scatter plot of protein expression data</dd>
 
         <dt>
 
@@ -323,9 +359,111 @@
         </dt>
         <dd>Pivot wide-format data to long format</dd>
       </dl></div><div class="section level2">
-      <h2 id="journal-size-figures">Journal-Size Figures<a class="anchor" aria-label="anchor" href="#journal-size-figures"></a></h2>
+      <h2 id="journal-specifications">Journal Specifications<a class="anchor" aria-label="anchor" href="#journal-specifications"></a></h2>
 
-      <div class="section-desc"><p>Draw at the final size of a journal column, then export at that size</p></div>
+      <div class="section-desc"><p>Registry of column widths, height limits, text/line floors, and fonts per journal</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="journal_spec.html">journal_spec()</a></code>
+
+        </dt>
+        <dd>Look up a journal specification</dd>
+
+        <dt>
+
+          <code><a href="journal_specs.html">journal_specs()</a></code>
+
+        </dt>
+        <dd>List the registered journal specifications</dd>
+
+        <dt>
+
+          <code><a href="journal_spec_add.html">journal_spec_add()</a></code>
+
+        </dt>
+        <dd>Register a journal specification for this session</dd>
+
+        <dt>
+
+          <code><a href="journal_width.html">journal_width()</a></code>
+
+        </dt>
+        <dd>Journal figure widths and heights</dd>
+
+        <dt>
+
+          <code><a href="journal_height.html">journal_height()</a></code>
+
+        </dt>
+        <dd>Maximum figure height for a journal</dd>
+
+        <dt>
+
+          <code><a href="journal_font.html">journal_font()</a></code>
+
+        </dt>
+        <dd>First installed font family a journal asks for</dd>
+      </dl></div><div class="section level2">
+      <h2 id="pre-flight-qa-checks">Pre-Flight QA Checks<a class="anchor" aria-label="anchor" href="#pre-flight-qa-checks"></a></h2>
+
+      <div class="section-desc"><p>Audit built plots against journal limits before saving</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="olinkviz_preflight.html">olinkviz_preflight()</a></code>
+
+        </dt>
+        <dd>Run every pre-flight check on a figure and print one report</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_check_text.html">olinkviz_check_text()</a></code>
+
+        </dt>
+        <dd>Check text sizes against a journal's limits</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_check_lines.html">olinkviz_check_lines()</a></code>
+
+        </dt>
+        <dd>Check stroke weights against a journal's minimum line weight</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_check_size.html">olinkviz_check_size()</a></code>
+
+        </dt>
+        <dd>Check figure dimensions (and raster resolution) against a journal</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_check_fit.html">olinkviz_check_fit()</a></code>
+
+        </dt>
+        <dd>Check whether the title/subtitle/caption will overflow the save width</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_check_colour.html">olinkviz_check_colour()</a></code>
+
+        </dt>
+        <dd>Check that discrete colours stay distinguishable (colour-vision deficiency)</dd>
+      </dl></div><div class="section level2">
+      <h2 id="journal-size-figures-composites">Journal-Size Figures &amp; Composites<a class="anchor" aria-label="anchor" href="#journal-size-figures-composites"></a></h2>
+
+      <div class="section-desc"><p>Configure sizing, combine tagged panels, and export publication-ready figures</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -337,14 +475,28 @@
           <code><a href="olinkviz_options.html">olinkviz_options()</a></code>
 
         </dt>
-        <dd>Set OlinkViz sizing options</dd>
+        <dd>Set OlinkViz sizing and journal options</dd>
 
         <dt>
 
           <code><a href="save_olinkviz.html">save_olinkviz()</a></code>
 
         </dt>
-        <dd>Save a plot at its final journal size</dd>
+        <dd>Save a plot at its final journal size and run pre-flight checks</dd>
+
+        <dt>
+
+          <code><a href="olinkviz_combine.html">olinkviz_combine()</a></code>
+
+        </dt>
+        <dd>Combine ggplots into one tagged, journal-styled composite</dd>
+
+        <dt>
+
+          <code><a href="labs_panel.html">labs_panel()</a></code>
+
+        </dt>
+        <dd>Add a bold panel letter (a, b, c...) matching journal house style</dd>
       </dl></div><div class="section level2">
       <h2 id="olinkexperiment-container">OlinkExperiment Container<a class="anchor" aria-label="anchor" href="#olinkexperiment-container"></a></h2>
 
@@ -411,9 +563,9 @@
         </dt>
         <dd>Coerce an OlinkExperiment to a long-format data.frame</dd>
       </dl></div><div class="section level2">
-      <h2 id="themes-palettes">Themes &amp; Palettes<a class="anchor" aria-label="anchor" href="#themes-palettes"></a></h2>
+      <h2 id="themes-palettes-scales">Themes, Palettes &amp; Scales<a class="anchor" aria-label="anchor" href="#themes-palettes-scales"></a></h2>
 
-      <div class="section-desc"><p>Styling for publication-ready plots</p></div>
+      <div class="section-desc"><p>Styling for publication-ready plots and journal-inspired palettes</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -429,6 +581,27 @@
 
         <dt>
 
+          <code><a href="theme_journal.html">theme_journal()</a></code>
+
+        </dt>
+        <dd>Journal theme driven by the journal specification registry</dd>
+
+        <dt>
+
+          <code><a href="theme_journal_text.html">theme_journal_text()</a></code>
+
+        </dt>
+        <dd>Journal text sizes, added to a plot without touching anything else</dd>
+
+        <dt>
+
+          <code><a href="theme_editorial.html">theme_editorial()</a></code>
+
+        </dt>
+        <dd>Editorial ggplot2 theme for reports, preprints, and presentations</dd>
+
+        <dt>
+
           <code><a href="olinkviz_palette.html">olinkviz_palette()</a></code>
 
         </dt>
@@ -439,7 +612,21 @@
           <code><a href="olinkviz_palettes.html">olinkviz_palettes()</a></code>
 
         </dt>
-        <dd>OlinkViz themed palettes (named list)</dd>
+        <dd>OlinkViz themed and journal palettes (named list)</dd>
+
+        <dt>
+
+          <code><a href="scale_colour_olinkviz.html">scale_colour_olinkviz()</a></code> <code><a href="scale_colour_olinkviz.html">scale_color_olinkviz()</a></code> <code><a href="scale_colour_olinkviz.html">scale_fill_olinkviz()</a></code>
+
+        </dt>
+        <dd>Discrete colour and fill scales using OlinkViz and journal palettes</dd>
+
+        <dt>
+
+          <code><a href="pal_okabe_ito.html">pal_okabe_ito</a></code>
+
+        </dt>
+        <dd>The Okabe-Ito colorblind-safe palette</dd>
 
         <dt>
 

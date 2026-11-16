@@ -21,6 +21,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
+    <li><a class="dropdown-item" href="../articles/journal_figures.html">Journal Specifications, Pre-Flight QA, and Publication Figures</a></li>
     <li><a class="dropdown-item" href="../articles/biomarker_discovery.html">Best Practices for Olink Protein Biomarker Discovery and Validation</a></li>
     <li><a class="dropdown-item" href="../articles/plots_using_simulated_data.html">Plots Generated from the Simulated Dataset (PROBC)</a></li>
   </ul></li>
@@ -60,7 +61,7 @@
 <li>All <code>plot_*()</code> functions now accept an <code>OlinkExperiment</code> directly. A new <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code> method converts it to the long-format data.frame used by the plots (columns <code>Assay</code>, <code>SampleID</code>, the object’s assays such as <code>NPX</code>/ <code>LOD</code>, plus all <code>colData</code>/<code>rowData</code> columns), so calls like <code>plot_dim_reduc(oe, type = "pca", color = "Group")</code> or <code>plot_boxplot(oe, assay = "IL6", group = "Group")</code> work out of the box.</li>
 <li>New unified <code><a href="../reference/plot_dim_reduc.html">plot_dim_reduc()</a></code> for plotting one or more dimensionality reductions of an <code>OlinkExperiment</code>, colored by a sample covariate: <code>plot_dim_reduc(oe, type = "pca", color = "Group")</code>. Supported <code>type</code>s are <code>"pca"</code>, <code>"umap"</code>, and <code>"tsne"</code> (computed on the fly), or any reduction already stored in <code>reducedDims(oe)</code> (matched case-insensitively). Multiple types are plotted jointly as a single multi-panel figure, e.g. <code>plot_dim_reduc(oe, type = c("pca", "umap"), color = "Group")</code>.</li>
 <li>
-<code>plot_pca()</code> has been removed; use <code>plot_dim_reduc(..., type = "pca")</code> instead (it also accepts a long-format data.frame, as <code>plot_pca()</code> did).</li>
+<code><a href="../reference/plot_pca.html">plot_pca()</a></code> has been removed; use <code>plot_dim_reduc(..., type = "pca")</code> instead (it also accepts a long-format data.frame, as <code><a href="../reference/plot_pca.html">plot_pca()</a></code> did).</li>
 <li>
 <code><a href="../reference/plot_heatmap.html">plot_heatmap()</a></code> now shows the sample covariates of an <code>OlinkExperiment</code> automatically: when <code>annotation_cols = NULL</code> (the default), the <code>colData</code> columns are drawn as annotation tracks above the samples (sample-id and constant/technical columns are excluded). Pass <code>annotation_cols</code> to select specific covariates.</li>
 <li>
@@ -123,7 +124,7 @@
 <li>
 <code><a href="../reference/to_wide.html">to_wide()</a></code> now keeps only sample-level metadata when pivoting (drops assay-level columns such as <code>OlinkID</code>, <code>UniProt</code>, <code>LOD</code>, and QC flags) and auto-detects <code>assay_col</code>/<code>value_col</code>/<code>sample_col</code>.</li>
 <li>
-<code>plot_pca()</code>/<code><a href="../reference/plot_umap.html">plot_umap()</a></code> recover grouping metadata (e.g. numeric time columns) that was previously lost during pivoting.</li>
+<code><a href="../reference/plot_pca.html">plot_pca()</a></code>/<code><a href="../reference/plot_umap.html">plot_umap()</a></code> recover grouping metadata (e.g. numeric time columns) that was previously lost during pivoting.</li>
 <li>
 <code><a href="../reference/olinkviz_palette.html">olinkviz_palette()</a></code> no longer warns for 2-group palettes.</li>
 <li>
@@ -139,7 +140,7 @@
 <li>
 <code><a href="../reference/plot_heatmap.html">plot_heatmap()</a></code>: Clustered expression heatmaps accepting both long and wide format, with annotation tracks, row/column scaling, and NA imputation with warnings.</li>
 <li>
-<code>plot_pca()</code>: PCA biplots with group coloring, optional confidence ellipses, and zero-variance column filtering.</li>
+<code><a href="../reference/plot_pca.html">plot_pca()</a></code>: PCA biplots with group coloring, optional confidence ellipses, and zero-variance column filtering.</li>
 <li>
 <code><a href="../reference/plot_umap.html">plot_umap()</a></code>: UMAP projections with group coloring, configurable n_neighbors/min_dist/metric, and reproducible seed support.</li>
 <li>

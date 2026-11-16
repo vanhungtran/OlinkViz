@@ -1,6 +1,6 @@
 # The Sunbird palette
 
-Yellow, Indigo, Olive, Slate, Sage — high-contrast warm and cool tones.
+Yellow, Indigo, Olive, Slate, Sage - high-contrast warm and cool tones.
 
 ## Usage
 

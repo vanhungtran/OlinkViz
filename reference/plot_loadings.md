@@ -25,7 +25,9 @@ plot_loadings(
 
 - x:
 
-  A \`prcomp\` object or a data.frame in long format.
+  A \`prcomp\` object, an
+  [OlinkExperiment](https://vanhungtran.github.io/OlinkViz/reference/OlinkExperiment.md),
+  or a data.frame in long format.
 
 - assay_col:
 

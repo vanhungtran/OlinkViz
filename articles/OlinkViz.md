@@ -1234,12 +1234,15 @@ km_df <- rbind(km0, km_df)[order(strata, time)]
 ggplot(km_df, aes(x = time, y = surv, color = strata)) +
   geom_step(linewidth = 1.1) +
   geom_ribbon(aes(ymin = lower, ymax = upper, fill = strata), alpha = 0.12, colour = NA) +
+  scale_color_manual(values = olinkviz_palette(2), name = NULL) +
+  scale_fill_manual(values = olinkviz_palette(2), guide = "none") +
   coord_cartesian(ylim = c(0, 1)) +
   labs(x = "Months from active Long COVID (month-3 visit)",
        y = "Probability of remaining symptomatic",
        title = "Baseline Protein Signature Predicts Time to Resolution",
        subtitle = sprintf("n=%d Long COVID-positive at month 3 (%d resolved by month 12); log-rank p=%.3f",
-                          nrow(km_dt), sum(km_dt$resolved), p_logrank))
+                          nrow(km_dt), sum(km_dt$resolved), p_logrank)) +
+  theme_olinkviz()
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-66-1.png)
@@ -1268,48 +1271,15 @@ p_roc <- ggplot() +
   geom_path(data = ind_rocs, aes(1 - spec, sens, group = Assay), colour = "grey55",
             linewidth = 0.35, alpha = 0.4) +
   geom_path(data = sc_co, aes(1 - specificity, sensitivity), colour = "darkorange", linewidth = 1.4) +
-  coord_equal() +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
   labs(x = "1 - Specificity", y = "Sensitivity",
        title = "Predicting Resolution from Month-3 Proteins",
        subtitle = sprintf("8-protein signature AUC = %.2f (95%% CI %.2f-%.2f)",
-                          as.numeric(auc(roc_score)), roc_score_ci[1], roc_score_ci[3]))
+                          as.numeric(auc(roc_score)), roc_score_ci[1], roc_score_ci[3])) +
+  theme_olinkviz()
 ```
 
 ``` r
-# Minimal UpSet-style plot: intersection-size bars + a set-membership dot matrix
-simple_upset <- function(sets, min_size = 1, subtitle = NULL) {
-  sets <- Filter(function(s) length(s) > 0, sets)
-  all_items <- unique(unlist(sets))
-  mem <- sapply(sets, function(s) all_items %in% s)
-  combo_key <- apply(mem, 1, function(r) paste(as.integer(r), collapse = ""))
-  combo_dt <- data.table(item = all_items, ckey = combo_key)
-  combo_sizes <- combo_dt[, .N, by = "ckey"][N >= min_size][order(-N)]
-  combo_sizes <- combo_sizes[ckey != paste(rep(0, length(sets)), collapse = "")]
-
-  set_names <- names(sets)
-  combo_sizes[, combo_id := factor(ckey, levels = ckey)]
-  dot_dt <- combo_sizes[, {
-    bits <- as.integer(strsplit(ckey, "")[[1]])
-    data.table(set = set_names, on = as.logical(bits))
-  }, by = combo_id]
-  dot_dt[, set := factor(set, levels = rev(set_names))]
-
-  p_bar <- ggplot(combo_sizes, aes(x = combo_id, y = N)) +
-    geom_col(fill = "grey30", width = 0.6) +
-    geom_text(aes(label = N), vjust = -0.4, size = 3.2) +
-    labs(x = NULL, y = "Intersection size", subtitle = subtitle) +
-    theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-
-  p_dot <- ggplot(dot_dt, aes(x = combo_id, y = set)) +
-    geom_line(data = dot_dt[on == TRUE], aes(group = combo_id), colour = "grey20") +
-    geom_point(aes(colour = on), size = 3) +
-    scale_colour_manual(values = c(`TRUE` = "grey15", `FALSE` = "grey85"), guide = "none") +
-    labs(x = NULL, y = NULL) +
-    theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-
-  p_bar / p_dot + plot_layout(heights = c(2.2, 1))
-}
-
 sig_bansal       <- unique(univ[p.value < 0.1]$Assay)
 sig_iris_cross   <- unique(wilcox_m3[!is.na(p) & p < 0.1]$Assay)
 sig_iris_resolve <- unique(assoc[!is.na(p) & p < 0.1]$Assay)
@@ -1317,7 +1287,8 @@ sets <- list("Bansal: LC vs Healthy"  = sig_bansal,
             "IRIS: LC vs Not (3mo)"  = sig_iris_cross,
             "IRIS: Resolvers vs Not" = sig_iris_resolve)
 
-p_roc | simple_upset(sets, subtitle = "Overlap of nominally significant proteins (p<0.1)")
+p_up <- plot_upset(sets, subtitle = "Overlap of nominally significant proteins (p < 0.1)")
+olinkviz_combine(p_roc, p_up, journal = "natmed")
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-68-1.png)
@@ -1335,18 +1306,15 @@ iris_eff <- m3_eff[, .(iris_effect = mean(z[long_covid == "Yes"], na.rm = TRUE) 
                                      mean(z[long_covid == "No"],  na.rm = TRUE)),
                     by = Assay]
 rep_dt <- merge(iris_eff, univ[, .(Assay, estimate)], by = "Assay")
-ct <- suppressWarnings(cor.test(rep_dt$iris_effect, rep_dt$estimate, method = "pearson"))
 
-ggplot(rep_dt, aes(x = estimate, y = iris_effect)) +
-  geom_point(alpha = 0.7, size = 2, colour = "darkorange") +
-  geom_smooth(method = "lm", colour = "grey20", fill = "grey70", alpha = 0.3, linewidth = 0.8) +
-  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey70") +
-  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey70") +
-  labs(x = "Bansal cohort effect size (Long COVID - Healthy)",
-       y = "IRIS cohort effect size (Long COVID - Not, z-score)",
-       title = "Cross-Cohort Replication of Protein Effect Directions",
-       subtitle = sprintf("%d overlapping proteins; Pearson r = %.2f (p = %.2g)",
-                          nrow(rep_dt), ct$estimate, ct$p.value))
+plot_concordance(
+  rep_dt,
+  x_col = "estimate",
+  y_col = "iris_effect",
+  xlab  = "Bansal cohort effect size (Long COVID - Healthy)",
+  ylab  = "IRIS cohort effect size (Long COVID - Not, z-score)",
+  title = "Cross-Cohort Replication of Protein Effect Directions"
+)
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-69-1.png)

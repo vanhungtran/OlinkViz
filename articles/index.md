@@ -7,6 +7,8 @@
 
 ### Guides & Workflows
 
+- [Journal Specifications, Pre-Flight QA, and Publication
+  Figures](https://vanhungtran.github.io/OlinkViz/articles/journal_figures.md):
 - [Best Practices for Olink Protein Biomarker Discovery and
   Validation](https://vanhungtran.github.io/OlinkViz/articles/biomarker_discovery.md):
 - [Plots Generated from the Simulated Dataset

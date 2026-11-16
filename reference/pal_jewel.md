@@ -1,7 +1,6 @@
 # The Iridescent Jewel palette
 
-Emerald, Amethyst, Ruby, Midnight, Leaf Green — rich, luxurious jewel
-tones.
+Emerald, Amethyst, Ruby, Midnight, Leaf Green - rich jewel tones.
 
 ## Usage
 
