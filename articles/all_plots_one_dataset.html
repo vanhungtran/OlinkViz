@@ -378,13 +378,15 @@ Overlap<a class="anchor" aria-label="anchor" href="#differential-expression-inte
 <p><img src="all_plots_one_dataset_files/figure-html/corr-tri-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">
-<h3 id="roc-curves-with-95-ci-shade-plot_roc">6.2 ROC Curves with 95% CI Shade (<code>plot_roc()</code>)<a class="anchor" aria-label="anchor" href="#roc-curves-with-95-ci-shade-plot_roc"></a>
+<h3 id="roc-curves-with-95-ci-shade-delong-comparison-plot_roc">6.2 ROC Curves with 95% CI Shade &amp; DeLong Comparison
+(<code>plot_roc()</code>)<a class="anchor" aria-label="anchor" href="#roc-curves-with-95-ci-shade-delong-comparison-plot_roc"></a>
 </h3>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_roc.html">plot_roc</a></span><span class="op">(</span><span class="va">base</span>, assays <span class="op">=</span> <span class="va">top_assays</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>         add_ci <span class="op">=</span> <span class="cn">TRUE</span>, boot_n <span class="op">=</span> <span class="fl">100</span>, show_direction <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>         compare <span class="op">=</span> <span class="cn">TRUE</span>, compare_method <span class="op">=</span> <span class="st">"delong"</span>,</span>
 <span>         palette <span class="op">=</span> <span class="st">"okabe_ito"</span>,</span>
-<span>         title <span class="op">=</span> <span class="st">"Baseline Classification (95% Bootstrap CI)"</span><span class="op">)</span></span></code></pre></div>
+<span>         title <span class="op">=</span> <span class="st">"Baseline Classification (95% CI &amp; DeLong Test)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="all_plots_one_dataset_files/figure-html/roc-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">

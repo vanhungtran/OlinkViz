@@ -27,6 +27,7 @@ package."></head><body>
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles</h6></li>
+    <li><a class="dropdown-item" href="../articles/all_plots_one_dataset.html">All OlinkViz Plots on One Dataset (probc)</a></li>
     <li><a class="dropdown-item" href="../articles/journal_figures.html">Journal Specifications, Pre-Flight QA, and Publication Figures</a></li>
     <li><a class="dropdown-item" href="../articles/biomarker_discovery.html">Best Practices for Olink Protein Biomarker Discovery and Validation</a></li>
     <li><a class="dropdown-item" href="../articles/plots_using_simulated_data.html">Plots Generated from the Simulated Dataset (PROBC)</a></li>
@@ -78,6 +79,10 @@ package.</p>
 <span>  smooth_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"binormal"</span>, <span class="st">"density"</span><span class="op">)</span>,</span>
 <span>  show_empirical <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  sort_by_auc <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  compare <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  reference <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  compare_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"delong"</span>, <span class="st">"bootstrap"</span><span class="op">)</span>,</span>
+<span>  p_adjust <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"&lt;"</span>, <span class="st">"&gt;"</span><span class="op">)</span>,</span>
 <span>  show_direction <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  palette <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -135,8 +140,8 @@ each ROC curve via `pROC::ci.se()` (default `FALSE`).</p></dd>
 
 
 <dt id="arg-boot-n">boot_n<a class="anchor" aria-label="anchor" href="#arg-boot-n"></a></dt>
-<dd><p>Number of bootstrap replicates when `add_ci = TRUE` (default
-`200`).</p></dd>
+<dd><p>Number of bootstrap replicates when `add_ci = TRUE` or
+`compare_method = "bootstrap"` (default `200`).</p></dd>
 
 
 <dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
@@ -158,6 +163,29 @@ empirical step curve as a faint dashed line (default `TRUE`).</p></dd>
 <dt id="arg-sort-by-auc">sort_by_auc<a class="anchor" aria-label="anchor" href="#arg-sort-by-auc"></a></dt>
 <dd><p>Logical; order curves and legend entries from highest AUC
 to lowest AUC (default `TRUE`).</p></dd>
+
+
+<dt id="arg-compare">compare<a class="anchor" aria-label="anchor" href="#arg-compare"></a></dt>
+<dd><p>Logical; run paired statistical tests (`pROC::roc.test()`)
+comparing each ROC curve against `reference` (default `FALSE`). Results
+are annotated in the legend/subtitle and returned in `attr(p, "roc_test")`.</p></dd>
+
+
+<dt id="arg-reference">reference<a class="anchor" aria-label="anchor" href="#arg-reference"></a></dt>
+<dd><p>Name of the reference assay in `assays` when
+`compare = TRUE`. If `NULL` (default), uses the highest-AUC curve (when
+`sort_by_auc = TRUE`) or the first curve.</p></dd>
+
+
+<dt id="arg-compare-method">compare_method<a class="anchor" aria-label="anchor" href="#arg-compare-method"></a></dt>
+<dd><p>Statistical test for comparing ROC curves: `"delong"`
+(default) or `"bootstrap"`.</p></dd>
+
+
+<dt id="arg-p-adjust">p_adjust<a class="anchor" aria-label="anchor" href="#arg-p-adjust"></a></dt>
+<dd><p>Multiple-testing adjustment method passed to
+[stats::p.adjust()] across pairwise comparisons against `reference`
+(default `"none"`, or e.g. `"BH"`).</p></dd>
 
 
 <dt id="arg-direction">direction<a class="anchor" aria-label="anchor" href="#arg-direction"></a></dt>
@@ -186,7 +214,10 @@ NPX values than controls (default `FALSE`).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A ggplot object. `p$data` has one row per point of each curve, with
-  the columns `Assay`, `.fpr`, `.sens`, `.auc`, `.lower`, `.upper`, `.direction`.</p>
+  the columns `Assay`, `.fpr`, `.sens`, `.auc`, `.lower`, `.upper`, `.direction`.
+  When `compare = TRUE` (or `reference` is given), `attr(p, "roc_test")`
+  contains a data.frame of pairwise comparison results (`reference`, `assay`,
+  `auc_ref`, `auc_assay`, `delta_auc`, `p_value`, `p_adj`, `method`).</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -195,10 +226,11 @@ protein measured on two Olink panels) are averaged. By default the direction
 of each marker is chosen so that the AUC is at least 0.5 (a protein may be
 higher or lower in cases); set `direction` to fix it. Curves are ordered by
 descending AUC (`sort_by_auc = TRUE`), and can optionally display
-`aucmat`-style bootstrap sensitivity confidence ribbons (`add_ci = TRUE`)
-and binormal/density-smoothed ROC curves (`smooth_method = "binormal"`).
-Each curve is the apparent performance of a single protein on these samples,
-with no cross-validation.</p>
+`aucmat`-style bootstrap sensitivity confidence ribbons (`add_ci = TRUE`),
+binormal/density-smoothed ROC curves (`smooth_method = "binormal"`), and
+paired statistical comparisons between ROC curves (`compare = TRUE` via
+`pROC::roc.test()`). Each curve is the apparent performance of a single
+protein on these samples, with no cross-validation.</p>
     </div>
 
     <div class="section level2">
@@ -208,7 +240,7 @@ with no cross-validation.</p>
 <span class="r-in"><span><span class="fu">plot_roc</span><span class="op">(</span><span class="va">d</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_roc-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">plot_roc</span><span class="op">(</span><span class="va">d</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span></span>
-<span class="r-in"><span>         smooth_method <span class="op">=</span> <span class="st">"binormal"</span>, add_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>         compare <span class="op">=</span> <span class="cn">TRUE</span>, add_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_roc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
