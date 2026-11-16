@@ -65,13 +65,19 @@ package.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_roc</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
-<span>  <span class="va">assays</span>,</span>
+<span>  assays <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  positive <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  assay_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sample_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  add_ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  boot_n <span class="op">=</span> <span class="fl">200L</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">42L</span>,</span>
+<span>  smooth_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"none"</span>, <span class="st">"binormal"</span>, <span class="st">"density"</span><span class="op">)</span>,</span>
+<span>  show_empirical <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sort_by_auc <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"&lt;"</span>, <span class="st">"&gt;"</span><span class="op">)</span>,</span>
 <span>  show_direction <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  palette <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -85,12 +91,15 @@ package.</p>
 
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>A data.frame in long format (one row per sample and assay), or an
-<a href="OlinkExperiment.html">OlinkExperiment</a>.</p></dd>
+<dd><p>A data.frame in long format (one row per sample and assay), an
+<a href="OlinkExperiment.html">OlinkExperiment</a>, or an `aucmat_screen` object (from
+`aucmat::aucmat(..., retain_data = TRUE)`).</p></dd>
 
 
 <dt id="arg-assays">assays<a class="anchor" aria-label="anchor" href="#arg-assays"></a></dt>
-<dd><p>Character vector of assay (protein) names, one curve each.</p></dd>
+<dd><p>Character vector of assay (protein) names, one curve each.
+Optional when `data` is an `aucmat_screen` object (defaults to the top 6
+biomarkers by `auc_strength`).</p></dd>
 
 
 <dt id="arg-group">group<a class="anchor" aria-label="anchor" href="#arg-group"></a></dt>
@@ -117,7 +126,38 @@ have exactly two levels; subset the data first if it has more.</p></dd>
 
 <dt id="arg-ci">ci<a class="anchor" aria-label="anchor" href="#arg-ci"></a></dt>
 <dd><p>Logical; add the 95 percent confidence interval of the AUC to the
-legend (default TRUE).</p></dd>
+legend (default `TRUE`).</p></dd>
+
+
+<dt id="arg-add-ci">add_ci<a class="anchor" aria-label="anchor" href="#arg-add-ci"></a></dt>
+<dd><p>Logical; add bootstrap sensitivity confidence ribbons around
+each ROC curve via `pROC::ci.se()` (default `FALSE`).</p></dd>
+
+
+<dt id="arg-boot-n">boot_n<a class="anchor" aria-label="anchor" href="#arg-boot-n"></a></dt>
+<dd><p>Number of bootstrap replicates when `add_ci = TRUE` (default
+`200`).</p></dd>
+
+
+<dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
+<dd><p>Optional RNG seed for reproducible bootstrap CI ribbons (default
+`42`).</p></dd>
+
+
+<dt id="arg-smooth-method">smooth_method<a class="anchor" aria-label="anchor" href="#arg-smooth-method"></a></dt>
+<dd><p>ROC smoothing method: `"none"` (empirical step curve,
+default), `"binormal"`, or `"density"` (via `pROC::smooth()`). When
+smoothed, the empirical AUC and DeLong CI are still reported in the legend.</p></dd>
+
+
+<dt id="arg-show-empirical">show_empirical<a class="anchor" aria-label="anchor" href="#arg-show-empirical"></a></dt>
+<dd><p>Logical; when `smooth_method != "none"`, overlay the
+empirical step curve as a faint dashed line (default `TRUE`).</p></dd>
+
+
+<dt id="arg-sort-by-auc">sort_by_auc<a class="anchor" aria-label="anchor" href="#arg-sort-by-auc"></a></dt>
+<dd><p>Logical; order curves and legend entries from highest AUC
+to lowest AUC (default `TRUE`).</p></dd>
 
 
 <dt id="arg-direction">direction<a class="anchor" aria-label="anchor" href="#arg-direction"></a></dt>
@@ -126,7 +166,7 @@ legend (default TRUE).</p></dd>
 
 
 <dt id="arg-show-direction">show_direction<a class="anchor" aria-label="anchor" href="#arg-show-direction"></a></dt>
-<dd><p>Logical; if `TRUE`, appends `(up)` or `(down)` to each
+<dd><p>Logical; if `TRUE`, appends `(+)` or `(-)` to each
 legend label indicating whether cases have higher (`&lt;`) or lower (`&gt;`)
 NPX values than controls (default `FALSE`).</p></dd>
 
@@ -153,9 +193,12 @@ NPX values than controls (default `FALSE`).</p></dd>
     <p>Replicate rows (the same sample and assay more than once, for example a
 protein measured on two Olink panels) are averaged. By default the direction
 of each marker is chosen so that the AUC is at least 0.5 (a protein may be
-higher or lower in cases); set `direction` to fix it. Each curve is the
-apparent performance of a single protein on these samples, with no
-cross-validation.</p>
+higher or lower in cases); set `direction` to fix it. Curves are ordered by
+descending AUC (`sort_by_auc = TRUE`), and can optionally display
+`aucmat`-style bootstrap sensitivity confidence ribbons (`add_ci = TRUE`)
+and binormal/density-smoothed ROC curves (`smooth_method = "binormal"`).
+Each curve is the apparent performance of a single protein on these samples,
+with no cross-validation.</p>
     </div>
 
     <div class="section level2">
@@ -164,6 +207,9 @@ cross-validation.</p>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu">plot_roc</span><span class="op">(</span><span class="va">d</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_roc-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">plot_roc</span><span class="op">(</span><span class="va">d</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span></span>
+<span class="r-in"><span>         smooth_method <span class="op">=</span> <span class="st">"binormal"</span>, add_ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_roc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
