@@ -10,13 +10,19 @@ the \`pROC\` package.
 ``` r
 plot_roc(
   data,
-  assays,
+  assays = NULL,
   group = NULL,
   positive = NULL,
   assay_col = NULL,
   value_col = NULL,
   sample_col = NULL,
   ci = TRUE,
+  add_ci = FALSE,
+  boot_n = 200L,
+  seed = 42L,
+  smooth_method = c("none", "binormal", "density"),
+  show_empirical = TRUE,
+  sort_by_auc = TRUE,
   direction = c("auto", "<", ">"),
   show_direction = FALSE,
   palette = NULL,
@@ -29,12 +35,16 @@ plot_roc(
 
 - data:
 
-  A data.frame in long format (one row per sample and assay), or an
-  [OlinkExperiment](https://vanhungtran.github.io/OlinkViz/reference/OlinkExperiment.md).
+  A data.frame in long format (one row per sample and assay), an
+  [OlinkExperiment](https://vanhungtran.github.io/OlinkViz/reference/OlinkExperiment.md),
+  or an \`aucmat_screen\` object (from \`aucmat::aucmat(..., retain_data
+  = TRUE)\`).
 
 - assays:
 
-  Character vector of assay (protein) names, one curve each.
+  Character vector of assay (protein) names, one curve each. Optional
+  when \`data\` is an \`aucmat_screen\` object (defaults to the top 6
+  biomarkers by \`auc_strength\`).
 
 - group:
 
@@ -61,7 +71,39 @@ plot_roc(
 - ci:
 
   Logical; add the 95 percent confidence interval of the AUC to the
-  legend (default TRUE).
+  legend (default \`TRUE\`).
+
+- add_ci:
+
+  Logical; add bootstrap sensitivity confidence ribbons around each ROC
+  curve via \`pROC::ci.se()\` (default \`FALSE\`).
+
+- boot_n:
+
+  Number of bootstrap replicates when \`add_ci = TRUE\` (default
+  \`200\`).
+
+- seed:
+
+  Optional RNG seed for reproducible bootstrap CI ribbons (default
+  \`42\`).
+
+- smooth_method:
+
+  ROC smoothing method: \`"none"\` (empirical step curve, default),
+  \`"binormal"\`, or \`"density"\` (via \`pROC::smooth()\`). When
+  smoothed, the empirical AUC and DeLong CI are still reported in the
+  legend.
+
+- show_empirical:
+
+  Logical; when \`smooth_method != "none"\`, overlay the empirical step
+  curve as a faint dashed line (default \`TRUE\`).
+
+- sort_by_auc:
+
+  Logical; order curves and legend entries from highest AUC to lowest
+  AUC (default \`TRUE\`).
 
 - direction:
 
@@ -70,9 +112,9 @@ plot_roc(
 
 - show_direction:
 
-  Logical; if \`TRUE\`, appends \`(up)\` or \`(down)\` to each legend
-  label indicating whether cases have higher (\`\<\`) or lower (\`\>\`)
-  NPX values than controls (default \`FALSE\`).
+  Logical; if \`TRUE\`, appends \`(+)\` or \`(-)\` to each legend label
+  indicating whether cases have higher (\`\<\`) or lower (\`\>\`) NPX
+  values than controls (default \`FALSE\`).
 
 - palette:
 
@@ -98,8 +140,11 @@ Replicate rows (the same sample and assay more than once, for example a
 protein measured on two Olink panels) are averaged. By default the
 direction of each marker is chosen so that the AUC is at least 0.5 (a
 protein may be higher or lower in cases); set \`direction\` to fix it.
-Each curve is the apparent performance of a single protein on these
-samples, with no cross-validation.
+Curves are ordered by descending AUC (\`sort_by_auc = TRUE\`), and can
+optionally display \`aucmat\`-style bootstrap sensitivity confidence
+ribbons (\`add_ci = TRUE\`) and binormal/density-smoothed ROC curves
+(\`smooth_method = "binormal"\`). Each curve is the apparent performance
+of a single protein on these samples, with no cross-validation.
 
 ## Examples
 
@@ -107,6 +152,9 @@ samples, with no cross-validation.
 # \donttest{
 d <- probc[probc$Timepoint == 1, ]
 plot_roc(d, assays = c("IL6", "TNF", "IL8"), group = "Project")
+
+plot_roc(d, assays = c("IL6", "TNF", "IL8"), group = "Project",
+         smooth_method = "binormal", add_ci = TRUE)
 
 # }
 ```

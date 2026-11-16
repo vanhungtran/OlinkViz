@@ -101,25 +101,24 @@ retrieve the assay named <code>"NPX"</code>.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="va">OlinkExperiment</span>, echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># Using the class example</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no help found for 'OlinkExperiment'</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 730  49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200  20</span>
 <span class="r-in"><span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           5458    5484   6711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> IL2    -0.4439 -0.0734 0.7523</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> IL10RA -0.3931  0.4009 0.2433</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PAPPA  -0.1184 -0.0073 0.5826</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Sample1  Sample2  Sample3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID1 4.497808 5.028172 3.715171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID2 5.131531 4.643297 4.858218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID3 4.921083 5.852626 6.438785</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The getter/setter wraps assay("NPX")</span></span></span>
 <span class="r-in"><span><span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">npx</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># LOD accessor</span></span></span>
 <span class="r-in"><span><span class="fu">lod</span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           5458    5484    6711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> IL2    -0.4181 -0.4181 -0.4181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> IL10RA -2.4999 -2.4999 -2.4999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PAPPA  -2.8275 -2.8275 -2.8275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Sample1 Sample2 Sample3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID1     0.5     0.5     0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID2     0.5     0.5     0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OID3     0.5     0.5     0.5</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

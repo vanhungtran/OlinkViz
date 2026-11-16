@@ -722,7 +722,8 @@ time point if there are repeated measures.
 ``` r
 baseline <- probc[probc$Timepoint == 1, ]
 plot_roc(baseline, assays = c("IL6", "TNF", "IL8"), group = "Project",
-         show_direction = TRUE)
+         show_direction = TRUE, smooth_method = "binormal",
+         add_ci = TRUE, boot_n = 100)
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-43-1.png)

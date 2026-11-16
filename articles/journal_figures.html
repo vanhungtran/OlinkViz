@@ -484,6 +484,18 @@ replication, and overlapping protein sets:</p>
 <span><span class="fu"><a href="../reference/plot_upset.html">plot_upset</a></span><span class="op">(</span><span class="va">sets</span>, title <span class="op">=</span> <span class="st">"Overlap of Selected Biomarker Sets"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="journal_figures_files/figure-html/upset-plot-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
+<div class="section level3">
+<h3 id="smoothed-roc-curves-with-ci-ribbons-plot_roc">Smoothed ROC curves with CI ribbons (<code>plot_roc()</code>)<a class="anchor" aria-label="anchor" href="#smoothed-roc-curves-with-ci-ribbons-plot_roc"></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">baseline</span> <span class="op">&lt;-</span> <span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
+<span><span class="fu"><a href="../reference/plot_roc.html">plot_roc</a></span><span class="op">(</span><span class="va">baseline</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
+<span>         smooth_method <span class="op">=</span> <span class="st">"binormal"</span>, add_ci <span class="op">=</span> <span class="cn">TRUE</span>, boot_n <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>         show_direction <span class="op">=</span> <span class="cn">TRUE</span>, palette <span class="op">=</span> <span class="st">"okabe_ito"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"Baseline Biomarker Discrimination"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/theme_journal_text.html">theme_journal_text</a></span><span class="op">(</span><span class="st">"nature"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="journal_figures_files/figure-html/roc-plot-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

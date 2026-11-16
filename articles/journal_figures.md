@@ -307,3 +307,16 @@ plot_upset(sets, title = "Overlap of Selected Biomarker Sets")
 ```
 
 ![](journal_figures_files/figure-html/upset-plot-1.png)
+
+### Smoothed ROC curves with CI ribbons (`plot_roc()`)
+
+``` r
+baseline <- probc[probc$Timepoint == 1, ]
+plot_roc(baseline, assays = c("IL6", "TNF", "IL8"), group = "Project",
+         smooth_method = "binormal", add_ci = TRUE, boot_n = 100,
+         show_direction = TRUE, palette = "okabe_ito",
+         title = "Baseline Biomarker Discrimination") +
+  theme_journal_text("nature")
+```
+
+![](journal_figures_files/figure-html/roc-plot-1.png)

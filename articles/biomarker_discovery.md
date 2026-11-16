@@ -624,8 +624,24 @@ loses directionality — the sign of PC1 is arbitrary.
 
 ### 6.2 Evaluating Signature Performance
 
+For individual proteins or pre-computed signature scores,
+[`plot_roc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_roc.md)
+draws empirical or binormal-smoothed ROC curves with DeLong 95% CIs and
+optional bootstrap sensitivity ribbons (`add_ci = TRUE`,
+`smooth_method = "binormal"`):
+
 ``` r
 library(pROC)
+
+# Multi-protein smoothed ROC curves with 95% bootstrap sensitivity ribbons
+plot_roc(
+  bansal_baseline57[bansal_baseline57$`Long_COVID status` %in% c("Healthy", "Long COVID"), ],
+  assays        = c("CXCL10", "IL6", "CCL2", "TNF"),
+  group         = "Long_COVID status",
+  smooth_method = "binormal",
+  add_ci        = TRUE,
+  show_direction = TRUE
+)
 
 roc_obj <- pROC::roc(
   signature_scores$`Long_COVID status` == "Long COVID",

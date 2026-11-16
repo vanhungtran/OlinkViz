@@ -1,5 +1,11 @@
 # Forest plot of protein effect sizes and confidence intervals
 
+Draws a horizontal forest plot of per-protein estimates and 95
+intervals, optionally grouped by cohort, contrast, or significance.
+Accepts either explicit \`lower_col\`/\`upper_col\` bounds or a
+standard-error column (\`se_col\`), computing Wald intervals
+automatically.
+
 ## Usage
 
 ``` r
@@ -79,14 +85,19 @@ plot_forest(
 
 - xlab:
 
-  x-axis label (default \`"Effect size (95
+  x-axis label (default \`"Effect size (95% CI)"\`).
 
-  titleOptional plot title.
+- title:
 
-A \`ggplot\` object. Draws a horizontal forest plot of per-protein
-estimates and 95 intervals, optionally grouped by cohort, contrast, or
-significance. Accepts either explicit \`lower_col\`/\`upper_col\` bounds
-or a standard-error column (\`se_col\`), computing Wald intervals
-automatically. plot_forest(bansal_univariate, assay_col = "Assay",
-estimate_col = "estimate", lower_col = "conf.low", upper_col =
-"conf.high", top_n = 15)
+  Optional plot title.
+
+## Value
+
+A \`ggplot\` object.
+
+## Examples
+
+``` r
+plot_forest(bansal_univariate, assay_col = "Assay", estimate_col = "estimate",
+            lower_col = "conf.low", upper_col = "conf.high", top_n = 15)
+```
