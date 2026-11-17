@@ -78,6 +78,7 @@ Visualizes the distribution of NPX values over time or across groups.</p>
 <span>  subject_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  show_p_value <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  show_significant <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  show_overall <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  p_cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  bracket_nudge_y <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  step_increase <span class="op">=</span> <span class="fl">0.12</span>,</span>
@@ -144,7 +145,10 @@ is used, every pair of x levels (e.g. timepoints) is compared.</p></dd>
 
 
 <dt id="arg-test">test<a class="anchor" aria-label="anchor" href="#arg-test"></a></dt>
-<dd><p>Statistical test: "wilcox.test" (default) or "t.test".</p></dd>
+<dd><p>Statistical test: `"wilcox.test"` (default), `"t.test"`,
+`"anova"`, or `"kruskal.test"` (short aliases `"wilcox"`, `"t"`, and
+`"kruskal"` are also accepted). `"anova"` and `"kruskal.test"` compute an
+overall test across `x` levels.</p></dd>
 
 
 <dt id="arg-paired">paired<a class="anchor" aria-label="anchor" href="#arg-paired"></a></dt>
@@ -157,12 +161,20 @@ is used, every pair of x levels (e.g. timepoints) is compared.</p></dd>
 
 <dt id="arg-show-p-value">show_p_value<a class="anchor" aria-label="anchor" href="#arg-show-p-value"></a></dt>
 <dd><p>Logical; annotate numeric p-values for each pairwise
-comparison. Requires `ggpubr` (default FALSE).</p></dd>
+comparison (or the overall test when `test` is `"anova"` or
+`"kruskal.test"`). Requires `ggpubr` (default `FALSE`).</p></dd>
 
 
 <dt id="arg-show-significant">show_significant<a class="anchor" aria-label="anchor" href="#arg-show-significant"></a></dt>
 <dd><p>Logical; annotate significance stars (*, **, ***)
-for each pairwise comparison. Requires `ggpubr` (default FALSE).</p></dd>
+for each pairwise comparison. Requires `ggpubr` (default `FALSE`).</p></dd>
+
+
+<dt id="arg-show-overall">show_overall<a class="anchor" aria-label="anchor" href="#arg-show-overall"></a></dt>
+<dd><p>Logical; annotate an overall p-value across `x` levels
+(ANOVA when `test = "t.test"` or `"anova"`, Kruskal-Wallis when
+`test = "wilcox.test"` or `"kruskal.test"`). Requires `ggpubr`
+(default `FALSE`).</p></dd>
 
 
 <dt id="arg-p-cutoff">p_cutoff<a class="anchor" aria-label="anchor" href="#arg-p-cutoff"></a></dt>
