@@ -96,7 +96,8 @@ hub-protein co-expression networks (`type = "network"`, inspired by
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_wgcna</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
 <span>  traits <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"module_trait"</span>, <span class="st">"soft_threshold"</span>, <span class="st">"hubs"</span>, <span class="st">"eigengenes"</span>, <span class="st">"network"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"module_trait"</span>, <span class="st">"soft_threshold"</span>, <span class="st">"hubs"</span>, <span class="st">"eigengenes"</span>, <span class="st">"network"</span>,</span>
+<span>    <span class="st">"enrichment"</span><span class="op">)</span>,</span>
 <span>  power <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  network_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"signed"</span>, <span class="st">"unsigned"</span><span class="op">)</span>,</span>
 <span>  min_module_size <span class="op">=</span> <span class="fl">8L</span>,</span>
@@ -113,6 +114,7 @@ hub-protein co-expression networks (`type = "network"`, inspired by
 <span>  pathway_map <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  panel_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  enrich <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  top_terms <span class="op">=</span> <span class="fl">5L</span>,</span>
 <span>  repeated_measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"collapse"</span>, <span class="st">"within"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -192,8 +194,14 @@ annotation. If `NULL`, auto-detected.</p></dd>
 
 <dt id="arg-enrich">enrich<a class="anchor" aria-label="anchor" href="#arg-enrich"></a></dt>
 <dd><p>Logical; if `TRUE`, runs `enrich_pathways()` (via
-<span class="pkg">gprofiler2</span>, requires internet) per module to annotate modules with
-their top enriched pathway. Default `FALSE`.</p></dd>
+<span class="pkg">gprofiler2</span>, requires internet) per module to annotate modules and
+populate `type = "enrichment"`. Default `FALSE` (uses offline Fisher's
+exact test against `pathway_map` or `Panel`/`Pathway` when `type = "enrichment"`).</p></dd>
+
+
+<dt id="arg-top-terms">top_terms<a class="anchor" aria-label="anchor" href="#arg-top-terms"></a></dt>
+<dd><p>Maximum number of enriched terms per module to display when
+`type = "enrichment"` (default `5`).</p></dd>
 
 
 <dt id="arg-repeated-measures">repeated_measures<a class="anchor" aria-label="anchor" href="#arg-repeated-measures"></a></dt>
@@ -212,8 +220,8 @@ or `"none"` (standard pooled `cor.test()`).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A ggplot object. `attr(p, "wgcna")` contains `modules`,
-  `module_annotations`, `eigengenes`, `trait_cor`, `trait_pval`, `power`,
-  `soft_threshold`, and `batch_harmonized`.</p>
+  `module_annotations`, `module_enrichment`, `eigengenes`, `trait_cor`,
+  `trait_pval`, `power`, `soft_threshold`, and `batch_harmonized`.</p>
     </div>
 
     <div class="section level2">
@@ -233,6 +241,11 @@ or `"none"` (standard pooled `cor.test()`).</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Dropped assay-level column(s) from wide pivot: OlinkID, UniProt, Panel, Panel_Version, PlateID</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Averaging 96 replicate(s) across assay-sample combinations</span>
 <span class="r-plt img"><img src="plot_wgcna-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">plot_wgcna</span><span class="op">(</span><span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, type <span class="op">=</span> <span class="st">"enrichment"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Auto-detected columns: group = 'Project'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropped assay-level column(s) from wide pivot: OlinkID, UniProt, Panel, Panel_Version, PlateID</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Averaging 96 replicate(s) across assay-sample combinations</span>
+<span class="r-plt img"><img src="plot_wgcna-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
