@@ -109,6 +109,10 @@ hub-protein co-expression networks (`type = "network"`, inspired by
 <span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  batch <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  annotate_modules <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  pathway_map <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  panel_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  enrich <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  repeated_measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"collapse"</span>, <span class="st">"within"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -169,6 +173,29 @@ provided with `&gt;= 2` levels, batch effects are residualized per protein
 before computing harmonized module eigengenes (inspired by `hdWGCNA`).</p></dd>
 
 
+<dt id="arg-annotate-modules">annotate_modules<a class="anchor" aria-label="anchor" href="#arg-annotate-modules"></a></dt>
+<dd><p>Logical; if `TRUE` (default), annotates each module
+label with its top hub protein and dominant `Panel`/pathway (or enriched
+pathway when `enrich = TRUE`).</p></dd>
+
+
+<dt id="arg-pathway-map">pathway_map<a class="anchor" aria-label="anchor" href="#arg-pathway-map"></a></dt>
+<dd><p>Optional 2-column data.frame (`Assay`, `Pathway`) or
+named list mapping assays to biological pathways/categories for module
+annotation. If `NULL`, auto-detects `Panel`/`Pathway`/`Category` in `data`.</p></dd>
+
+
+<dt id="arg-panel-col">panel_col<a class="anchor" aria-label="anchor" href="#arg-panel-col"></a></dt>
+<dd><p>Optional column name in `data` for protein panel/pathway
+annotation. If `NULL`, auto-detected.</p></dd>
+
+
+<dt id="arg-enrich">enrich<a class="anchor" aria-label="anchor" href="#arg-enrich"></a></dt>
+<dd><p>Logical; if `TRUE`, runs `enrich_pathways()` (via
+<span class="pkg">gprofiler2</span>, requires internet) per module to annotate modules with
+their top enriched pathway. Default `FALSE`.</p></dd>
+
+
 <dt id="arg-repeated-measures">repeated_measures<a class="anchor" aria-label="anchor" href="#arg-repeated-measures"></a></dt>
 <dd><p>How to handle repeated measurements per subject:
 `"auto"` (default; uses mixed-effects `lmer(ME ~ Trait + (1 | subject_id))`
@@ -185,8 +212,8 @@ or `"none"` (standard pooled `cor.test()`).</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A ggplot object. `attr(p, "wgcna")` contains `modules`,
-  `eigengenes`, `trait_cor`, `trait_pval`, `power`, `soft_threshold`, and
-  `batch_harmonized`.</p>
+  `module_annotations`, `eigengenes`, `trait_cor`, `trait_pval`, `power`,
+  `soft_threshold`, and `batch_harmonized`.</p>
     </div>
 
     <div class="section level2">
