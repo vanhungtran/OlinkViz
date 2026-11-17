@@ -4,14 +4,20 @@ NPX data: selects a soft-thresholding power for scale-free topology, computes
 the Topological Overlap Matrix (TOM), identifies co-expression modules via
 hierarchical clustering, extracts module eigengenes (PC1), and visualizes
 either module-trait correlations (`type = "module_trait"`, default),
-soft-thresholding diagnostics (`type = "soft_threshold"`), or top hub
-proteins per module (`type = "hubs"`).'><meta property="og:description" content='Performs signed or unsigned weighted co-expression network analysis on Olink
+soft-thresholding diagnostics (`type = "soft_threshold"`), top hub
+proteins per module (`type = "hubs"`), batch-harmonized module eigengene
+trajectories/distributions (`type = "eigengenes"`), or concentric
+hub-protein co-expression networks (`type = "network"`, inspired by
+`hdWGCNA`).'><meta property="og:description" content='Performs signed or unsigned weighted co-expression network analysis on Olink
 NPX data: selects a soft-thresholding power for scale-free topology, computes
 the Topological Overlap Matrix (TOM), identifies co-expression modules via
 hierarchical clustering, extracts module eigengenes (PC1), and visualizes
 either module-trait correlations (`type = "module_trait"`, default),
-soft-thresholding diagnostics (`type = "soft_threshold"`), or top hub
-proteins per module (`type = "hubs"`).'></head><body>
+soft-thresholding diagnostics (`type = "soft_threshold"`), top hub
+proteins per module (`type = "hubs"`), batch-harmonized module eigengene
+trajectories/distributions (`type = "eigengenes"`), or concentric
+hub-protein co-expression networks (`type = "network"`, inspired by
+`hdWGCNA`).'></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -78,8 +84,11 @@ NPX data: selects a soft-thresholding power for scale-free topology, computes
 the Topological Overlap Matrix (TOM), identifies co-expression modules via
 hierarchical clustering, extracts module eigengenes (PC1), and visualizes
 either module-trait correlations (`type = "module_trait"`, default),
-soft-thresholding diagnostics (`type = "soft_threshold"`), or top hub
-proteins per module (`type = "hubs"`).</p>
+soft-thresholding diagnostics (`type = "soft_threshold"`), top hub
+proteins per module (`type = "hubs"`), batch-harmonized module eigengene
+trajectories/distributions (`type = "eigengenes"`), or concentric
+hub-protein co-expression networks (`type = "network"`, inspired by
+`hdWGCNA`).</p>
     </div>
 
     <div class="section level2">
@@ -87,7 +96,7 @@ proteins per module (`type = "hubs"`).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_wgcna</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
 <span>  traits <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"module_trait"</span>, <span class="st">"soft_threshold"</span>, <span class="st">"hubs"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"module_trait"</span>, <span class="st">"soft_threshold"</span>, <span class="st">"hubs"</span>, <span class="st">"eigengenes"</span>, <span class="st">"network"</span><span class="op">)</span>,</span>
 <span>  power <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  network_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"signed"</span>, <span class="st">"unsigned"</span><span class="op">)</span>,</span>
 <span>  min_module_size <span class="op">=</span> <span class="fl">8L</span>,</span>
@@ -96,6 +105,11 @@ proteins per module (`type = "hubs"`).</p>
 <span>  assay_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sample_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subject_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  group <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  batch <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  repeated_measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"collapse"</span>, <span class="st">"within"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -116,8 +130,8 @@ low-cardinality categorical metadata columns.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Plot type: `"module_trait"` (default), `"soft_threshold"`, or
-`"hubs"`.</p></dd>
+<dd><p>Plot type: `"module_trait"` (default), `"soft_threshold"`,
+`"hubs"`, `"eigengenes"`, or `"network"`.</p></dd>
 
 
 <dt id="arg-power">power<a class="anchor" aria-label="anchor" href="#arg-power"></a></dt>
@@ -141,12 +155,27 @@ set `NULL` to use all).</p></dd>
 
 <dt id="arg-top-hubs">top_hubs<a class="anchor" aria-label="anchor" href="#arg-top-hubs"></a></dt>
 <dd><p>Number of top hub proteins per module when `type = "hubs"`
-(default `5`).</p></dd>
+or inner-ring hubs when `type = "network"` (default `5`).</p></dd>
 
 
-<dt id="arg-assay-col-value-col-sample-col">assay_col, value_col, sample_col<a class="anchor" aria-label="anchor" href="#arg-assay-col-value-col-sample-col"></a></dt>
-<dd><p>Optional column names. If `NULL`,
-auto-detected.</p></dd>
+<dt id="arg-assay-col-value-col-sample-col-subject-id-group-time">assay_col, value_col, sample_col, subject_id, group, time<a class="anchor" aria-label="anchor" href="#arg-assay-col-value-col-sample-col-subject-id-group-time"></a></dt>
+<dd><p>Optional column
+names. If `NULL`, auto-detected.</p></dd>
+
+
+<dt id="arg-batch">batch<a class="anchor" aria-label="anchor" href="#arg-batch"></a></dt>
+<dd><p>Optional batch/plate column name (e.g. `"PlateID"`). When
+provided with `&gt;= 2` levels, batch effects are residualized per protein
+before computing harmonized module eigengenes (inspired by `hdWGCNA`).</p></dd>
+
+
+<dt id="arg-repeated-measures">repeated_measures<a class="anchor" aria-label="anchor" href="#arg-repeated-measures"></a></dt>
+<dd><p>How to handle repeated measurements per subject:
+`"auto"` (default; uses mixed-effects `lmer(ME ~ Trait + (1 | subject_id))`
+for trait p-values when `subject_id` has repeated samples), `"collapse"`
+(averages NPX to one independent row per subject before WGCNA), `"within"`
+(centers each protein within `subject_id` for longitudinal co-variation),
+or `"none"` (standard pooled `cor.test()`).</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
@@ -156,16 +185,27 @@ auto-detected.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A ggplot object. `attr(p, "wgcna")` contains `modules`,
-  `eigengenes`, `trait_cor`, `trait_pval`, `power`, and `soft_threshold`.</p>
+  `eigengenes`, `trait_cor`, `trait_pval`, `power`, `soft_threshold`, and
+  `batch_harmonized`.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">plot_wgcna</span><span class="op">(</span><span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Project"</span>, <span class="st">"Plate#"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Auto-detected columns: group = 'Project'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Dropped assay-level column(s) from wide pivot: OlinkID, UniProt, Panel, Panel_Version, PlateID</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Averaging 96 replicate(s) across assay-sample combinations</span>
 <span class="r-plt img"><img src="plot_wgcna-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">plot_wgcna</span><span class="op">(</span><span class="va">probc</span>, type <span class="op">=</span> <span class="st">"eigengenes"</span>, group <span class="op">=</span> <span class="st">"Project"</span>, time <span class="op">=</span> <span class="st">"Timepoint"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropped assay-level column(s) from wide pivot: OlinkID, UniProt, Panel, Panel_Version, PlateID</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Averaging 768 replicate(s) across assay-sample combinations</span>
+<span class="r-plt img"><img src="plot_wgcna-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">plot_wgcna</span><span class="op">(</span><span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, type <span class="op">=</span> <span class="st">"network"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Auto-detected columns: group = 'Project'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Dropped assay-level column(s) from wide pivot: OlinkID, UniProt, Panel, Panel_Version, PlateID</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Averaging 96 replicate(s) across assay-sample combinations</span>
+<span class="r-plt img"><img src="plot_wgcna-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
