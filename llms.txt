@@ -2,7 +2,7 @@
 
 ### *Visualization Toolkit for Olink Proteomics Data*
 
-  
+\
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
@@ -11,7 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 
-  
+\
 
 > 🔬 **Ready-made, publication-quality visualizations for Olink NPX
 > proteomics data — with 11 curated study datasets and an interactive
@@ -31,6 +31,7 @@ that are ready for publication, not drafts you’ll have to polish later.
 Olink data structures out of the box:
 
 ``` r
+
 library(OlinkViz)
 
 # One line to a publication-ready volcano plot — columns are auto-detected
@@ -62,6 +63,7 @@ Figures](#id_-journal-size-figures)).
 ## 🚀 Install
 
 ``` r
+
 remotes::install_github("vanhungtran/OlinkViz")
 library(OlinkViz)
 ```
@@ -135,6 +137,7 @@ DeLong confidence intervals.
 | *[`plot_roc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_roc.md): AUC and 95 percent CI in the legend* |
 
 ``` r
+
 plot_qc(probc, color_by = "PlateID", sd_cutoff = 2.5)
 plot_lod(probc, threshold = 75)
 plot_roc(probc[probc$Timepoint == 1, ], assays = c("IL6", "TNF", "IL8"), group = "Project")
@@ -161,6 +164,7 @@ figure](reference/figures/fig_journal_size.png)](https://vanhungtran.github.io/O
 per-subject means (FDR), and a boxplot — simulated `probc`*
 
 ``` r
+
 old <- olinkviz_options(base_size = 7, axes = "l")   # 7 pt text, left + bottom axes
 p <- plot_boxplot(probc, assay = "IL6", group = "Project")
 save_olinkviz(p, "il6_boxplot", width = 89, height = 70)   # one column, PDF + PNG
@@ -354,6 +358,7 @@ package:
 | `probc` | Simulated cohort (PROBC) | 184 | 192 | Simulated 2-group longitudinal NPX |
 
 ``` r
+
 data(package = "OlinkViz")   # list all datasets
 ?iris_longcovid               # dataset documentation
 ```
@@ -374,6 +379,7 @@ data(package = "OlinkViz")   # list all datasets
 | [`run_shiny()`](https://vanhungtran.github.io/OlinkViz/reference/run_shiny.md) | Launch interactive Shiny dashboard |
 
 ``` r
+
 # Validate your data
 validate_npx(my_data)
 
@@ -387,6 +393,7 @@ long <- to_long(wide, id_cols = "SampleID")
 ## 🖥️ Interactive Shiny App
 
 ``` r
+
 OlinkViz::run_shiny()
 ```
 
@@ -439,9 +446,9 @@ MIT © 2025 Lucas VHH TRAN. See
 
 ------------------------------------------------------------------------
 
-  
-*Built with 🧬 and 📊 for the Olink proteomics community.*  
-  
+\
+*Built with 🧬 and 📊 for the Olink proteomics community.*\
+\
 
 # Package index
 

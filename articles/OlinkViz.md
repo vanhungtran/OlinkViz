@@ -10,6 +10,7 @@ interactive Shiny application for data exploration.
 ### Installation
 
 ``` r
+
 # From source:
 install.packages("OlinkViz_0.1.0.tar.gz", repos = NULL, type = "source")
 
@@ -37,6 +38,7 @@ install.packages("OlinkViz_0.1.0.tar.gz", repos = NULL, type = "source")
 ## Quick Start
 
 ``` r
+
 library(OlinkViz)
 library(ggplot2)
 library(dplyr)  # for %>%
@@ -48,6 +50,7 @@ Each dataset can be examined directly. Let’s look at the IRIS Long COVID
 data:
 
 ``` r
+
 str(iris_longcovid)
 #> Classes 'data.table' and 'data.frame':   16020 obs. of  7 variables:
 #>  $ Assay       : chr  "IL8" "IL8" "IL8" "IL8" ...
@@ -61,12 +64,14 @@ str(iris_longcovid)
 ```
 
 ``` r
+
 # Unique assays in the dataset
 length(unique(iris_longcovid$Assay))
 #> [1] 180
 ```
 
 ``` r
+
 # Groups and time points available
 table(iris_longcovid$long_covid, iris_longcovid$timing_month)
 #>      
@@ -88,6 +93,7 @@ protein annotation in `rowData`, sample annotation in `colData`, and
 dimensionality reductions in `reducedDims`.
 
 ``` r
+
 library(SummarizedExperiment)  # for colData(), rowData(), as()
 ```
 
@@ -100,6 +106,7 @@ columns are split into `rowData` (per-protein) and `colData`
 (per-sample); an optional `LOD` column becomes a parallel assay.
 
 ``` r
+
 oe <- oe_from_long(iris_longcovid)
 oe
 #> class: OlinkExperiment 
@@ -114,6 +121,7 @@ oe
 ```
 
 ``` r
+
 dim(npx(oe))
 #> [1] 180  45
 colnames(colData(oe))
@@ -129,6 +137,7 @@ Use the base
 constructor directly:
 
 ``` r
+
 # A long table that includes LOD values
 oe <- oe_from_long(beatmg_npx[beatmg_npx$Timepoint == 1, ])
 
@@ -157,6 +166,7 @@ mirror the named-assay accessors of `SingleCellExperiment` (like
 `counts()`/`logcounts()`):
 
 ``` r
+
 dim(npx(oe2))   # NPX assay, proteins x samples
 #> [1] 730  49
 dim(lod(oe2))   # LOD assay, parallel to NPX
@@ -198,6 +208,7 @@ PCA/UMAP/t-SNE coordinates are stored via
 one matrix per result with one row per sample:
 
 ``` r
+
 pca <- matrix(rnorm(ncol(oe2) * 5), ncol = 5,
               dimnames = list(colnames(oe2), paste0("PC", 1:5)))
 reducedDims(oe2) <- S4Vectors::SimpleList(PCA = pca)
@@ -216,6 +227,7 @@ combine with
 and coerce with [`as()`](https://rdrr.io/r/methods/as.html):
 
 ``` r
+
 oe2[1:10, 1:5]                       # first 10 proteins x 5 samples
 #> class: OlinkExperiment 
 #> dim: 10 5 
@@ -255,6 +267,7 @@ convert it to the long format internally, so `colData` columns
 available for grouping without any extra steps:
 
 ``` r
+
 oe_iris <- oe_from_long(iris_longcovid)
 plot_boxplot(oe_iris, assay = "CD40", group = "long_covid")
 ```
@@ -270,12 +283,14 @@ and colors points by any sample covariate. Several reductions can be
 plotted **jointly** in a single multi-panel figure:
 
 ``` r
+
 plot_dim_reduc(oe_iris, type = "pca", color = "long_covid")
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-15-1.png)
 
 ``` r
+
 plot_dim_reduc(oe_iris, type = c("pca", "umap", "tsne"),
                color = "long_covid", perplexity = 10)
 ```
@@ -300,6 +315,7 @@ Compare NPX values for a single protein across groups, with optional
 statistical test annotations.
 
 ``` r
+
 plot_boxplot(iris_longcovid, assay = "CD40", group = "long_covid")
 ```
 
@@ -308,6 +324,7 @@ plot_boxplot(iris_longcovid, assay = "CD40", group = "long_covid")
 With custom comparisons (requires the `ggpubr` package):
 
 ``` r
+
 plot_boxplot(
   iris_longcovid,
   assay       = "CD40",
@@ -324,6 +341,7 @@ Visualize fold change versus significance for each protein. The function
 validates p-values and handles exact zeros gracefully.
 
 ``` r
+
 # Using the Bansal univariate test results. bansal_univariate's `estimate`
 # is on a much smaller natural scale than a typical log2 fold change, so
 # fc_threshold needs to be set accordingly (the default of 1 would mark
@@ -346,6 +364,7 @@ For raw fold-change ratios (not yet log2-transformed), set
 `transform_fc = TRUE`:
 
 ``` r
+
 plot_volcano(de_results, pval_col = "pval", fc_col = "FC",
              transform_fc = TRUE)
 ```
@@ -359,6 +378,7 @@ computes PCA, UMAP, or t-SNE on the fly and can combine several
 reductions into one figure.
 
 ``` r
+
 plot_dim_reduc(beatmg_npx_merged, type = "pca", color = "Timepoint",
                title = "BeatMG: PCA by Timepoint")
 ```
@@ -368,6 +388,7 @@ plot_dim_reduc(beatmg_npx_merged, type = "pca", color = "Timepoint",
 Without grouping, all points are shown in a single color:
 
 ``` r
+
 plot_dim_reduc(beatmg_npx_merged[beatmg_npx_merged$Timepoint == 1, ],
                type = "pca", title = "BeatMG Baseline Samples")
 ```
@@ -380,6 +401,7 @@ UMAP captures non-linear structure that PCA may miss. The `seed`
 parameter ensures reproducibility.
 
 ``` r
+
 plot_dim_reduc(beatmg_npx_merged, type = "umap", color = "Timepoint",
           n_neighbors = 10, seed = 42,
           title = "BeatMG: UMAP by Timepoint")
@@ -394,6 +416,7 @@ column means and a warning is issued. The function accepts both long and
 wide formats.
 
 ``` r
+
 # Long-format input (rows clustered, columns as samples)
 plot_heatmap(
   beatmg_npx_merged[beatmg_npx_merged$Timepoint == 1, ],
@@ -413,6 +436,7 @@ annotation tracks above the samples. Pass `annotation_cols` to select a
 specific subset:
 
 ``` r
+
 plot_heatmap(oe_iris, scale = "row", show_rownames = FALSE,
              main = "Long COVID: Protein Expression by Covariate")
 ```
@@ -424,6 +448,7 @@ protein belongs to) with a row annotation track, via `annotation_rows`
 (automatically filled from `rowData` for an `OlinkExperiment`):
 
 ``` r
+
 plot_heatmap(oe_iris, scale = "row", show_rownames = FALSE,
              annotation_rows = "Panel",
              main = "Long COVID: Protein Expression by Biomarker Set")
@@ -441,6 +466,7 @@ runnable example with
 Wide-format input with `wide = TRUE`:
 
 ``` r
+
 # qinfeng_npx is already wide: 66 samples x 92 proteins
 plot_heatmap(qinfeng_npx, wide = TRUE, sample_col = "SampleID",
              scale = "column", show_colnames = FALSE,
@@ -453,6 +479,7 @@ Dot size encodes significance (-log10 p-value); color encodes direction
 of change. Useful for survey-level views across many proteins.
 
 ``` r
+
 plot_dotplot(
   beatmg_npx_merged,
   group   = "Timepoint",
@@ -474,6 +501,7 @@ silently omitting it.
 Compute pairwise correlations between the most variable proteins.
 
 ``` r
+
 plot_corr(
   beatmg_npx_merged[beatmg_npx_merged$Timepoint == 1, ],
   method    = "spearman",
@@ -487,6 +515,7 @@ plot_corr(
 The new `display_method` parameter allows alternative visual encodings:
 
 ``` r
+
 plot_corr(beatmg_npx_merged, method = "spearman", top_n = 15,
           display_method = "ellipse")
 plot_corr(beatmg_npx_merged, method = "pearson",  top_n = 10,
@@ -501,6 +530,7 @@ Valid `display_method` options are: `"color"`, `"circle"`, `"ellipse"`,
 Individual spaghetti plots with optional group-level smoothing lines.
 
 ``` r
+
 # Subset to a manageable number of proteins for demonstration
 plot_trajectory(
   bansal_longitudinal,
@@ -520,6 +550,7 @@ a dashed “MaxLOD” reference line per panel (matching the report
 figures):
 
 ``` r
+
 plot_trajectory(
   beatmg_npx_merged,
   assay    = "IL4",
@@ -535,6 +566,7 @@ The classic “mean NPX trajectory” figure: mean ± 95% CI at each time
 point, with one line per group.
 
 ``` r
+
 plot_mean_profile(
   iris_longcovid,
   assay = "CD40",
@@ -556,6 +588,7 @@ One line per subject, with an overlaid trend curve, optionally faceted
 by a grouping variable.
 
 ``` r
+
 plot_spaghetti(
   bansal_longitudinal,
   assay      = "HAGH",
@@ -573,6 +606,7 @@ Distribution of a single protein across a categorical axis (e.g. time
 point), with an overlaid boxplot. Optionally filled by group.
 
 ``` r
+
 plot_violin(
   iris_longcovid,
   assay = "CD40",
@@ -598,6 +632,7 @@ above the data automatically (`bracket_nudge_y` adjusts the height,
 points/violins. This requires the `ggpubr` package:
 
 ``` r
+
 plot_violin(
   iris_longcovid,
   assay = "CD40",
@@ -614,6 +649,7 @@ plot_violin(
 Variance explained per principal component, with the cumulative line.
 
 ``` r
+
 plot_scree(
   beatmg_npx_merged[beatmg_npx_merged$Timepoint == 1, ],
   n_pcs = 10,
@@ -629,6 +665,7 @@ The variables (proteins) with the largest loadings for each of the top
 principal components.
 
 ``` r
+
 plot_loadings(
   beatmg_npx_merged[beatmg_npx_merged$Timepoint == 1, ],
   components = 1:3,
@@ -648,6 +685,7 @@ Pass `add_pvalue = TRUE` to fit `value ~ x * group + (1 | random)` per
 protein with `lme4` and annotate the group-effect p-value on each panel.
 
 ``` r
+
 plot_lmer(
   probc,
   assay  = c("IL6", "TNF"),
@@ -663,6 +701,7 @@ Scatter of NPX against a continuous x-axis with an overlaid linear
 smooth, optionally colored and/or faceted by a grouping variable.
 
 ``` r
+
 plot_regression(
   probc,
   assay     = "IL6",
@@ -684,12 +723,14 @@ drawn as triangles. Colour the points by a sample-level column such as
 the plate to look for batch structure.
 
 ``` r
+
 plot_qc(probc)
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-40-1.png)
 
 ``` r
+
 plot_qc(probc, color_by = "PlateID", sd_cutoff = 2.5, label_outliers = FALSE)
 ```
 
@@ -704,6 +745,7 @@ limit of detection and labels the least detectable ones. The threshold
 is a convention (here 75 percent), not a rule: choose it for your study.
 
 ``` r
+
 plot_lod(probc, threshold = 75)
 ```
 
@@ -720,6 +762,7 @@ cross-validated. Subset the data to the two groups first, and to one
 time point if there are repeated measures.
 
 ``` r
+
 baseline <- probc[probc$Timepoint == 1, ]
 plot_roc(baseline, assays = c("IL6", "TNF", "IL8"), group = "Project",
          show_direction = TRUE, smooth_method = "binormal",
@@ -738,12 +781,14 @@ draws a Bland-Altman (or scatter) comparison of overlapping bridge
 reference samples:
 
 ``` r
+
 plot_plate_qc(probc)
 ```
 
 ![](OlinkViz_files/figure-html/unnamed-chunk-44-1.png)
 
 ``` r
+
 b1 <- probc[probc$Timepoint == 1, ]
 b2 <- b1
 b2$NPX <- b1$NPX + rnorm(nrow(b1), mean = 0.12, sd = 0.18)
@@ -763,6 +808,7 @@ final size instead, with one option, and every `plot_*()` function sizes
 its text and marks from it:
 
 ``` r
+
 old <- olinkviz_options(base_size = 7, axes = "l")   # 7 pt text, left and bottom axes
 p <- plot_boxplot(probc, assay = "IL6", group = "Project")
 p
@@ -776,6 +822,7 @@ single column; check the author guidelines of your journal), with
 embedded fonts in the PDF:
 
 ``` r
+
 files <- save_olinkviz(p, file.path(tempdir(), "il6_boxplot"),
                        width = 89, height = 70, formats = c("pdf", "png"))
 basename(files)
@@ -823,6 +870,7 @@ as a grouping. Here we enrich the 15 most up-regulated Bansal proteins —
 the same set the network figure below visualizes:
 
 ``` r
+
 top_de <- head(bansal_univariate[order(-bansal_univariate$estimate), ], 15)
 pathways <- enrich_pathways(top_de$UniProt, sources = c("GO:BP", "KEGG"))
 if (!is.null(pathways)) {
@@ -852,6 +900,7 @@ of one-gene terms (or, worse, a “network” of exactly two Olink panels
 with no edges between proteins at all):
 
 ``` r
+
 if (!is.null(pathways) && nrow(pathways) > 0) {
   pw_map <- merge(pathways, top_de[, c("UniProt", "Assay")], by.x = "Protein", by.y = "UniProt")
   pw_map <- unique(pw_map[, c("Assay", "Pathway")])
@@ -875,6 +924,7 @@ queries the STRING database directly (requires the `rbioapi` package and
 an internet connection):
 
 ``` r
+
 plot_network(c("IL6", "TNF", "CXCL10", "CD40", "IL10"))
 ```
 
@@ -888,10 +938,12 @@ plot_network(c("IL6", "TNF", "CXCL10", "CD40", "IL10"))
 checks that your data has the minimum required columns:
 
 ``` r
+
 validate_npx(iris_longcovid)
 ```
 
 ``` r
+
 # With a missing column — warns rather than stops
 validate_npx(mtcars, fail_on_missing = FALSE)
 ```
@@ -901,6 +953,7 @@ validate_npx(mtcars, fail_on_missing = FALSE)
 **Long to wide:**
 
 ``` r
+
 # Pivot a subset for demonstration
 iris_sub <- iris_longcovid[iris_longcovid$timing_month == "Acute", ]
 wide <- to_wide(iris_sub, sample_col = "IRIS_number")
@@ -917,6 +970,7 @@ Duplicate sample-assay combinations are automatically averaged with a
 message:
 
 ``` r
+
 # Create artificial duplicate to demonstrate replicate averaging
 dup_row <- iris_sub[1, ]
 iris_dup <- rbind(iris_sub, dup_row)
@@ -926,6 +980,7 @@ wide_dedup <- to_wide(iris_dup, sample_col = "IRIS_number")
 **Wide to long:**
 
 ``` r
+
 # With automatic assay column detection
 long <- to_long(wide, id_cols = "IRIS_number")
 if (requireNamespace("DT", quietly = TRUE)) {
@@ -939,6 +994,7 @@ The new `exclude_cols` parameter lets you control which columns are
 excluded from auto-detection when pivoting:
 
 ``` r
+
 to_long(wide, id_cols = "IRIS_number",
         exclude_cols = "Sex") %>% head(20)  # explicit: only exclude "Sex"
 #>    IRIS_number    Sex long_covid timing_month          Assay      NPX
@@ -970,6 +1026,7 @@ to_long(wide, id_cols = "IRIS_number",
 provides a clean, publication-ready ggplot2 theme:
 
 ``` r
+
 ggplot(mtcars, aes(wt, mpg, color = factor(cyl))) +
   geom_point(size = 3) +
   labs(title = "Custom OlinkViz Theme",
@@ -984,6 +1041,7 @@ returns colorblind-friendly categorical colors using RColorBrewer’s
 Dark2 palette, extended via interpolation when more colors are needed:
 
 ``` r
+
 # Standard 8-color palette
 scales::show_col(olinkviz_palette(8))
 ```
@@ -991,6 +1049,7 @@ scales::show_col(olinkviz_palette(8))
 ![](OlinkViz_files/figure-html/unnamed-chunk-58-1.png)
 
 ``` r
+
 
 # Interpolated 12-color extension
 scales::show_col(olinkviz_palette(12))
@@ -1005,6 +1064,7 @@ scales::show_col(olinkviz_palette(12))
 Launch the Shiny app for interactive data exploration:
 
 ``` r
+
 OlinkViz::run_shiny()
 ```
 
@@ -1072,6 +1132,7 @@ longitudinal outcome, the cross-sectional Bansal Long COVID vs Healthy
 contrast is used instead.
 
 ``` r
+
 library(data.table)
 library(patchwork)
 library(pROC)
@@ -1081,6 +1142,7 @@ library(survival)
 ### Building the resolution cohort
 
 ``` r
+
 univ <- as.data.table(bansal_univariate)[order(p.value)]
 
 iris <- as.data.table(iris_longcovid)
@@ -1104,6 +1166,7 @@ nrow(at_risk); sum(at_risk$resolved)
 ```
 
 ``` r
+
 # Baseline (month-3) protein z-scores for the resolution cohort
 m3_npx <- iris[month_num == 3 & IRIS_number %in% at_risk$IRIS_number,
                .(IRIS_number, Assay, NPX)]
@@ -1128,6 +1191,7 @@ direction of change to match the paper’s separate up/down panels (not
 evaluated here — needs internet access):
 
 ``` r
+
 up_list   <- unique(univ[p.value < 0.15 & estimate > 0]$UniProt)
 down_list <- unique(univ[p.value < 0.15 & estimate < 0]$UniProt)
 
@@ -1156,6 +1220,7 @@ for the figure and the code that builds it.
 ### 4. Protein levels before vs after resolution (paper Fig 1e/2a)
 
 ``` r
+
 resolvers <- at_risk[resolved == 1]$IRIS_number
 res_npx <- iris[IRIS_number %in% resolvers & month_num %in% c(3, 12),
                 .(IRIS_number, Assay, NPX, month_num)]
@@ -1179,6 +1244,7 @@ plot_heatmap(
 ### 5. Protein trajectories by status (paper Fig 2b)
 
 ``` r
+
 m3_all <- iris[month_num == 3, .(IRIS_number, Assay, NPX, long_covid)]
 wilcox_m3 <- m3_all[, {
   yy <- NPX[long_covid == "Yes"]; nn <- NPX[long_covid == "No"]
@@ -1207,6 +1273,7 @@ the coarser visit schedule, not a continuous-surveillance KM curve like
 the paper’s:
 
 ``` r
+
 km_dt <- merge(at_risk[, .(IRIS_number, time_months, resolved)], m3_wide_z, by = "IRIS_number")
 assay_cols <- setdiff(names(km_dt), c("IRIS_number", "time_months", "resolved"))
 
@@ -1256,6 +1323,7 @@ from a bar chart of intersection sizes plus a dot matrix, both in
 `ggplot2`:
 
 ``` r
+
 roc_dt <- data.table(
   IRIS_number = km_dt$IRIS_number,
   resolved    = factor(km_dt$resolved, levels = c(0, 1)),
@@ -1280,6 +1348,7 @@ p_roc <- plot_roc(
 ```
 
 ``` r
+
 sig_bansal       <- unique(univ[p.value < 0.1]$Assay)
 sig_iris_cross   <- unique(wilcox_m3[!is.na(p) & p < 0.1]$Assay)
 sig_iris_resolve <- unique(assoc[!is.na(p) & p < 0.1]$Assay)
@@ -1300,6 +1369,7 @@ Per-protein effect sizes computed independently in two cohorts — IRIS
 the proteins the two panels have in common:
 
 ``` r
+
 m3_eff <- iris[month_num == 3, .(IRIS_number, Assay, NPX, long_covid)]
 m3_eff[, z := as.numeric(scale(NPX)), by = Assay]
 iris_eff <- m3_eff[, .(iris_effect = mean(z[long_covid == "Yes"], na.rm = TRUE) -

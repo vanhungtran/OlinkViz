@@ -6,6 +6,7 @@ This gallery runs every `OlinkViz` visualization on a **single cohort**
 `QC_Warning`).
 
 ``` r
+
 library(OlinkViz)
 library(ggplot2)
 library(data.table)
@@ -14,6 +15,7 @@ library(data.table)
 ## 1. Preparing the single-cohort views
 
 ``` r
+
 oe <- oe_from_long(probc)
 base <- probc[probc$Timepoint == 1, ]
 early_late <- probc[probc$Timepoint %in% c(1, 29, 85), ]
@@ -63,6 +65,7 @@ top_assays
 ### 2.1 Sample QC (`plot_qc()`)
 
 ``` r
+
 plot_qc(probc, color_by = "PlateID", sd_cutoff = 2.5)
 ```
 
@@ -71,6 +74,7 @@ plot_qc(probc, color_by = "PlateID", sd_cutoff = 2.5)
 ### 2.2 Assay Detectability (`plot_lod()`)
 
 ``` r
+
 plot_lod(probc, threshold = 75)
 ```
 
@@ -79,6 +83,7 @@ plot_lod(probc, threshold = 75)
 ### 2.3 Plate Median Distributions (`plot_plate_qc()`)
 
 ``` r
+
 plot_plate_qc(probc)
 ```
 
@@ -87,6 +92,7 @@ plot_plate_qc(probc)
 ### 2.4 Bridge Sample Concordance (`plot_bridge()`)
 
 ``` r
+
 set.seed(42)
 b_ref <- base
 b_new <- base
@@ -103,6 +109,7 @@ plot_bridge(b_ref, b_new, type = "bland_altman")
 ### 3.1 Joint PCA, UMAP, and t-SNE (`plot_dim_reduc()`)
 
 ``` r
+
 plot_dim_reduc(base, type = c("pca", "umap", "tsne"),
                color = "Project", perplexity = 7, seed = 42)
 ```
@@ -112,6 +119,7 @@ plot_dim_reduc(base, type = c("pca", "umap", "tsne"),
 ### 3.2 Standalone PCA & UMAP via `plot_dim_reduc()`
 
 ``` r
+
 p1 <- plot_dim_reduc(base, type = "pca", color = "Project", title = "Baseline PCA")
 p2 <- plot_dim_reduc(base, type = "umap", color = "Project", n_neighbors = 8,
                      seed = 42, title = "Baseline UMAP")
@@ -127,6 +135,7 @@ if (requireNamespace("patchwork", quietly = TRUE)) {
 ### 3.3 PCA Scree (`plot_scree()`) & Loadings (`plot_loadings()`)
 
 ``` r
+
 ps <- plot_scree(base, n_pcs = 10, title = "Baseline Variance Explained")
 pl <- plot_loadings(base, components = 1:2, top_n = 8)
 if (requireNamespace("patchwork", quietly = TRUE)) {
@@ -141,6 +150,7 @@ if (requireNamespace("patchwork", quietly = TRUE)) {
 ### 3.4 Clustered Heatmap (`plot_heatmap()`)
 
 ``` r
+
 oe_base <- oe[, colData(oe)$Timepoint == 1]
 plot_heatmap(oe_base, scale = "row", show_rownames = FALSE,
              annotation_rows = "Panel",
@@ -156,6 +166,7 @@ plot_heatmap(oe_base, scale = "row", show_rownames = FALSE,
 ### 4.1 Volcano Plot (`plot_volcano()`)
 
 ``` r
+
 plot_volcano(de_t1, pval_col = "p.value", fc_col = "estimate",
              fc_threshold = 0.3, max_labels = 10,
              title = "Baseline Group2 vs Group1")
@@ -166,6 +177,7 @@ plot_volcano(de_t1, pval_col = "p.value", fc_col = "estimate",
 ### 4.2 MA Plot (`plot_ma()`)
 
 ``` r
+
 plot_ma(de_t1, mean_col = "MeanNPX", fc_col = "estimate",
         pval_col = "p.value", fc_threshold = 0.3, max_labels = 8,
         title = "Baseline MA Plot (NPX Difference vs Mean NPX)")
@@ -176,6 +188,7 @@ plot_ma(de_t1, mean_col = "MeanNPX", fc_col = "estimate",
 ### 4.3 Multi-Protein Dot Plot (`plot_dotplot()`)
 
 ``` r
+
 plot_dotplot(base, group = "Project",
              assays = head(de_t1$Assay, 15),
              title = "Top 15 Baseline Assays (Group2 vs Group1)")
@@ -186,6 +199,7 @@ plot_dotplot(base, group = "Project",
 ### 4.4 Effect-Size Forest Plot (`plot_forest()`)
 
 ``` r
+
 de_top <- head(de_t1, 14)
 de_top[, sig := p.value < 0.05]
 plot_forest(de_top, assay_col = "Assay", estimate_col = "estimate",
@@ -198,6 +212,7 @@ plot_forest(de_top, assay_col = "Assay", estimate_col = "estimate",
 ### 4.5 Cross-Timepoint Effect Concordance (`plot_concordance()`)
 
 ``` r
+
 conc_dt <- merge(
   de_t1[, .(Assay, Day1 = estimate)],
   de_t85[, .(Assay, Day85 = est)],
@@ -214,6 +229,7 @@ plot_concordance(conc_dt, x_col = "Day1", y_col = "Day85",
 ### 4.6 Overlapping Protein Sets (`plot_upset()`)
 
 ``` r
+
 sets <- list(
   "Day 1 (p < 0.1)"  = de_t1[p.value < 0.1]$Assay,
   "Day 29 (p < 0.1)" = de_t29[p < 0.1]$Assay,
@@ -231,6 +247,7 @@ plot_upset(sets, title = "Overlap of Differentially Abundant Proteins Across Vis
 ### 5.1 Boxplot (`plot_boxplot()`)
 
 ``` r
+
 plot_boxplot(base, assay = top_assays[1:2], group = "Project",
              show_lod = TRUE, show_significant = TRUE)
 ```
@@ -240,6 +257,7 @@ plot_boxplot(base, assay = top_assays[1:2], group = "Project",
 ### 5.2 Violin + Boxplot (`plot_violin()`)
 
 ``` r
+
 plot_violin(early_late, assay = top_assays[1], x = "Timepoint",
             group = "Project", show_lod = TRUE, show_significant = TRUE)
 ```
@@ -249,6 +267,7 @@ plot_violin(early_late, assay = top_assays[1], x = "Timepoint",
 ### 5.3 Mean Profile (`plot_mean_profile()`)
 
 ``` r
+
 plot_mean_profile(probc, assay = top_assays[1:2], x = "Timepoint",
                   group = "Project", show_lod = TRUE)
 ```
@@ -258,6 +277,7 @@ plot_mean_profile(probc, assay = top_assays[1:2], x = "Timepoint",
 ### 5.4 Individual Trajectories (`plot_trajectory()`)
 
 ``` r
+
 plot_trajectory(probc, assay = top_assays[1], subject_id = "PPID",
                 time = "Time", group = "Project", smooth_method = "loess",
                 lod_col = "MaxLOD")
@@ -268,6 +288,7 @@ plot_trajectory(probc, assay = top_assays[1], subject_id = "PPID",
 ### 5.5 Faceted Spaghetti Plot (`plot_spaghetti()`)
 
 ``` r
+
 plot_spaghetti(probc, assay = top_assays[1], subject_id = "PPID",
                time = "Time", facet_by = "Project")
 ```
@@ -277,6 +298,7 @@ plot_spaghetti(probc, assay = top_assays[1], subject_id = "PPID",
 ### 5.6 Linear Mixed-Model Point-Range (`plot_lmer()`)
 
 ``` r
+
 plot_lmer(early_late, assay = top_assays[1:2], x = "Timepoint",
           group = "Project", random = "PPID",
           add_pvalue = requireNamespace("lmerTest", quietly = TRUE))
@@ -287,6 +309,7 @@ plot_lmer(early_late, assay = top_assays[1:2], x = "Timepoint",
 ### 5.7 Continuous Regression Smooth (`plot_regression()`)
 
 ``` r
+
 plot_regression(probc, assay = top_assays[1], x = "Time",
                 color_by = "Project", title = paste(top_assays[1], "Trend"))
 ```
@@ -300,12 +323,14 @@ plot_regression(probc, assay = top_assays[1], x = "Time",
 ### 6.1 Correlation Matrix (`plot_corr()` & `plot_corr_triangle()`)
 
 ``` r
+
 plot_corr(base, method = "spearman", top_n = 18, corr_type = "upper")
 ```
 
 ![](all_plots_one_dataset_files/figure-html/corr-1.png)
 
 ``` r
+
 plot_corr_triangle(base, method = "spearman", top_n = 15,
                    title = "Baseline Correlation Triangle")
 ```
@@ -315,6 +340,7 @@ plot_corr_triangle(base, method = "spearman", top_n = 15,
 ### 6.2 ROC Curves with 95% CI Shade & DeLong Comparison (`plot_roc()`)
 
 ``` r
+
 plot_roc(base, assays = top_assays[1:3], group = "Project",
          add_ci = TRUE, boot_n = 100, show_direction = TRUE,
          compare = TRUE, compare_method = "delong",
@@ -327,6 +353,7 @@ plot_roc(base, assays = top_assays[1:3], group = "Project",
 ### 6.3 Pathway / Panel Network (`plot_pathway_network()`)
 
 ``` r
+
 pw_panel <- unique(de_t1[, .(Assay, Pathway = gsub("Olink ", "", Panel))])
 plot_pathway_network(de_t1, assay_col = "Assay", value_col = "estimate",
                      pathway_map = as.data.frame(pw_panel), top_n = 16,

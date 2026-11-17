@@ -117,6 +117,7 @@ distinct purpose and uses progressively stricter statistical thresholds:
 - **Output**: A ranked candidate list of 15–50 proteins.
 
 ``` r
+
 # Phase 1 discovery with OlinkViz
 library(OlinkViz)
 library(dplyr)
@@ -166,6 +167,7 @@ plot_volcano(discovery_results, title = "Phase 1: Discovery")
 - **Output**: A refined list of 5–15 proteins.
 
 ``` r
+
 # Phase 2 runs on an independent dataset
 candidates_verified <- candidates %>%
   mutate(p_adj = p.adjust(p.value, method = "BH")) %>%
@@ -240,6 +242,7 @@ Batch effects, whether from plates, reagent lots, or run order, are the
 \#1 cause of false discoveries.
 
 ``` r
+
 # PCA colored by potential sources of unwanted variation
 plot_dim_reduc(my_data, type = "pca", color = "Plate")
 plot_dim_reduc(my_data, type = "pca", color = "Panel")
@@ -255,6 +258,7 @@ plot_corr(my_data, method = "spearman", top_n = 50)
 #### 3.2.2 Sample-Level QC
 
 ``` r
+
 sample_qc <- my_data %>%
   group_by(SampleID) %>%
   summarise(
@@ -285,6 +289,7 @@ handling:
 | **\<20%** | Retain with standard handling |
 
 ``` r
+
 protein_qc <- my_data %>%
   group_by(Assay) %>%
   summarise(
@@ -335,6 +340,7 @@ OlinkViz’s
 averages replicates automatically:
 
 ``` r
+
 wide <- to_wide(my_data)
 # Auto-detected columns: sample_col = 'SampleID'
 # Averaged 8 replicate(s) across 2 plate(s)
@@ -365,6 +371,7 @@ disease states — and attenuates fold changes exactly where they matter
 most.
 
 ``` r
+
 impute_left_censored <- function(npx_values, lod_values) {
   below <- which(npx_values < lod_values)
   if (length(below) == 0) return(npx_values)
@@ -405,6 +412,7 @@ when n per group is small — a common scenario in Olink studies where n =
 10–30 per group is typical.
 
 ``` r
+
 library(limma)
 
 # Prepare wide matrix: rows = proteins, columns = samples
@@ -509,6 +517,7 @@ The solution is **nested (double) cross-validation**:
     → Report mean ± SD of outer-fold AUC
 
 ``` r
+
 library(caret)
 
 ctrl <- trainControl(
@@ -579,6 +588,7 @@ signature. This approach is simple, requires no model training, and is
 used in the OlinkViz paper-inspired workflows:
 
 ``` r
+
 # Step 1: Determine direction from univariate AUC
 prot_direction <- bansal_baseline57 %>%
   filter(`Long_COVID status` %in% c("Healthy", "Long COVID")) %>%
@@ -611,6 +621,7 @@ Use coefficients from a fitted model (lasso, elastic net, or logistic
 regression) as weights:
 
 ``` r
+
 sig_data <- wide_matrix[, signature_proteins]
 fit <- glm(group_labels ~ ., data = as.data.frame(sig_data), family = binomial)
 composite_score <- predict(fit, newdata = as.data.frame(sig_data), type = "link")
@@ -631,6 +642,7 @@ optional bootstrap sensitivity ribbons (`add_ci = TRUE`,
 `smooth_method = "binormal"`):
 
 ``` r
+
 library(pROC)
 
 # Multi-protein smoothed ROC curves with 95% bootstrap sensitivity ribbons
@@ -669,6 +681,7 @@ a wrapper around gProfiler2 supporting GO, KEGG, Reactome, and
 WikiPathways:
 
 ``` r
+
 de_proteins <- discovery_results %>%
   filter(p.value < 0.05) %>%
   pull(Assay)
@@ -696,6 +709,7 @@ which pathway terms appear?”.
 ### 7.2 Protein-Protein Interaction Networks
 
 ``` r
+
 # STRING PPI network
 plot_network(de_proteins[1:30], required_score = 500)
 
@@ -789,6 +803,7 @@ End every analysis with
 ## 10. Practical Workflow
 
 ``` r
+
 library(OlinkViz)
 library(ggplot2)
 library(dplyr)
@@ -895,6 +910,7 @@ enrich_pathways(
 ## Session Info
 
 ``` r
+
 sessionInfo()
 #> R version 4.6.1 (2026-06-24 ucrt)
 #> Platform: x86_64-w64-mingw32/x64

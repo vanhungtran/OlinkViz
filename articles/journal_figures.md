@@ -1,6 +1,7 @@
 # Journal Specifications, Pre-Flight QA, and Publication Figures
 
 ``` r
+
 library(OlinkViz)
 library(ggplot2)
 set.seed(1)
@@ -28,6 +29,7 @@ ceiling, minimum stroke weight, panel-tag style, and raster DPI
 requirements for a target journal or output purpose:
 
 ``` r
+
 journal_spec("nature")
 #> <journal spec> nature: Nature (Springer Nature) [journal]
 #>   widths      single 90 | 1.5 120 | double 180 mm  (also quoted: 89 / 183 mm)
@@ -61,6 +63,7 @@ publisher’s generic artwork guide or a package default and marked with
 [`journal_specs()`](https://vanhungtran.github.io/OlinkViz/reference/journal_specs.md):
 
 ``` r
+
 ids <- c("nature", "natcomms", "science", "cell", "pnas", "plos", "jid",
          "allergy", "jaci", "bjd", "default")
 width_table <- do.call(rbind, lapply(ids, function(id) {
@@ -94,7 +97,7 @@ knitr::kable(width_table, caption = "Selected journal column widths and text lim
 | bjd      |        85 |         NA |     175.0 |       NA |      7 |     NA | upper    |
 | default  |        90 |         NA |     180.0 |    240.0 |      7 |     NA | lower    |
 
-Selected journal column widths and text limits
+Selected journal column widths and text limits {.table}
 
 Look up column widths in millimetres or inches with
 [`journal_width()`](https://vanhungtran.github.io/OlinkViz/reference/journal_width.md),
@@ -102,6 +105,7 @@ and register custom or lab-specific presets with
 [`journal_spec_add()`](https://vanhungtran.github.io/OlinkViz/reference/journal_spec_add.md):
 
 ``` r
+
 journal_width("double", "nature")
 #> [1] 180
 journal_width("2col", "science")
@@ -123,6 +127,7 @@ provides a warm off-white panel (`#FAFAF8`) with subtle gridlines for
 reports, preprints, and web articles.
 
 ``` r
+
 p_nat <- ggplot(probc[probc$Timepoint == 1 & probc$Assay == "IL6", ],
                 aes(x = Project, y = NPX, fill = Project)) +
   geom_boxplot(width = 0.5, outlier.shape = NA, alpha = 0.85) +
@@ -158,6 +163,7 @@ axes or legend placement, add
 [`theme_journal_text()`](https://vanhungtran.github.io/OlinkViz/reference/theme_journal_text.md):
 
 ``` r
+
 plot_volcano(bansal_univariate, pval_col = "p.value", fc_col = "estimate",
              fc_threshold = 0.1, max_labels = 8,
              title = "Bansal Long COVID vs Healthy") +
@@ -192,6 +198,7 @@ export dimensions:
   tritanopia via CIEDE2000 (`farver`)
 
 ``` r
+
 olinkviz_preflight(p_nat, journal = "nature", width = "single", height = 65)
 #> Pre-flight: Nature [nature] - 90 x 65 mm (3.54 x 2.56 in)
 #>   size    OK    single column width; height within 170 mm
@@ -206,6 +213,7 @@ A figure with tiny text, hairline strokes, overflowing title, or
 red-green colour pairing is flagged immediately:
 
 ``` r
+
 bad <- ggplot(mtcars, aes(wt, mpg, colour = factor(am))) +
   geom_point(size = 1.2) +
   geom_smooth(method = "lm", formula = y ~ x, linewidth = 0.05, se = FALSE) +
@@ -235,6 +243,7 @@ Setting `check = TRUE` runs the pre-flight audit before writing `"pdf"`,
 `"png"`, `"tiff"` (LZW), `"eps"`, `"svg"`, or `"jpeg"`:
 
 ``` r
+
 old <- olinkviz_options(journal = "nature")
 p1 <- plot_boxplot(probc[probc$Timepoint == 1, ], assay = "IL6",
                    group = "Project", test = "none")
@@ -257,6 +266,7 @@ replication, and overlapping protein sets:
 ### MA plot (`plot_ma()`)
 
 ``` r
+
 set.seed(7)
 de_ma <- bansal_univariate
 de_ma$MeanNPX <- runif(nrow(de_ma), 1.5, 9.5)
@@ -270,6 +280,7 @@ plot_ma(de_ma, mean_col = "MeanNPX", fc_col = "estimate",
 ### Forest plot (`plot_forest()`)
 
 ``` r
+
 top_hits <- bansal_univariate[order(bansal_univariate$p.value), ][1:14, ]
 top_hits$sig <- top_hits$p.value < 0.05
 plot_forest(top_hits, assay_col = "Assay", estimate_col = "estimate",
@@ -282,6 +293,7 @@ plot_forest(top_hits, assay_col = "Assay", estimate_col = "estimate",
 ### Cross-cohort concordance (`plot_concordance()`)
 
 ``` r
+
 set.seed(11)
 conc_df <- data.frame(
   Assay   = bansal_univariate$Assay[1:60],
@@ -298,6 +310,7 @@ plot_concordance(conc_df, x_col = "CohortA", y_col = "CohortB",
 ### UpSet plot (`plot_upset()`)
 
 ``` r
+
 sets <- list(
   "Discovery (p < 0.05)"   = bansal_univariate$Assay[bansal_univariate$p.value < 0.05],
   "Top Effect (|est| > 0.1)" = bansal_univariate$Assay[abs(bansal_univariate$estimate) > 0.1],
@@ -311,6 +324,7 @@ plot_upset(sets, title = "Overlap of Selected Biomarker Sets")
 ### Smoothed ROC curves with CI ribbons (`plot_roc()`)
 
 ``` r
+
 baseline <- probc[probc$Timepoint == 1, ]
 plot_roc(baseline, assays = c("IL6", "TNF", "IL8"), group = "Project",
          smooth_method = "binormal", add_ci = TRUE, boot_n = 100,
