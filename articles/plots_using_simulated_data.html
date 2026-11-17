@@ -66,8 +66,12 @@
 
 
 
-
-<div class="row">
+<link href="plots_using_simulated_data_files/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="plots_using_simulated_data_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="plots_using_simulated_data_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="plots_using_simulated_data_files/datatables-binding-0.34.0/datatables.js"></script><link href="plots_using_simulated_data_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="plots_using_simulated_data_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="plots_using_simulated_data_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="plots_using_simulated_data_files/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="plots_using_simulated_data_files/crosstalk-1.2.2/js/crosstalk.min.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Plots Generated from the Simulated Dataset (PROBC)</h1>
@@ -102,12 +106,60 @@ panels).</p>
 <span></span>
 <span><span class="va">base</span> <span class="op">&lt;-</span> <span class="va">PROBC</span><span class="op">[</span><span class="va">PROBC</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="va">early_late</span> <span class="op">&lt;-</span> <span class="va">PROBC</span><span class="op">[</span><span class="va">PROBC</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">29</span>, <span class="fl">85</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
-<hr>
+<div class="section level3">
+<h3 id="bundled-datasets-in-olinkviz">Bundled Datasets in <code>OlinkViz</code><a class="anchor" aria-label="anchor" href="#bundled-datasets-in-olinkviz"></a>
+</h3>
+<p><code>OlinkViz</code> bundles 12 datasets across 6 cohorts:</p>
+<ul>
+<li>
+<strong>Long COVID (<code>iris_longcovid</code>,
+<code>bansal_baseline57</code>, <code>bansal_longitudinal</code>,
+<code>bansal_univariate</code>):</strong> IRIS longitudinal cohort (180
+proteins, 7 visits) and Bansal et al. baseline (57 samples), paired
+longitudinal (34 samples), and pre-computed Wilcoxon results (182
+proteins).</li>
+<li>
+<strong>Myasthenia Gravis (<code>beatmg_npx</code>,
+<code>beatmg_demo</code>, <code>beatmg_npx_merged</code>):</strong>
+BeatMG trial NPX (~2,000 samples, 738 proteins), clinical demographics
+(52 variables), and merged table.</li>
+<li>
+<strong>Primary CNS Lymphoma (<code>pcnsl_olink</code>):</strong>
+Wide-format CSF/plasma NPX matrix (172 samples, 1,007 proteins).</li>
+<li>
+<strong>Tuberculosis (<code>qinfeng_npx</code>):</strong> Song 2025
+wide-format NPX dataset (66 samples, 92 proteins).</li>
+<li>
+<strong>Down Syndrome (<code>tofa_data</code>,
+<code>tofa_dictionary</code>):</strong> TOFA longitudinal NPX table
+(453,684 rows) and variable dictionary.</li>
+<li>
+<strong>Simulated Cohort (<code>probc</code>):</strong> Used
+throughout this vignette (<code>26</code> subjects, <code>2</code>
+groups <code>"Group1"</code> / <code>"Group2"</code>, <code>9</code>
+visits <code>1..85</code>, <code>184</code> assays across <code>2</code>
+Olink Target 96 panels).</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="preview-of-probc-dtdatatable">Preview of <code>probc</code> (<code>DT::datatable</code>)<a class="anchor" aria-label="anchor" href="#preview-of-probc-dtdatatable"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"DT"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">PROBC</span>, <span class="fl">50</span><span class="op">)</span>,</span>
+<span>    rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span>, scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001"],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],["OID01009","OID01000","OID00996","OID00979","OID01027","OID00970","OID00977","OID01025","OID00960","OID00985","OID00951","OID00949","OID00988","OID00944","OID01017","OID01016","OID00943","OID00992","OID01008","OID01011","OID01005","OID00958","OID01018","OID01004","OID00948","OID00956","OID00946","OID00972","OID00976","OID00975","OID01001","OID00984","OID01006","OID00954","OID00962","OID00961","OID00937","OID00942","OID00987","OID00969","OID00980","OID01003","OID01010","OID00993","OID01019","OID01024","OID00947","OID00950","OID00940","OID00945"],["P15514","P27540","O14867","Q13490","P78410","P51671","P10747","Q01151","Q15517","Q07065","Q9UMR7","Q8WTT0","Q8WXI8","Q6UXB4","Q6EIG7","Q9BXN2","Q9UHC6","P78310","P48061","Q9UN19","Q96PD2","Q14203","O95786","O00273","Q13574","Q8N608","Q9UNE0","Q9GZT9","Q04637","P63241","P58499","Q96P31","Q6DN72","P09038","Q96DB9","Q14435","P16278","P14317","O94992","P50135","P28845","Q05084","Q8IU57","P22301","P42701","P05113","P05231","P51617","Q9NWZ3","Q00978"],["AREG","ARNT","BACH1","BIRC2","BTN3A2","CCL11","CD28","CD83","CDSN","CKAP4","CLEC4A","CLEC4C","CLEC4D","CLEC4G","CLEC6A","CLEC7A","CNTNAP2","CXADR","CXCL12","DAPP1","DCBLD2","DCTN1","DDX58","DFFA","DGKZ","DPP10","EDAR","EGLN1","EIF4G1","EIF5A","FAM3B","FCRL3","FCRL6","FGF2","FXYD5","GALNT3","GLB1","HCLS1","HEXIM1","HNMT","HSD11B1","ICA1","IFNLR1","IL10","IL12RB1","IL5","IL6","IRAK1","IRAK4","IRF9"],[0.5625,0,0.2708333333333333,0.296875,0,0.1041666666666667,0,0.02604166666666667,0,0.3072916666666667,0,0.05208333333333334,0.1041666666666667,0.07291666666666667,0.02083333333333333,0.046875,0,0.03125,0.02604166666666667,0,0.05729166666666666,0,0.02604166666666667,0.1145833333333333,0,0.05208333333333334,0,0,0,0.02604166666666667,0,0,0,0,0.1041666666666667,0.0625,0.2760416666666667,0,0,0.02604166666666667,0.1041666666666667,0,0.046875,0.04166666666666666,0.02083333333333333,0,0,0,0,0.02604166666666667],["Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response","Olink Target 96 Immune Response"],["v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204","v.3204"],["SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2","SIM_ImmuneResponse_P2"],["Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass","Pass"],[3.450735527997212,0.9925019581394883,5.467801571167705,5.252808718120225,0.03309988862210095,5.743445962336324,6.307073579010703,4.90072683298294,2.112518778311566,2.536161842962108,5.448235818127993,2.087763291035616,3.879640895772036,3.255745115274024,1.226433892618898,2.185493212761555,0.1017957870844229,6.912825554314079,0.9411079974746533,5.865047155597813,3.25166413792494,6.22233489714364,-1.261047107835546,3.248903176667716,4.901375618096477,4.990845165537258,4.264544436166875,4.522074804317746,-1.293844884266792,2.346838829912119,2.06767186771807,1.431075592018878,1.270297321131961,2.487127201047991,5.946001546710004,4.28471540519104,6.627105499841076,4.229021631494994,0.03711589508662644,7.840924095797239,6.361816417113674,1.238554329668406,1.013124568204198,3.162598075896503,6.017992888706614,-0.6838267581430315,0.4475302510251876,-0.1725343188266825,-0.3399773833634521,7.501426773616389],[3.450735527997212,0.9521283351090137,5.447534357182762,5.227748046760917,0.03309988862210095,5.689526440184924,6.230280086594401,4.90072683298294,2.087345328436048,2.515015603924454,5.448235818127993,2.077013816729028,3.814256142886747,3.255745115274024,1.226433892618898,2.185493212761555,0.07826894205042687,6.912825554314079,0.8952910618315773,5.839464885447734,3.234439012824215,6.22233489714364,-1.289755913648691,3.188916827878388,4.901375618096477,4.990845165537258,4.197209958675271,4.466194205741599,-1.411114522649154,2.271012378265266,2.065271689889984,1.431075592018878,1.173454238905983,2.487127201047991,5.911393052709212,4.28471540519104,6.627105499841076,4.229021631494994,-0.01100438317228969,7.67890367626031,6.341417826558967,1.194619469535371,0.9948008639063064,3.162598075896503,6.017992888706614,-0.6838267581430315,0.4475302510251876,-0.1789717389216875,-0.3399773833634521,7.480781570151842],[3.57678,2.81671,5.22551,6.94804,3.71827,5.977,8.10633,6.2212,4.36144,4.1314,7.47724,3.97985,4.52679,4.73118,1.50643,4.58341,2.36075,8.443569999999999,1.63725,8.703659999999999,3.80357,7.62574,0.05093,4.15911,7.97396,7.73204,5.90361,7.09867,2.50658,3.86357,4.15326,3.60126,4.17835,5.70246,7.14927,6.32911,7.25669,6.7693,1.8928,9.047169999999999,5.97955,3.54924,1.12161,5.81441,7.06542,1.58086,1.59669,1.16613,1.93469,8.031890000000001],["Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)","Intensity Normalized (v.2)"],["1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0","1.14.0"],["S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001","S001"],["P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01","P01"],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],["A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1"],[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],["Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1"],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],["Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1","Group1"],["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>SampleID<\/th>\n      <th>Index<\/th>\n      <th>OlinkID<\/th>\n      <th>UniProt<\/th>\n      <th>Assay<\/th>\n      <th>MissingFreq<\/th>\n      <th>Panel<\/th>\n      <th>Panel_Version<\/th>\n      <th>PlateID<\/th>\n      <th>QC_Warning<\/th>\n      <th>MaxLOD<\/th>\n      <th>PlateLOD<\/th>\n      <th>NPX<\/th>\n      <th>Normalization<\/th>\n      <th>Olink NPX Signature Version<\/th>\n      <th>B10-ID<\/th>\n      <th>PPID<\/th>\n      <th>Timepoint<\/th>\n      <th>Location on plate<\/th>\n      <th>Plate#<\/th>\n      <th>Project<\/th>\n      <th>Time<\/th>\n      <th>Group<\/th>\n      <th>Timepoint_f<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,5,10,11,12,17,19,21]},{"name":"SampleID","targets":0},{"name":"Index","targets":1},{"name":"OlinkID","targets":2},{"name":"UniProt","targets":3},{"name":"Assay","targets":4},{"name":"MissingFreq","targets":5},{"name":"Panel","targets":6},{"name":"Panel_Version","targets":7},{"name":"PlateID","targets":8},{"name":"QC_Warning","targets":9},{"name":"MaxLOD","targets":10},{"name":"PlateLOD","targets":11},{"name":"NPX","targets":12},{"name":"Normalization","targets":13},{"name":"Olink NPX Signature Version","targets":14},{"name":"B10-ID","targets":15},{"name":"PPID","targets":16},{"name":"Timepoint","targets":17},{"name":"Location on plate","targets":18},{"name":"Plate#","targets":19},{"name":"Project","targets":20},{"name":"Time","targets":21},{"name":"Group","targets":22},{"name":"Timepoint_f","targets":23}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="sample-assay-quality-control">1. Sample &amp; Assay Quality Control<a class="anchor" aria-label="anchor" href="#sample-assay-quality-control"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p_qc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_qc.html">plot_qc</a></span><span class="op">(</span><span class="va">PROBC</span>, color_by <span class="op">=</span> <span class="st">"PlateID"</span>, sd_cutoff <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span>
 <span><span class="va">p_lod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_lod.html">plot_lod</a></span><span class="op">(</span><span class="va">PROBC</span>, threshold <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -126,7 +178,7 @@ panels).</p>
 <span>  <span class="va">p_qc</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/qc-lod-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_plate_qc.html">plot_plate_qc</a></span><span class="op">(</span><span class="va">PROBC</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/plate-qc-1.png" class="r-plt" alt="" width="100%"></p>
 <hr>
@@ -134,11 +186,11 @@ panels).</p>
 <div class="section level2">
 <h2 id="ordination-clustered-expression">2. Ordination &amp; Clustered Expression<a class="anchor" aria-label="anchor" href="#ordination-clustered-expression"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">base</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pca"</span>, <span class="st">"umap"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>               perplexity <span class="op">=</span> <span class="fl">7</span>, seed <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/pca-umap-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_scree.html">plot_scree</a></span><span class="op">(</span><span class="va">base</span>, n_pcs <span class="op">=</span> <span class="fl">10</span>, title <span class="op">=</span> <span class="st">"PROBC Baseline Variance Explained"</span><span class="op">)</span></span>
 <span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_loadings.html">plot_loadings</a></span><span class="op">(</span><span class="va">base</span>, components <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, top_n <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -147,7 +199,7 @@ panels).</p>
 <span>  <span class="va">pl</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/scree-loadings-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oe_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/oe_from_long.html">oe_from_long</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">oe_base</span>, scale <span class="op">=</span> <span class="st">"row"</span>, show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>             annotation_rows <span class="op">=</span> <span class="st">"Panel"</span>,</span>
@@ -162,7 +214,7 @@ panels).</p>
 <h3 id="mean-95-ci-profile-over-time-plot_mean_profile">3.1 Mean ± 95% CI Profile Over Time
 (<code>plot_mean_profile()</code>)<a class="anchor" aria-label="anchor" href="#mean-95-ci-profile-over-time-plot_mean_profile"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_mean_profile.html">plot_mean_profile</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"IL4"</span>, <span class="st">"CXCL12"</span>, <span class="st">"TNF"</span><span class="op">)</span>,</span>
 <span>                  x <span class="op">=</span> <span class="st">"Timepoint"</span>, group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/mean-profile-1.png" class="r-plt" alt="" width="100%"></p>
@@ -171,7 +223,7 @@ panels).</p>
 <h3 id="individual-subject-trajectories-plot_trajectory">3.2 Individual Subject Trajectories
 (<code>plot_trajectory()</code>)<a class="anchor" aria-label="anchor" href="#individual-subject-trajectories-plot_trajectory"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_trajectory.html">plot_trajectory</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, subject_id <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>                time <span class="op">=</span> <span class="st">"Time"</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>                smooth_method <span class="op">=</span> <span class="st">"loess"</span>, lod_col <span class="op">=</span> <span class="st">"MaxLOD"</span>,</span>
@@ -182,7 +234,7 @@ panels).</p>
 <h3 id="spaghetti-plot-faceted-by-group-plot_spaghetti">3.3 Spaghetti Plot Faceted by Group
 (<code>plot_spaghetti()</code>)<a class="anchor" aria-label="anchor" href="#spaghetti-plot-faceted-by-group-plot_spaghetti"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_spaghetti.html">plot_spaghetti</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL4"</span>, subject_id <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>               time <span class="op">=</span> <span class="st">"Time"</span>, facet_by <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/spaghetti-1.png" class="r-plt" alt="" width="100%"></p>
@@ -191,7 +243,7 @@ panels).</p>
 <h3 id="violin-boxplot-across-timepoints-plot_violin">3.4 Violin + Boxplot Across Timepoints
 (<code>plot_violin()</code>)<a class="anchor" aria-label="anchor" href="#violin-boxplot-across-timepoints-plot_violin"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Timepoint_f"</span>,</span>
 <span>            group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>, show_significant <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/violin-1.png" class="r-plt" alt="" width="100%"></p>
@@ -199,7 +251,7 @@ panels).</p>
 <div class="section level3">
 <h3 id="group-boxplots-at-baseline-plot_boxplot">3.5 Group Boxplots at Baseline (<code>plot_boxplot()</code>)<a class="anchor" aria-label="anchor" href="#group-boxplots-at-baseline-plot_boxplot"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">base</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL4"</span>, <span class="st">"CCL11"</span><span class="op">)</span>,</span>
 <span>             group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>, show_significant <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/boxplot-1.png" class="r-plt" alt="" width="100%"></p>
@@ -207,7 +259,7 @@ panels).</p>
 <div class="section level3">
 <h3 id="linear-mixed-model-point-range-plot_lmer">3.6 Linear Mixed-Model Point-Range (<code>plot_lmer()</code>)<a class="anchor" aria-label="anchor" href="#linear-mixed-model-point-range-plot_lmer"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_lmer.html">plot_lmer</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span><span class="op">)</span>,</span>
 <span>          x <span class="op">=</span> <span class="st">"Timepoint_f"</span>, group <span class="op">=</span> <span class="st">"Project"</span>, random <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>          add_pvalue <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lmerTest"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -217,7 +269,7 @@ panels).</p>
 <h3 id="continuous-regression-smooth-plot_regression">3.7 Continuous Regression Smooth
 (<code>plot_regression()</code>)<a class="anchor" aria-label="anchor" href="#continuous-regression-smooth-plot_regression"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_regression.html">plot_regression</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>                color_by <span class="op">=</span> <span class="st">"Project"</span>, title <span class="op">=</span> <span class="st">"IL6 Linear Trend Over Time"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/regression-1.png" class="r-plt" alt="" width="100%"></p>
@@ -227,7 +279,7 @@ panels).</p>
 <div class="section level2">
 <h2 id="multi-protein-differential-expression-roc-analysis">4. Multi-Protein Differential Expression &amp; ROC Analysis<a class="anchor" aria-label="anchor" href="#multi-protein-differential-expression-roc-analysis"></a>
 </h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dt_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></span>
 <span><span class="va">de_probc</span> <span class="op">&lt;-</span> <span class="va">dt_base</span><span class="op">[</span>, <span class="op">{</span></span>
 <span>  <span class="va">g1</span> <span class="op">&lt;-</span> <span class="va">NPX</span><span class="op">[</span><span class="va">Project</span> <span class="op">==</span> <span class="st">"Group1"</span><span class="op">]</span></span>
@@ -244,7 +296,7 @@ panels).</p>
 <span><span class="va">de_probc</span><span class="op">[</span>, <span class="va">Adjusted_pval</span> <span class="op">:=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></span><span class="op">(</span><span class="va">p.value</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">de_probc</span> <span class="op">&lt;-</span> <span class="va">de_probc</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">top_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span><span class="op">$</span><span class="va">Assay</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_volcano.html">plot_volcano</a></span><span class="op">(</span><span class="va">de_probc</span>, pval_col <span class="op">=</span> <span class="st">"p.value"</span>, fc_col <span class="op">=</span> <span class="st">"estimate"</span>,</span>
 <span>                   fc_threshold <span class="op">=</span> <span class="fl">0.3</span>, max_labels <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"Baseline Volcano (Group2 vs Group1)"</span><span class="op">)</span></span>
@@ -257,7 +309,7 @@ panels).</p>
 <span>  <span class="va">pv</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/volcano-ma-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_dotplot.html">plot_dotplot</a></span><span class="op">(</span><span class="va">base</span>, group <span class="op">=</span> <span class="st">"Project"</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span><span class="op">$</span><span class="va">Assay</span>, <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"Top 12 Baseline Assays"</span><span class="op">)</span></span>
 <span><span class="va">de_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span>, <span class="fl">12</span><span class="op">)</span></span>
@@ -274,7 +326,7 @@ panels).</p>
 <div class="section level3">
 <h3 id="correlation-matrix-plot_corr_triangle">4.1 Correlation Matrix (<code>plot_corr_triangle()</code>)<a class="anchor" aria-label="anchor" href="#correlation-matrix-plot_corr_triangle"></a>
 </h3>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_corr_triangle.html">plot_corr_triangle</a></span><span class="op">(</span><span class="va">base</span>, method <span class="op">=</span> <span class="st">"spearman"</span>, top_n <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"PROBC Baseline Correlation Triangle"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/corr-1.png" class="r-plt" alt="" width="100%"></p>
@@ -283,7 +335,7 @@ panels).</p>
 <h3 id="roc-curves-with-95-ci-shade-paired-delong-test-plot_roc">4.2 ROC Curves with 95% CI Shade &amp; Paired DeLong Test
 (<code>plot_roc()</code>)<a class="anchor" aria-label="anchor" href="#roc-curves-with-95-ci-shade-paired-delong-test-plot_roc"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_roc.html">plot_roc</a></span><span class="op">(</span><span class="va">base</span>, assays <span class="op">=</span> <span class="va">top_hits</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>         add_ci <span class="op">=</span> <span class="cn">TRUE</span>, boot_n <span class="op">=</span> <span class="fl">100</span>, show_direction <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         compare <span class="op">=</span> <span class="cn">TRUE</span>, compare_method <span class="op">=</span> <span class="st">"delong"</span>,</span>

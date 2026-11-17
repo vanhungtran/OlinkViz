@@ -245,10 +245,19 @@ COVID data:</p>
 <span><span class="co">#&gt;  $ timing_month: chr  "3 months" "3 months" "3 months" "3 months" ...</span></span>
 <span><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;pointer: (nil)&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"DT"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris_longcovid</span>, <span class="fl">50</span><span class="op">)</span>,</span>
+<span>    rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span>, scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","IL8","VEGFA","VEGFA","VEGFA","VEGFA","VEGFA"],[5.22489,5.81673,5.14095,5.16509,5.17592,5.41957,5.33171,4.54676,5.82398,5.13735,5.24666,4.70482,4.9714,4.98125,4.50263,4.22943,5.28847,5.00711,4.75539,4.70451,3.71633,5.11737,4.95609,5.33883,5.3927,5.78603,5.41275,5.3447,4.80945,5.84351,5.68531,5.25409,5.42812,4.65771,5.57768,5.5499,5.4478,4.92795,4.92423,4.64504,4.8083,5.13168,4.1487,5.25982,4.81225,10.63263,10.61938,11.32866,10.69897,10.34882],["Male","Female","Female","Male","Male","Female","Female","Male","Male","Male","Female","Female","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Female","Female","Female","Male","Female","Male","Female","Male","Female","Female","Male","Female","Female","Male","Male","Male","Female","Female","Male","Female","Male","Male","Male","Female","Female","Male","Male"],[10,58,74,18,17,39,28,71,3,48,41,35,42,85,37,79,57,30,38,88,99,97,29,86,90,56,61,75,32,27,47,67,46,44,69,51,16,50,62,98,49,78,87,6,7,10,58,74,18,17],["Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation","Olink Inflammation"],["No","No","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","Yes","No","Yes","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes","Yes","No","No","Yes","Yes","Yes"],["3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months","3 months"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Assay<\/th>\n      <th>NPX<\/th>\n      <th>Sex<\/th>\n      <th>IRIS_number<\/th>\n      <th>Panel<\/th>\n      <th>long_covid<\/th>\n      <th>timing_month<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[1,3]},{"name":"Assay","targets":0},{"name":"NPX","targets":1},{"name":"Sex","targets":2},{"name":"IRIS_number","targets":3},{"name":"Panel","targets":4},{"name":"long_covid","targets":5},{"name":"timing_month","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Unique assays in the dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">$</span><span class="va">Assay</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 180</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Groups and time points available</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">$</span><span class="va">long_covid</span>, <span class="va">iris_longcovid</span><span class="op">$</span><span class="va">timing_month</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      </span></span>
@@ -268,7 +277,7 @@ Rows are <strong>proteins</strong>, columns are
 counts) live in the <code>assays</code> slot, protein annotation in
 <code>rowData</code>, sample annotation in <code>colData</code>, and
 dimensionality reductions in <code>reducedDims</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/SummarizedExperiment" class="external-link">SummarizedExperiment</a></span><span class="op">)</span>  <span class="co"># for colData(), rowData(), as()</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="build-from-raw-long-format-data">Build from raw long-format data<a class="anchor" aria-label="anchor" href="#build-from-raw-long-format-data"></a>
@@ -279,7 +288,7 @@ columns are auto-detected; the remaining columns are split into
 <code>rowData</code> (per-protein) and <code>colData</code>
 (per-sample); an optional <code>LOD</code> column becomes a parallel
 assay.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/oe_from_long.html">oe_from_long</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">)</span></span>
 <span><span class="va">oe</span></span>
 <span><span class="co">#&gt; class: OlinkExperiment </span></span>
@@ -291,7 +300,7 @@ assay.</p>
 <span><span class="co">#&gt; colnames(45): 10 58 ... 6 7</span></span>
 <span><span class="co">#&gt; colData names(4): IRIS_number Sex long_covid timing_month</span></span>
 <span><span class="co">#&gt; reducedDimNames(0):</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="../reference/npx.html">npx</a></span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 180  45</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">oe</span><span class="op">)</span><span class="op">)</span></span>
@@ -303,7 +312,7 @@ assay.</p>
 <h3 id="build-from-a-wide-npx-matrix">Build from a wide NPX matrix<a class="anchor" aria-label="anchor" href="#build-from-a-wide-npx-matrix"></a>
 </h3>
 <p>Use the base <code><a href="../reference/OlinkExperiment.html">OlinkExperiment()</a></code> constructor directly:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A long table that includes LOD values</span></span>
 <span><span class="va">oe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/oe_from_long.html">oe_from_long</a></span><span class="op">(</span><span class="va">beatmg_npx</span><span class="op">[</span><span class="va">beatmg_npx</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span><span class="op">)</span></span>
 <span></span>
@@ -329,7 +338,7 @@ assay.</p>
 <p><code><a href="../reference/npx.html">npx()</a></code> and <code><a href="../reference/npx.html">lod()</a></code> mirror the named-assay
 accessors of <code>SingleCellExperiment</code> (like
 <code>counts()</code>/<code>logcounts()</code>):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="../reference/npx.html">npx</a></span><span class="op">(</span><span class="va">oe2</span><span class="op">)</span><span class="op">)</span>   <span class="co"># NPX assay, proteins x samples</span></span>
 <span><span class="co">#&gt; [1] 730  49</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="../reference/npx.html">lod</a></span><span class="op">(</span><span class="va">oe2</span><span class="op">)</span><span class="op">)</span>   <span class="co"># LOD assay, parallel to NPX</span></span>
@@ -368,7 +377,7 @@ accessors of <code>SingleCellExperiment</code> (like
 </h3>
 <p>PCA/UMAP/t-SNE coordinates are stored via <code><a href="../reference/reducedDims.html">reducedDims()</a></code>,
 one matrix per result with one row per sample:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">oe2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>              dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">oe2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/reducedDims.html">reducedDims</a></span><span class="op">(</span><span class="va">oe2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span>PCA <span class="op">=</span> <span class="va">pca</span><span class="op">)</span></span>
@@ -385,7 +394,7 @@ one matrix per result with one row per sample:</p>
 with <code>[</code>, combine with
 <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind()</a></code>/<code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code>, and coerce with
 <code><a href="https://rdrr.io/r/methods/as.html" class="external-link">as()</a></code>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oe2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>                       <span class="co"># first 10 proteins x 5 samples</span></span>
 <span><span class="co">#&gt; class: OlinkExperiment </span></span>
 <span><span class="co">#&gt; dim: 10 5 </span></span>
@@ -425,22 +434,22 @@ format internally, so <code>colData</code> columns
 (e.g. <code>Group</code>, <code>long_covid</code>) and
 <code>rowData</code> columns (e.g. <code>Panel</code>) are available for
 grouping without any extra steps:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oe_iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/oe_from_long.html">oe_from_long</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">oe_iris</span>, assay <span class="op">=</span> <span class="st">"CD40"</span>, group <span class="op">=</span> <span class="st">"long_covid"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="768"></p>
 <p>For a one-stop dimensionality-reduction plot, use
 <code><a href="../reference/plot_dim_reduc.html">plot_dim_reduc()</a></code>. It computes PCA/UMAP/t-SNE on the fly (or
 re-uses a reduction already stored in <code><a href="../reference/reducedDims.html">reducedDims()</a></code>) and
 colors points by any sample covariate. Several reductions can be plotted
 <strong>jointly</strong> in a single multi-panel figure:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">oe_iris</span>, type <span class="op">=</span> <span class="st">"pca"</span>, color <span class="op">=</span> <span class="st">"long_covid"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="960"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">oe_iris</span>, type <span class="op">=</span> <span class="st">"pca"</span>, color <span class="op">=</span> <span class="st">"long_covid"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="960"></p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">oe_iris</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pca"</span>, <span class="st">"umap"</span>, <span class="st">"tsne"</span><span class="op">)</span>,</span>
 <span>               color <span class="op">=</span> <span class="st">"long_covid"</span>, perplexity <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-15-2.png" class="r-plt" alt="" width="960"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-16-2.png" class="r-plt" alt="" width="960"></p>
 <p>You can still extract the raw matrices with <code><a href="../reference/npx.html">npx()</a></code> /
 <code><a href="../reference/npx.html">lod()</a></code> / <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData()</a></code> / <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">rowData()</a></code>
 when you need them directly.</p>
@@ -455,12 +464,12 @@ when you need them directly.</p>
 </h3>
 <p>Compare NPX values for a single protein across groups, with optional
 statistical test annotations.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">iris_longcovid</span>, assay <span class="op">=</span> <span class="st">"CD40"</span>, group <span class="op">=</span> <span class="st">"long_covid"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="768"></p>
 <p>With custom comparisons (requires the <code>ggpubr</code>
 package):</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">iris_longcovid</span>,</span>
 <span>  assay       <span class="op">=</span> <span class="st">"CD40"</span>,</span>
@@ -475,7 +484,7 @@ package):</p>
 </h3>
 <p>Visualize fold change versus significance for each protein. The
 function validates p-values and handles exact zeros gracefully.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Using the Bansal univariate test results. bansal_univariate's `estimate`</span></span>
 <span><span class="co"># is on a much smaller natural scale than a typical log2 fold change, so</span></span>
 <span><span class="co"># fc_threshold needs to be set accordingly (the default of 1 would mark</span></span>
@@ -490,10 +499,10 @@ function validates p-values and handles exact zeros gracefully.</p>
 <span>  max_labels     <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  title          <span class="op">=</span> <span class="st">"Long COVID: Protein Differential Expression"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" alt="" width="768"></p>
 <p>For raw fold-change ratios (not yet log2-transformed), set
 <code>transform_fc = TRUE</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_volcano.html">plot_volcano</a></span><span class="op">(</span><span class="va">de_results</span>, pval_col <span class="op">=</span> <span class="st">"pval"</span>, fc_col <span class="op">=</span> <span class="st">"FC"</span>,</span>
 <span>             transform_fc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -504,26 +513,26 @@ function validates p-values and handles exact zeros gracefully.</p>
 grouping variable with optional confidence ellipses.
 <code><a href="../reference/plot_dim_reduc.html">plot_dim_reduc()</a></code> computes PCA, UMAP, or t-SNE on the fly
 and can combine several reductions into one figure.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, type <span class="op">=</span> <span class="st">"pca"</span>, color <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
 <span>               title <span class="op">=</span> <span class="st">"BeatMG: PCA by Timepoint"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="768"></p>
 <p>Without grouping, all points are shown in a single color:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span><span class="op">[</span><span class="va">beatmg_npx_merged</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>,</span>
 <span>               type <span class="op">=</span> <span class="st">"pca"</span>, title <span class="op">=</span> <span class="st">"BeatMG Baseline Samples"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="umap-non-linear-projection">4. UMAP — Non-Linear Projection<a class="anchor" aria-label="anchor" href="#umap-non-linear-projection"></a>
 </h3>
 <p>UMAP captures non-linear structure that PCA may miss. The
 <code>seed</code> parameter ensures reproducibility.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, type <span class="op">=</span> <span class="st">"umap"</span>, color <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
 <span>          n_neighbors <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>          title <span class="op">=</span> <span class="st">"BeatMG: UMAP by Timepoint"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="heatmap-clustered-expression-matrix">5. Heatmap — Clustered Expression Matrix<a class="anchor" aria-label="anchor" href="#heatmap-clustered-expression-matrix"></a>
@@ -531,7 +540,7 @@ and can combine several reductions into one figure.</p>
 <p>Proteins are clustered by expression pattern. NAs are imputed with
 column means and a warning is issued. The function accepts both long and
 wide formats.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Long-format input (rows clustered, columns as samples)</span></span>
 <span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span><span class="op">[</span><span class="va">beatmg_npx_merged</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>,</span>
@@ -540,32 +549,32 @@ wide formats.</p>
 <span>  show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  main       <span class="op">=</span> <span class="st">"BeatMG Baseline Protein Expression"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" alt="" width="768"></p>
 <p>When given an <code>OlinkExperiment</code>, the sample covariates
 stored in <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData()</a></code> (e.g. <code>Sex</code>,
 <code>long_covid</code>, <code>timing_month</code>) are shown
 automatically as annotation tracks above the samples. Pass
 <code>annotation_cols</code> to select a specific subset:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">oe_iris</span>, scale <span class="op">=</span> <span class="st">"row"</span>, show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>             main <span class="op">=</span> <span class="st">"Long COVID: Protein Expression by Covariate"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-25-1.png" class="r-plt" alt="" width="768"></p>
 <p>Biomarkers can also be grouped into <strong>sets</strong> (e.g. the
 Olink panel each protein belongs to) with a row annotation track, via
 <code>annotation_rows</code> (automatically filled from
 <code>rowData</code> for an <code>OlinkExperiment</code>):</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">oe_iris</span>, scale <span class="op">=</span> <span class="st">"row"</span>, show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>             annotation_rows <span class="op">=</span> <span class="st">"Panel"</span>,</span>
 <span>             main <span class="op">=</span> <span class="st">"Long COVID: Protein Expression by Biomarker Set"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-25-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-26-1.png" class="r-plt" alt="" width="768"></p>
 <p>To group the biomarkers by their <strong>enriched pathways</strong>
 instead of by Olink panel, set <code>pathway_annotation = TRUE</code>
 (or pass a precomputed protein → pathway mapping) — see <a href="#pathway-enrichment-protein-networks">Pathway Enrichment &amp;
 Protein Networks</a> below for a full, runnable example with
 <code><a href="../reference/enrich_pathways.html">enrich_pathways()</a></code>.</p>
 <p>Wide-format input with <code>wide = TRUE</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># qinfeng_npx is already wide: 66 samples x 92 proteins</span></span>
 <span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">qinfeng_npx</span>, wide <span class="op">=</span> <span class="cn">TRUE</span>, sample_col <span class="op">=</span> <span class="st">"SampleID"</span>,</span>
 <span>             scale <span class="op">=</span> <span class="st">"column"</span>, show_colnames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -577,7 +586,7 @@ Protein Networks</a> below for a full, runnable example with
 <p>Dot size encodes significance (-log10 p-value); color encodes
 direction of change. Useful for survey-level views across many
 proteins.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dotplot.html">plot_dotplot</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span>,</span>
 <span>  group   <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
@@ -587,7 +596,7 @@ proteins.</p>
 <span>  top_n   <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>  title   <span class="op">=</span> <span class="st">"BeatMG: Protein Changes vs Baseline"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-27-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" alt="" width="768"></p>
 <p>If an assay name is misspelled, a warning is now emitted instead of
 silently omitting it.</p>
 </div>
@@ -595,17 +604,17 @@ silently omitting it.</p>
 <h3 id="correlation-matrix">7. Correlation Matrix<a class="anchor" aria-label="anchor" href="#correlation-matrix"></a>
 </h3>
 <p>Compute pairwise correlations between the most variable proteins.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_corr.html">plot_corr</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span><span class="op">[</span><span class="va">beatmg_npx_merged</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>,</span>
 <span>  method    <span class="op">=</span> <span class="st">"spearman"</span>,</span>
 <span>  top_n     <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  corr_type <span class="op">=</span> <span class="st">"upper"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" alt="" width="624"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" alt="" width="624"></p>
 <p>The new <code>display_method</code> parameter allows alternative
 visual encodings:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_corr.html">plot_corr</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, method <span class="op">=</span> <span class="st">"spearman"</span>, top_n <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>          display_method <span class="op">=</span> <span class="st">"ellipse"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_corr.html">plot_corr</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, method <span class="op">=</span> <span class="st">"pearson"</span>,  top_n <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -619,7 +628,7 @@ visual encodings:</p>
 </h3>
 <p>Individual spaghetti plots with optional group-level smoothing
 lines.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Subset to a manageable number of proteins for demonstration</span></span>
 <span><span class="fu"><a href="../reference/plot_trajectory.html">plot_trajectory</a></span><span class="op">(</span></span>
 <span>  <span class="va">bansal_longitudinal</span>,</span>
@@ -630,11 +639,11 @@ lines.</p>
 <span>  smooth_method <span class="op">=</span> <span class="st">"loess"</span>,</span>
 <span>  title         <span class="op">=</span> <span class="st">"HAGH Trajectory by Long COVID Status"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-31-1.png" class="r-plt" alt="" width="768"></p>
 <p>The new <code>facet</code> argument makes one panel per subject, and
 <code>lod_col</code> adds a dashed “MaxLOD” reference line per panel
 (matching the report figures):</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_trajectory.html">plot_trajectory</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span>,</span>
 <span>  assay    <span class="op">=</span> <span class="st">"IL4"</span>,</span>
@@ -648,7 +657,7 @@ lines.</p>
 </h3>
 <p>The classic “mean NPX trajectory” figure: mean ± 95% CI at each time
 point, with one line per group.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_mean_profile.html">plot_mean_profile</a></span><span class="op">(</span></span>
 <span>  <span class="va">iris_longcovid</span>,</span>
 <span>  assay <span class="op">=</span> <span class="st">"CD40"</span>,</span>
@@ -656,7 +665,7 @@ point, with one line per group.</p>
 <span>  group <span class="op">=</span> <span class="st">"long_covid"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"CD40 Mean NPX Trajectory by Long COVID Status"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-32-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" alt="" width="768"></p>
 <p>With <code>error_bar_type = "se"</code> the bars show the standard
 error instead of the confidence interval. Set
 <code>add_signif = TRUE</code> (requires <code>ggpubr</code>) to
@@ -667,7 +676,7 @@ annotate between-group p-values at each time point.</p>
 </h3>
 <p>One line per subject, with an overlaid trend curve, optionally
 faceted by a grouping variable.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_spaghetti.html">plot_spaghetti</a></span><span class="op">(</span></span>
 <span>  <span class="va">bansal_longitudinal</span>,</span>
 <span>  assay      <span class="op">=</span> <span class="st">"HAGH"</span>,</span>
@@ -675,21 +684,21 @@ faceted by a grouping variable.</p>
 <span>  time       <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>  facet_by   <span class="op">=</span> <span class="st">"Long_COVID status"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-34-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="violin-boxplot">11. Violin + Boxplot<a class="anchor" aria-label="anchor" href="#violin-boxplot"></a>
 </h3>
 <p>Distribution of a single protein across a categorical axis (e.g. time
 point), with an overlaid boxplot. Optionally filled by group.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span></span>
 <span>  <span class="va">iris_longcovid</span>,</span>
 <span>  assay <span class="op">=</span> <span class="st">"CD40"</span>,</span>
 <span>  x     <span class="op">=</span> <span class="st">"timing_month"</span>,</span>
 <span>  group <span class="op">=</span> <span class="st">"long_covid"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-34-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" alt="" width="768"></p>
 <p>The single-assay comparison plots (<code><a href="../reference/plot_boxplot.html">plot_boxplot()</a></code>,
 <code><a href="../reference/plot_violin.html">plot_violin()</a></code>, <code><a href="../reference/plot_mean_profile.html">plot_mean_profile()</a></code>) can
 annotate p-values for <strong>each pairwise comparison</strong> between
@@ -704,7 +713,7 @@ show every comparison. Brackets are placed above the data automatically
 <code>step_increase</code> the gap between stacked bars), so they never
 overlap the points/violins. This requires the <code>ggpubr</code>
 package:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span></span>
 <span>  <span class="va">iris_longcovid</span>,</span>
 <span>  assay <span class="op">=</span> <span class="st">"CD40"</span>,</span>
@@ -712,33 +721,33 @@ package:</p>
 <span>  group <span class="op">=</span> <span class="st">"long_covid"</span>,</span>
 <span>  show_significant <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-36-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="pca-scree-plot">12. PCA Scree Plot<a class="anchor" aria-label="anchor" href="#pca-scree-plot"></a>
 </h3>
 <p>Variance explained per principal component, with the cumulative
 line.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_scree.html">plot_scree</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span><span class="op">[</span><span class="va">beatmg_npx_merged</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>,</span>
 <span>  n_pcs <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"BeatMG Baseline: Variance Explained"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-36-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-37-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="pca-loadings-plot">13. PCA Loadings Plot<a class="anchor" aria-label="anchor" href="#pca-loadings-plot"></a>
 </h3>
 <p>The variables (proteins) with the largest loadings for each of the
 top principal components.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_loadings.html">plot_loadings</a></span><span class="op">(</span></span>
 <span>  <span class="va">beatmg_npx_merged</span><span class="op">[</span><span class="va">beatmg_npx_merged</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>,</span>
 <span>  components <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>  top_n      <span class="op">=</span> <span class="fl">8</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-37-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-38-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="lmer-point-range-plot">14. LMER Point-Range Plot<a class="anchor" aria-label="anchor" href="#lmer-point-range-plot"></a>
@@ -750,7 +759,7 @@ two-group longitudinal Olink panel (see <code><a href="../reference/probc.html">
 <code>value ~ x * group + (1 | random)</code> per protein with
 <code>lme4</code> and annotate the group-effect p-value on each
 panel.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_lmer.html">plot_lmer</a></span><span class="op">(</span></span>
 <span>  <span class="va">probc</span>,</span>
 <span>  assay  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span><span class="op">)</span>,</span>
@@ -764,7 +773,7 @@ panel.</p>
 </h3>
 <p>Scatter of NPX against a continuous x-axis with an overlaid linear
 smooth, optionally colored and/or faceted by a grouping variable.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_regression.html">plot_regression</a></span><span class="op">(</span></span>
 <span>  <span class="va">probc</span>,</span>
 <span>  assay     <span class="op">=</span> <span class="st">"IL6"</span>,</span>
@@ -772,7 +781,7 @@ smooth, optionally colored and/or faceted by a grouping variable.</p>
 <span>  color_by  <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>  title     <span class="op">=</span> <span class="st">"IL6 NPX Trend (Simulated PROBC)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-39-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-40-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="sample-qc-median-npx-versus-iqr">16. Sample QC — Median NPX versus IQR<a class="anchor" aria-label="anchor" href="#sample-qc-median-npx-versus-iqr"></a>
@@ -783,12 +792,12 @@ lies more than <code>sd_cutoff</code> standard deviations from the panel
 mean are flagged and labelled, and samples that carry an Olink
 <code>QC_Warning</code> are drawn as triangles. Colour the points by a
 sample-level column such as the plate to look for batch structure.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_qc.html">plot_qc</a></span><span class="op">(</span><span class="va">probc</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-40-1.png" class="r-plt" alt="" width="768"></p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_qc.html">plot_qc</a></span><span class="op">(</span><span class="va">probc</span>, color_by <span class="op">=</span> <span class="st">"PlateID"</span>, sd_cutoff <span class="op">=</span> <span class="fl">2.5</span>, label_outliers <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_qc.html">plot_qc</a></span><span class="op">(</span><span class="va">probc</span><span class="op">)</span></span></code></pre></div>
 <p><img src="OlinkViz_files/figure-html/unnamed-chunk-41-1.png" class="r-plt" alt="" width="768"></p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_qc.html">plot_qc</a></span><span class="op">(</span><span class="va">probc</span>, color_by <span class="op">=</span> <span class="st">"PlateID"</span>, sd_cutoff <span class="op">=</span> <span class="fl">2.5</span>, label_outliers <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-42-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="assay-detectability-percent-of-samples-above-lod">17. Assay Detectability — Percent of Samples Above LOD<a class="anchor" aria-label="anchor" href="#assay-detectability-percent-of-samples-above-lod"></a>
@@ -797,9 +806,9 @@ sample-level column such as the plate to look for batch structure.</p>
 every assay by the percentage of samples whose NPX is above the limit of
 detection and labels the least detectable ones. The threshold is a
 convention (here 75 percent), not a rule: choose it for your study.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_lod.html">plot_lod</a></span><span class="op">(</span><span class="va">probc</span>, threshold <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-42-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-43-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="roc-curves-for-individual-proteins">18. ROC Curves for Individual Proteins<a class="anchor" aria-label="anchor" href="#roc-curves-for-individual-proteins"></a>
@@ -812,12 +821,12 @@ with the positive group. Each curve is the apparent performance of one
 protein on these samples; it is not cross-validated. Subset the data to
 the two groups first, and to one time point if there are repeated
 measures.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">baseline</span> <span class="op">&lt;-</span> <span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/plot_roc.html">plot_roc</a></span><span class="op">(</span><span class="va">baseline</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL8"</span><span class="op">)</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>         show_direction <span class="op">=</span> <span class="cn">TRUE</span>, smooth_method <span class="op">=</span> <span class="st">"binormal"</span>,</span>
 <span>         add_ci <span class="op">=</span> <span class="cn">TRUE</span>, boot_n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-43-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-44-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="bridge-sample-plate-qc-plot_bridge-plot_plate_qc">19. Bridge Sample &amp; Plate QC (<code>plot_bridge()</code>,
@@ -827,15 +836,15 @@ measures.</p>
 <code><a href="../reference/plot_plate_qc.html">plot_plate_qc()</a></code> summarizes sample median NPX distributions
 per plate, and <code><a href="../reference/plot_bridge.html">plot_bridge()</a></code> draws a Bland-Altman (or
 scatter) comparison of overlapping bridge reference samples:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_plate_qc.html">plot_plate_qc</a></span><span class="op">(</span><span class="va">probc</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-44-1.png" class="r-plt" alt="" width="768"></p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_plate_qc.html">plot_plate_qc</a></span><span class="op">(</span><span class="va">probc</span><span class="op">)</span></span></code></pre></div>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-45-1.png" class="r-plt" alt="" width="768"></p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b1</span> <span class="op">&lt;-</span> <span class="va">probc</span><span class="op">[</span><span class="va">probc</span><span class="op">$</span><span class="va">Timepoint</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="va">b2</span> <span class="op">&lt;-</span> <span class="va">b1</span></span>
 <span><span class="va">b2</span><span class="op">$</span><span class="va">NPX</span> <span class="op">&lt;-</span> <span class="va">b1</span><span class="op">$</span><span class="va">NPX</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">b1</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0.12</span>, sd <span class="op">=</span> <span class="fl">0.18</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_bridge.html">plot_bridge</a></span><span class="op">(</span><span class="va">b1</span>, <span class="va">b2</span>, type <span class="op">=</span> <span class="st">"bland_altman"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-45-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" alt="" width="768"></p>
 <hr>
 </div>
 </div>
@@ -847,15 +856,15 @@ that is drawn on a large canvas and shrunk to a journal column ends up
 with text that is too small, or with labels that collide. Draw it at its
 final size instead, with one option, and every <code>plot_*()</code>
 function sizes its text and marks from it:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/olinkviz_options.html">olinkviz_options</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">7</span>, axes <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>   <span class="co"># 7 pt text, left and bottom axes</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">probc</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, group <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-47-1.png" class="r-plt" alt="" width="768"></p>
 <p><code><a href="../reference/save_olinkviz.html">save_olinkviz()</a></code> then writes the file at the exact
 physical size (89 mm is a typical single column; check the author
 guidelines of your journal), with embedded fonts in the PDF:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/save_olinkviz.html">save_olinkviz</a></span><span class="op">(</span><span class="va">p</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"il6_boxplot"</span><span class="op">)</span>,</span>
 <span>                       width <span class="op">=</span> <span class="fl">89</span>, height <span class="op">=</span> <span class="fl">70</span>, formats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pdf"</span>, <span class="st">"png"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="va">files</span><span class="op">)</span></span>
@@ -896,7 +905,7 @@ avoids GO Cellular Component terms like “extracellular region” — true of
 nearly every secreted Olink protein, so uninformative as a grouping.
 Here we enrich the 15 most up-regulated Bansal proteins — the same set
 the network figure below visualizes:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">top_de</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bansal_univariate</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">bansal_univariate</span><span class="op">$</span><span class="va">estimate</span><span class="op">)</span>, <span class="op">]</span>, <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="va">pathways</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/enrich_pathways.html">enrich_pathways</a></span><span class="op">(</span><span class="va">top_de</span><span class="op">$</span><span class="va">UniProt</span>, sources <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GO:BP"</span>, <span class="st">"KEGG"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pathways</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -924,7 +933,7 @@ same identifier space you queried with (UniProt here), so map it back to
 proteins — a handful of real, multi-gene hubs instead of dozens of
 one-gene terms (or, worse, a “network” of exactly two Olink panels with
 no edges between proteins at all):</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pathways</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">pathways</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">pw_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">pathways</span>, <span class="va">top_de</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UniProt"</span>, <span class="st">"Assay"</span><span class="op">)</span><span class="op">]</span>, by.x <span class="op">=</span> <span class="st">"Protein"</span>, by.y <span class="op">=</span> <span class="st">"UniProt"</span><span class="op">)</span></span>
 <span>  <span class="va">pw_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">pw_map</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Assay"</span>, <span class="st">"Pathway"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -937,12 +946,12 @@ no edges between proteins at all):</p>
 <span><span class="fu"><a href="../reference/plot_pathway_network.html">plot_pathway_network</a></span><span class="op">(</span><span class="va">bansal_univariate</span>, assay_col <span class="op">=</span> <span class="st">"Assay"</span>, value_col <span class="op">=</span> <span class="st">"estimate"</span>,</span>
 <span>                     pathway_map <span class="op">=</span> <span class="va">pw_map</span>, top_n <span class="op">=</span> <span class="fl">15</span>, palette <span class="op">=</span> <span class="st">"jewel"</span>,</span>
 <span>                     title <span class="op">=</span> <span class="st">"Top Dysregulated Proteins and Their Functional Modules"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-49-1.png" class="r-plt" alt="" width="960"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-50-1.png" class="r-plt" alt="" width="960"></p>
 <p>For a real protein-protein interaction network instead of a pathway
 grouping, <code><a href="../reference/plot_network.html">plot_network()</a></code> queries the STRING database
 directly (requires the <code>rbioapi</code> package and an internet
 connection):</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_network.html">plot_network</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"CXCL10"</span>, <span class="st">"CD40"</span>, <span class="st">"IL10"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
@@ -955,9 +964,9 @@ connection):</p>
 </h3>
 <p><code><a href="../reference/validate_npx.html">validate_npx()</a></code> checks that your data has the minimum
 required columns:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/validate_npx.html">validate_npx</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/validate_npx.html">validate_npx</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># With a missing column — warns rather than stops</span></span>
 <span><span class="fu"><a href="../reference/validate_npx.html">validate_npx</a></span><span class="op">(</span><span class="va">mtcars</span>, fail_on_missing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -965,7 +974,7 @@ required columns:</p>
 <h3 id="converting-between-long-and-wide-formats">Converting Between Long and Wide Formats<a class="anchor" aria-label="anchor" href="#converting-between-long-and-wide-formats"></a>
 </h3>
 <p><strong>Long to wide:</strong></p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Pivot a subset for demonstration</span></span>
 <span><span class="va">iris_sub</span> <span class="op">&lt;-</span> <span class="va">iris_longcovid</span><span class="op">[</span><span class="va">iris_longcovid</span><span class="op">$</span><span class="va">timing_month</span> <span class="op">==</span> <span class="st">"Acute"</span>, <span class="op">]</span></span>
 <span><span class="va">wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to_wide.html">to_wide</a></span><span class="op">(</span><span class="va">iris_sub</span>, sample_col <span class="op">=</span> <span class="st">"IRIS_number"</span><span class="op">)</span></span>
@@ -978,13 +987,13 @@ required columns:</p>
 <span><span class="co">#&gt; 5          75 Female        Yes        Acute 4.70624 11.03180</span></span></code></pre></div>
 <p>Duplicate sample-assay combinations are automatically averaged with a
 message:</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create artificial duplicate to demonstrate replicate averaging</span></span>
 <span><span class="va">dup_row</span> <span class="op">&lt;-</span> <span class="va">iris_sub</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span>
 <span><span class="va">iris_dup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">iris_sub</span>, <span class="va">dup_row</span><span class="op">)</span></span>
 <span><span class="va">wide_dedup</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to_wide.html">to_wide</a></span><span class="op">(</span><span class="va">iris_dup</span>, sample_col <span class="op">=</span> <span class="st">"IRIS_number"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Wide to long:</strong></p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># With automatic assay column detection</span></span>
 <span><span class="va">long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to_long.html">to_long</a></span><span class="op">(</span><span class="va">wide</span>, id_cols <span class="op">=</span> <span class="st">"IRIS_number"</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"DT"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -992,10 +1001,10 @@ message:</p>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">long</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[99,99,99,99,99,99],["Female","Female","Female","Female","Female","Female"],["Yes","Yes","Yes","Yes","Yes","Yes"],["Acute","Acute","Acute","Acute","Acute","Acute"],["IL8","VEGFA","CD8A","MCP-3","GDNF","CDCP1"],[5.24166,10.20731,10.58543,2.45599,0.89861,1.79942]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IRIS_number<\/th>\n      <th>Sex<\/th>\n      <th>long_covid<\/th>\n      <th>timing_month<\/th>\n      <th>Assay<\/th>\n      <th>NPX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"IRIS_number","targets":1},{"name":"Sex","targets":2},{"name":"long_covid","targets":3},{"name":"timing_month","targets":4},{"name":"Assay","targets":5},{"name":"NPX","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>The new <code>exclude_cols</code> parameter lets you control which
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e5c8c404fe174e4c81bd" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e5c8c404fe174e4c81bd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[99,99,99,99,99,99],["Female","Female","Female","Female","Female","Female"],["Yes","Yes","Yes","Yes","Yes","Yes"],["Acute","Acute","Acute","Acute","Acute","Acute"],["IL8","VEGFA","CD8A","MCP-3","GDNF","CDCP1"],[5.24166,10.20731,10.58543,2.45599,0.89861,1.79942]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>IRIS_number<\/th>\n      <th>Sex<\/th>\n      <th>long_covid<\/th>\n      <th>timing_month<\/th>\n      <th>Assay<\/th>\n      <th>NPX<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"IRIS_number","targets":1},{"name":"Sex","targets":2},{"name":"long_covid","targets":3},{"name":"timing_month","targets":4},{"name":"Assay","targets":5},{"name":"NPX","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><p>The new <code>exclude_cols</code> parameter lets you control which
 columns are excluded from auto-detection when pivoting:</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/to_long.html">to_long</a></span><span class="op">(</span><span class="va">wide</span>, id_cols <span class="op">=</span> <span class="st">"IRIS_number"</span>,</span>
 <span>        exclude_cols <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span>  <span class="co"># explicit: only exclude "Sex"</span></span>
 <span><span class="co">#&gt;    IRIS_number    Sex long_covid timing_month          Assay      NPX</span></span>
@@ -1025,25 +1034,25 @@ columns are excluded from auto-detection when pivoting:</p>
 </h3>
 <p><code><a href="../reference/theme_olinkviz.html">theme_olinkviz()</a></code> provides a clean, publication-ready
 ggplot2 theme:</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Custom OlinkViz Theme"</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Using theme_olinkviz()"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_olinkviz.html">theme_olinkviz</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-57-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-58-1.png" class="r-plt" alt="" width="768"></p>
 <p><code><a href="../reference/olinkviz_palette.html">olinkviz_palette()</a></code> returns colorblind-friendly
 categorical colors using RColorBrewer’s Dark2 palette, extended via
 interpolation when more colors are needed:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Standard 8-color palette</span></span>
 <span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu"><a href="../reference/olinkviz_palette.html">olinkviz_palette</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-58-1.png" class="r-plt" alt="" width="576"></p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-59-1.png" class="r-plt" alt="" width="576"></p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Interpolated 12-color extension</span></span>
 <span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu"><a href="../reference/olinkviz_palette.html">olinkviz_palette</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-58-2.png" class="r-plt" alt="" width="576"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-59-2.png" class="r-plt" alt="" width="576"></p>
 <hr>
 </div>
 </div>
@@ -1051,7 +1060,7 @@ interpolation when more colors are needed:</p>
 <h2 id="interactive-exploration">Interactive Exploration<a class="anchor" aria-label="anchor" href="#interactive-exploration"></a>
 </h2>
 <p>Launch the Shiny app for interactive data exploration:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">OlinkViz</span><span class="fu">::</span><span class="fu"><a href="../reference/run_shiny.html">run_shiny</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The Shiny app allows you to:</p>
 <ul>
@@ -1116,7 +1125,7 @@ question (do early biomarkers anticipate a later change in clinical
 state?), opposite direction (recovery, not onset). Where no dataset
 supports a real longitudinal outcome, the cross-sectional Bansal Long
 COVID vs Healthy contrast is used instead.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://xrobin.github.io/pROC/" class="external-link">pROC</a></span><span class="op">)</span></span>
@@ -1124,7 +1133,7 @@ COVID vs Healthy contrast is used instead.</p>
 <div class="section level3">
 <h3 id="building-the-resolution-cohort">Building the resolution cohort<a class="anchor" aria-label="anchor" href="#building-the-resolution-cohort"></a>
 </h3>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">univ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">bansal_univariate</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">iris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">iris_longcovid</span><span class="op">)</span></span>
@@ -1145,7 +1154,7 @@ COVID vs Healthy contrast is used instead.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">at_risk</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">at_risk</span><span class="op">$</span><span class="va">resolved</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 23</span></span>
 <span><span class="co">#&gt; [1] 11</span></span></code></pre></div>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Baseline (month-3) protein z-scores for the resolution cohort</span></span>
 <span><span class="va">m3_npx</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="va">month_num</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">&amp;</span> <span class="va">IRIS_number</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">at_risk</span><span class="op">$</span><span class="va">IRIS_number</span>,</span>
 <span>               <span class="fu">.</span><span class="op">(</span><span class="va">IRIS_number</span>, <span class="va">Assay</span>, <span class="va">NPX</span><span class="op">)</span><span class="op">]</span></span>
@@ -1167,7 +1176,7 @@ as <a href="#pathway-enrichment-protein-networks">Pathway Enrichment
 &amp; Protein Networks</a> above, split by direction of change to match
 the paper’s separate up/down panels (not evaluated here — needs internet
 access):</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">up_list</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">univ</span><span class="op">[</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.15</span> <span class="op">&amp;</span> <span class="va">estimate</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">]</span><span class="op">$</span><span class="va">UniProt</span><span class="op">)</span></span>
 <span><span class="va">down_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">univ</span><span class="op">[</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.15</span> <span class="op">&amp;</span> <span class="va">estimate</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">]</span><span class="op">$</span><span class="va">UniProt</span><span class="op">)</span></span>
 <span></span>
@@ -1195,7 +1204,7 @@ figure and the code that builds it.</p>
 <div class="section level3">
 <h3 id="protein-levels-before-vs-after-resolution-paper-fig-1e2a">4. Protein levels before vs after resolution (paper Fig 1e/2a)<a class="anchor" aria-label="anchor" href="#protein-levels-before-vs-after-resolution-paper-fig-1e2a"></a>
 </h3>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resolvers</span> <span class="op">&lt;-</span> <span class="va">at_risk</span><span class="op">[</span><span class="va">resolved</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">IRIS_number</span></span>
 <span><span class="va">res_npx</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="va">IRIS_number</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">resolvers</span> <span class="op">&amp;</span> <span class="va">month_num</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                <span class="fu">.</span><span class="op">(</span><span class="va">IRIS_number</span>, <span class="va">Assay</span>, <span class="va">NPX</span>, <span class="va">month_num</span><span class="op">)</span><span class="op">]</span></span>
@@ -1212,12 +1221,12 @@ figure and the code that builds it.</p>
 <span>  show_rownames <span class="op">=</span> <span class="cn">TRUE</span>, show_colnames <span class="op">=</span> <span class="cn">TRUE</span>, fontsize <span class="op">=</span> <span class="fl">7</span>,</span>
 <span>  main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Protein Levels Before/After Long COVID Resolution (n=%d)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">resolvers</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-64-1.png" class="r-plt" alt="" width="480"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-65-1.png" class="r-plt" alt="" width="480"></p>
 </div>
 <div class="section level3">
 <h3 id="protein-trajectories-by-status-paper-fig-2b">5. Protein trajectories by status (paper Fig 2b)<a class="anchor" aria-label="anchor" href="#protein-trajectories-by-status-paper-fig-2b"></a>
 </h3>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m3_all</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="va">month_num</span> <span class="op">==</span> <span class="fl">3</span>, <span class="fu">.</span><span class="op">(</span><span class="va">IRIS_number</span>, <span class="va">Assay</span>, <span class="va">NPX</span>, <span class="va">long_covid</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">wilcox_m3</span> <span class="op">&lt;-</span> <span class="va">m3_all</span><span class="op">[</span>, <span class="op">{</span></span>
 <span>  <span class="va">yy</span> <span class="op">&lt;-</span> <span class="va">NPX</span><span class="op">[</span><span class="va">long_covid</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">]</span>; <span class="va">nn</span> <span class="op">&lt;-</span> <span class="va">NPX</span><span class="op">[</span><span class="va">long_covid</span> <span class="op">==</span> <span class="st">"No"</span><span class="op">]</span></span>
@@ -1232,7 +1241,7 @@ figure and the code that builds it.</p>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Months"</span>, color <span class="op">=</span> <span class="st">"Long COVID"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="va">traj_plots</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-65-1.png" class="r-plt" alt="" width="1056"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-66-1.png" class="r-plt" alt="" width="1056"></p>
 </div>
 <div class="section level3">
 <h3 id="kaplan-meier-time-to-resolution-paper-fig-3b3c">6. Kaplan-Meier: time to resolution (paper Fig 3b/3c)<a class="anchor" aria-label="anchor" href="#kaplan-meier-time-to-resolution-paper-fig-3b3c"></a>
@@ -1243,7 +1252,7 @@ every subject shares the same 9-month assessment window, so each curve
 takes one step rather than a smooth decline — an honest consequence of
 the coarser visit schedule, not a continuous-surveillance KM curve like
 the paper’s:</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">km_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">at_risk</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">IRIS_number</span>, <span class="va">time_months</span>, <span class="va">resolved</span><span class="op">)</span><span class="op">]</span>, <span class="va">m3_wide_z</span>, by <span class="op">=</span> <span class="st">"IRIS_number"</span><span class="op">)</span></span>
 <span><span class="va">assay_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IRIS_number"</span>, <span class="st">"time_months"</span>, <span class="st">"resolved"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1280,7 +1289,7 @@ the paper’s:</p>
 <span>       subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"n=%d Long COVID-positive at month 3 (%d resolved by month 12); log-rank p=%.3f"</span>,</span>
 <span>                          <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">$</span><span class="va">resolved</span><span class="op">)</span>, <span class="va">p_logrank</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_olinkviz.html">theme_olinkviz</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-66-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-67-1.png" class="r-plt" alt="" width="768"></p>
 </div>
 <div class="section level3">
 <h3 id="resolution-roc-cross-analysis-protein-overlap-paper-fig-4b4c">7. Resolution ROC + cross-analysis protein overlap (paper Fig
@@ -1291,7 +1300,7 @@ the paper’s:</p>
 UpSet plot — OlinkViz has no UpSet dependency, so this helper builds one
 from a bar chart of intersection sizes plus a dot matrix, both in
 <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">roc_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span>
 <span>  IRIS_number <span class="op">=</span> <span class="va">km_dt</span><span class="op">$</span><span class="va">IRIS_number</span>,</span>
 <span>  resolved    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">$</span><span class="va">resolved</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -1313,7 +1322,7 @@ from a bar chart of intersection sizes plus a dot matrix, both in
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"n = %d (%d resolved); 95%% bootstrap sensitivity CI shaded"</span>,</span>
 <span>                          <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">km_dt</span><span class="op">$</span><span class="va">resolved</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sig_bansal</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">univ</span><span class="op">[</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.1</span><span class="op">]</span><span class="op">$</span><span class="va">Assay</span><span class="op">)</span></span>
 <span><span class="va">sig_iris_cross</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">wilcox_m3</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">p</span> <span class="op">&lt;</span> <span class="fl">0.1</span><span class="op">]</span><span class="op">$</span><span class="va">Assay</span><span class="op">)</span></span>
 <span><span class="va">sig_iris_resolve</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">assoc</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">p</span> <span class="op">&lt;</span> <span class="fl">0.1</span><span class="op">]</span><span class="op">$</span><span class="va">Assay</span><span class="op">)</span></span>
@@ -1323,7 +1332,7 @@ from a bar chart of intersection sizes plus a dot matrix, both in
 <span></span>
 <span><span class="va">p_up</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_upset.html">plot_upset</a></span><span class="op">(</span><span class="va">sets</span>, subtitle <span class="op">=</span> <span class="st">"Overlap of nominally significant proteins (p &lt; 0.1)"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/olinkviz_combine.html">olinkviz_combine</a></span><span class="op">(</span><span class="va">p_roc</span>, <span class="va">p_up</span>, journal <span class="op">=</span> <span class="st">"natmed"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-68-1.png" class="r-plt" alt="" width="960"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-69-1.png" class="r-plt" alt="" width="960"></p>
 </div>
 <div class="section level3">
 <h3 id="cross-cohort-replication-scatter-paper-fig-5a">8. Cross-cohort replication scatter (paper Fig 5a)<a class="anchor" aria-label="anchor" href="#cross-cohort-replication-scatter-paper-fig-5a"></a>
@@ -1331,7 +1340,7 @@ from a bar chart of intersection sizes plus a dot matrix, both in
 <p>Per-protein effect sizes computed independently in two cohorts — IRIS
 (Long COVID vs not, at month 3) and Bansal (Long COVID vs Healthy) — for
 the proteins the two panels have in common:</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">m3_eff</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="va">month_num</span> <span class="op">==</span> <span class="fl">3</span>, <span class="fu">.</span><span class="op">(</span><span class="va">IRIS_number</span>, <span class="va">Assay</span>, <span class="va">NPX</span>, <span class="va">long_covid</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">m3_eff</span><span class="op">[</span>, <span class="va">z</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">NPX</span><span class="op">)</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">Assay</span><span class="op">]</span></span>
 <span><span class="va">iris_eff</span> <span class="op">&lt;-</span> <span class="va">m3_eff</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>iris_effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">z</span><span class="op">[</span><span class="va">long_covid</span> <span class="op">==</span> <span class="st">"Yes"</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">-</span></span>
@@ -1347,7 +1356,7 @@ the proteins the two panels have in common:</p>
 <span>  ylab  <span class="op">=</span> <span class="st">"IRIS cohort effect size (Long COVID - Not, z-score)"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Cross-Cohort Replication of Protein Effect Directions"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="OlinkViz_files/figure-html/unnamed-chunk-69-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="OlinkViz_files/figure-html/unnamed-chunk-70-1.png" class="r-plt" alt="" width="768"></p>
 <p>The full script behind this section — with file output and a QA pass
 that checks every figure actually rendered — is <a href="https://github.com/vanhungtran/OlinkViz/blob/main/scripts/generate_figures_natmed.R" class="external-link"><code>scripts/generate_figures_natmed.R</code></a>
 in the repo root; the rendered PNGs also appear in the <a href="https://github.com/vanhungtran/OlinkViz#-als-phenoconversion-biomarker-analyses" class="external-link">README
