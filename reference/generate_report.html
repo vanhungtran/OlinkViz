@@ -78,6 +78,8 @@ screening, and pathway/STRING network analysis.</p>
 <span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subject_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plate_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  covariates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  covariate_interaction <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  include_network <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  open <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -126,6 +128,16 @@ a file path (`.csv`, `.tsv`, `.rds`, `.xlsx`, `.xls`).</p></dd>
 
 <dt id="arg-plate-col">plate_col<a class="anchor" aria-label="anchor" href="#arg-plate-col"></a></dt>
 <dd><p>Optional plate/batch column name (auto-detected if `NULL`).</p></dd>
+
+
+<dt id="arg-covariates">covariates<a class="anchor" aria-label="anchor" href="#arg-covariates"></a></dt>
+<dd><p>Optional character vector of covariate column names (e.g.
+`c("age", "BMI", "sex")`) for mixed-model adjustment.</p></dd>
+
+
+<dt id="arg-covariate-interaction">covariate_interaction<a class="anchor" aria-label="anchor" href="#arg-covariate-interaction"></a></dt>
+<dd><p>Logical or character vector of covariates that
+interact with `time` in the mixed model (default `FALSE`).</p></dd>
 
 
 <dt id="arg-include-network">include_network<a class="anchor" aria-label="anchor" href="#arg-include-network"></a></dt>

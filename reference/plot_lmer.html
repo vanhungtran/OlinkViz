@@ -82,6 +82,11 @@ p-value is annotated on each panel.</p>
 <span>  show_lod <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ci_level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  add_pvalue <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  show_timepoint_p <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"t.test"</span>, <span class="st">"wilcox.test"</span><span class="op">)</span>,</span>
+<span>  covariates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  interaction <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  covariate_interaction <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>  palette <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -141,6 +146,31 @@ dashed reference line (default `FALSE`).</p></dd>
 <dt id="arg-add-pvalue">add_pvalue<a class="anchor" aria-label="anchor" href="#arg-add-pvalue"></a></dt>
 <dd><p>Logical; fit the mixed model and annotate the group-effect
 p-value per panel (default FALSE to keep the function dependency-light).</p></dd>
+
+
+<dt id="arg-show-timepoint-p">show_timepoint_p<a class="anchor" aria-label="anchor" href="#arg-show-timepoint-p"></a></dt>
+<dd><p>Logical; annotate between-group p-values at each
+timepoint (`x` level) above the error bars (default `FALSE`).</p></dd>
+
+
+<dt id="arg-test">test<a class="anchor" aria-label="anchor" href="#arg-test"></a></dt>
+<dd><p>Statistical test for per-timepoint p-values when
+`show_timepoint_p = TRUE`: `"t.test"` (default) or `"wilcox.test"`.</p></dd>
+
+
+<dt id="arg-covariates">covariates<a class="anchor" aria-label="anchor" href="#arg-covariates"></a></dt>
+<dd><p>Optional character vector of covariate column names (e.g.
+`c("age", "BMI", "sex")`) to adjust the mixed model for.</p></dd>
+
+
+<dt id="arg-interaction">interaction<a class="anchor" aria-label="anchor" href="#arg-interaction"></a></dt>
+<dd><p>Logical; include `x * group` interaction in the mixed
+model (default `TRUE`). If `FALSE`, fits `x + group`.</p></dd>
+
+
+<dt id="arg-covariate-interaction">covariate_interaction<a class="anchor" aria-label="anchor" href="#arg-covariate-interaction"></a></dt>
+<dd><p>Logical or character vector of covariates that
+interact with `x` (timepoint), e.g. `TRUE` or `"age"` (default `FALSE`).</p></dd>
 
 
 <dt id="arg-dodge-width">dodge_width<a class="anchor" aria-label="anchor" href="#arg-dodge-width"></a></dt>
