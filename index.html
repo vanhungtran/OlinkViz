@@ -45,13 +45,25 @@
     <li><a class="dropdown-item" href="articles/plots_using_simulated_data.html">Plots Generated from the Simulated Dataset (PROBC)</a></li>
   </ul>
 </li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-reports" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Reports</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-reports">
+<li><a class="dropdown-item" href="articles/reports/probc_report.html">PROBC Simulated Cohort</a></li>
+    <li><a class="dropdown-item" href="articles/reports/iris_longcovid_report.html">IRIS Long COVID</a></li>
+    <li><a class="dropdown-item" href="articles/reports/bansal_baseline57_report.html">Bansal Long COVID Baseline (n=57)</a></li>
+    <li><a class="dropdown-item" href="articles/reports/bansal_longitudinal_report.html">Bansal Long COVID Longitudinal</a></li>
+    <li><a class="dropdown-item" href="articles/reports/beatmg_npx_merged_report.html">BeatMG Myasthenia Gravis</a></li>
+    <li><a class="dropdown-item" href="articles/reports/pcnsl_olink_report.html">PCNSL Primary CNS Lymphoma</a></li>
+    <li><a class="dropdown-item" href="articles/reports/qinfeng_npx_report.html">Song 2025 Tuberculosis</a></li>
+    <li><a class="dropdown-item" href="articles/reports/tofa_data_report.html">TOFA Down Syndrome</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/vanhungtran/OlinkViz/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
@@ -60,6 +72,7 @@
     <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
   </ul>
 </li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/vanhungtran/OlinkViz/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -98,6 +111,19 @@
 <p>All plots use a clean, consistent theme and a colorblind-friendly palette. Every function handles the tedious preprocessing — <strong>wide/long pivoting, replicate averaging, NA imputation with warnings, zero-variance filtering</strong> — so you can focus on the biology.</p>
 <p>No column arguments needed: <code>plot_boxplot(npx, assay = "IL6")</code>, <code>plot_heatmap(npx)</code>, <code>plot_corr(npx)</code> and friends detect the standard Olink columns (assay, NPX, sample ID, group, time, …) automatically. For non-standard data, override with explicit arguments such as <code>group = "condition"</code> or <code>pval_col = "pval"</code>.</p>
 <p>Need a figure for a journal? Draw it at its final size instead of shrinking it: <code>olinkviz_options(base_size = 7)</code> sets the text size of every plot, and <code>save_olinkviz(p, "fig2a", width = 89)</code> exports at the exact column width (see <a href="#id_-journal-size-figures">Journal-Size Figures</a>).</p>
+</div>
+<div class="section level2">
+<h2 id="bar_chart-automated-dataset-reports">📊 Automated Dataset Reports<a class="anchor" aria-label="anchor" href="#bar_chart-automated-dataset-reports"></a>
+</h2>
+<p>Generate a full styled HTML report for any Olink dataset with one call (<code>generate_report(your_data)</code>), or browse the pre-built reports for all 8 bundled cohorts:</p>
+<ul>
+<li>
+<a href="https://vanhungtran.github.io/OlinkViz/articles/reports/probc_report.html">PROBC Simulated Cohort</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/iris_longcovid_report.html">IRIS Long COVID</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/bansal_baseline57_report.html">Bansal Baseline (n=57)</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/bansal_longitudinal_report.html">Bansal Longitudinal</a>
+</li>
+<li>
+<a href="https://vanhungtran.github.io/OlinkViz/articles/reports/beatmg_npx_merged_report.html">BeatMG Myasthenia Gravis</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/pcnsl_olink_report.html">PCNSL Lymphoma</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/qinfeng_npx_report.html">Song 2025 Tuberculosis</a> · <a href="https://vanhungtran.github.io/OlinkViz/articles/reports/tofa_data_report.html">TOFA Down Syndrome</a>
+</li>
+</ul>
 <hr>
 </div>
 <div class="section level2">
