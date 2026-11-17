@@ -181,16 +181,34 @@ Olink Target 96 panels).</li>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_plate_qc.html">plot_plate_qc</a></span><span class="op">(</span><span class="va">PROBC</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/plate-qc-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="section level3">
+<h3 id="normality-checking-plot_normality">1.2 Normality Checking (<code>plot_normality()</code>)<a class="anchor" aria-label="anchor" href="#normality-checking-plot_normality"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p_norm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_normality.html">plot_normality</a></span><span class="op">(</span><span class="va">base</span>, group <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span>
+<span><span class="va">p_norm</span></span></code></pre></div>
+<p><img src="plots_using_simulated_data_files/figure-html/normality-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">p_norm</span>, <span class="st">"normality_table"</span><span class="op">)</span></span>
+<span><span class="va">non_norm</span> <span class="op">&lt;-</span> <span class="va">nt</span><span class="op">[</span><span class="va">nt</span><span class="op">$</span><span class="va">Status</span> <span class="op">==</span> <span class="st">"Non-normal"</span>, <span class="op">]</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">non_norm</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"DT"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">non_norm</span><span class="op">$</span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">non_norm</span><span class="op">$</span><span class="va">W</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="va">non_norm</span><span class="op">$</span><span class="va">p.value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif</a></span><span class="op">(</span><span class="va">non_norm</span><span class="op">$</span><span class="va">p.value</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="va">non_norm</span><span class="op">$</span><span class="va">p.adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif</a></span><span class="op">(</span><span class="va">non_norm</span><span class="op">$</span><span class="va">p.adj</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span>  <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html" class="external-link">datatable</a></span><span class="op">(</span><span class="va">non_norm</span>, rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pageLength <span class="op">=</span> <span class="fl">5</span>, scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="ordination-clustered-expression">2. Ordination &amp; Clustered Expression<a class="anchor" aria-label="anchor" href="#ordination-clustered-expression"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">base</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pca"</span>, <span class="st">"umap"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>               perplexity <span class="op">=</span> <span class="fl">7</span>, seed <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/pca-umap-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_scree.html">plot_scree</a></span><span class="op">(</span><span class="va">base</span>, n_pcs <span class="op">=</span> <span class="fl">10</span>, title <span class="op">=</span> <span class="st">"PROBC Baseline Variance Explained"</span><span class="op">)</span></span>
 <span><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_loadings.html">plot_loadings</a></span><span class="op">(</span><span class="va">base</span>, components <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, top_n <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -199,13 +217,36 @@ Olink Target 96 panels).</li>
 <span>  <span class="va">pl</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/scree-loadings-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">oe_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/oe_from_long.html">oe_from_long</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_heatmap.html">plot_heatmap</a></span><span class="op">(</span><span class="va">oe_base</span>, scale <span class="op">=</span> <span class="st">"row"</span>, show_rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>             annotation_rows <span class="op">=</span> <span class="st">"Panel"</span>,</span>
 <span>             main <span class="op">=</span> <span class="st">"PROBC Baseline Expression Heatmap"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/heatmap-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="section level3">
+<h3 id="variance-partitioning-analysis-plot_variance_partition">2.1 Variance Partitioning Analysis
+(<code>plot_variance_partition()</code>)<a class="anchor" aria-label="anchor" href="#variance-partitioning-analysis-plot_variance_partition"></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p_vp1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_variance_partition.html">plot_variance_partition</a></span><span class="op">(</span></span>
+<span>  <span class="va">PROBC</span>, factors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PPID"</span>, <span class="st">"Timepoint_f"</span>, <span class="st">"Project"</span>, <span class="st">"PlateID"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"bars"</span>, top_n <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Top 15 Assays by Subject Variance"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">p_vp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_variance_partition.html">plot_variance_partition</a></span><span class="op">(</span></span>
+<span>  <span class="va">PROBC</span>, factors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PPID"</span>, <span class="st">"Timepoint_f"</span>, <span class="st">"Project"</span>, <span class="st">"PlateID"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"violin"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Variance Explained Across All Assays"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/olinkviz_combine.html">olinkviz_combine</a></span><span class="op">(</span><span class="va">p_vp1</span>, <span class="va">p_vp2</span>, journal <span class="op">=</span> <span class="st">"nature"</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">p_vp1</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="plots_using_simulated_data_files/figure-html/variance-partition-1.png" class="r-plt" alt="" width="100%"></p>
 <hr>
+</div>
 </div>
 <div class="section level2">
 <h2 id="single-protein-longitudinal-profiles">3. Single-Protein Longitudinal Profiles<a class="anchor" aria-label="anchor" href="#single-protein-longitudinal-profiles"></a>
@@ -214,7 +255,7 @@ Olink Target 96 panels).</li>
 <h3 id="mean-95-ci-profile-over-time-plot_mean_profile">3.1 Mean ± 95% CI Profile Over Time
 (<code>plot_mean_profile()</code>)<a class="anchor" aria-label="anchor" href="#mean-95-ci-profile-over-time-plot_mean_profile"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_mean_profile.html">plot_mean_profile</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"IL4"</span>, <span class="st">"CXCL12"</span>, <span class="st">"TNF"</span><span class="op">)</span>,</span>
 <span>                  x <span class="op">=</span> <span class="st">"Timepoint"</span>, group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/mean-profile-1.png" class="r-plt" alt="" width="100%"></p>
@@ -223,7 +264,7 @@ Olink Target 96 panels).</li>
 <h3 id="individual-subject-trajectories-plot_trajectory">3.2 Individual Subject Trajectories
 (<code>plot_trajectory()</code>)<a class="anchor" aria-label="anchor" href="#individual-subject-trajectories-plot_trajectory"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_trajectory.html">plot_trajectory</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, subject_id <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>                time <span class="op">=</span> <span class="st">"Time"</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>                smooth_method <span class="op">=</span> <span class="st">"loess"</span>, lod_col <span class="op">=</span> <span class="st">"MaxLOD"</span>,</span>
@@ -234,7 +275,7 @@ Olink Target 96 panels).</li>
 <h3 id="spaghetti-plot-faceted-by-group-plot_spaghetti">3.3 Spaghetti Plot Faceted by Group
 (<code>plot_spaghetti()</code>)<a class="anchor" aria-label="anchor" href="#spaghetti-plot-faceted-by-group-plot_spaghetti"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_spaghetti.html">plot_spaghetti</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL4"</span>, subject_id <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>               time <span class="op">=</span> <span class="st">"Time"</span>, facet_by <span class="op">=</span> <span class="st">"Project"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/spaghetti-1.png" class="r-plt" alt="" width="100%"></p>
@@ -243,16 +284,29 @@ Olink Target 96 panels).</li>
 <h3 id="violin-boxplot-across-timepoints-plot_violin">3.4 Violin + Boxplot Across Timepoints
 (<code>plot_violin()</code>)<a class="anchor" aria-label="anchor" href="#violin-boxplot-across-timepoints-plot_violin"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Timepoint_f"</span>,</span>
-<span>            group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>            test <span class="op">=</span> <span class="st">"t.test"</span>, show_p_value <span class="op">=</span> <span class="cn">TRUE</span>, show_overall <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pv_t</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Timepoint_f"</span>,</span>
+<span>                    group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                    compare_groups <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"t.test"</span>,</span>
+<span>                    show_p_value <span class="op">=</span> <span class="cn">TRUE</span>, show_overall <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                    title <span class="op">=</span> <span class="st">"IL6: Per-Timepoint t-test + Overall ANOVA"</span><span class="op">)</span></span>
+<span><span class="va">pv_w</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_violin.html">plot_violin</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Timepoint_f"</span>,</span>
+<span>                    group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                    compare_groups <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"wilcox.test"</span>,</span>
+<span>                    show_p_value <span class="op">=</span> <span class="cn">TRUE</span>, show_overall <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                    title <span class="op">=</span> <span class="st">"IL6: Per-Timepoint Wilcoxon + Overall Kruskal"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="../reference/olinkviz_combine.html">olinkviz_combine</a></span><span class="op">(</span><span class="va">pv_t</span>, <span class="va">pv_w</span>, journal <span class="op">=</span> <span class="st">"nature"</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">pv_t</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/violin-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="group-boxplots-at-baseline-plot_boxplot">3.5 Group Boxplots at Baseline (<code>plot_boxplot()</code>)<a class="anchor" aria-label="anchor" href="#group-boxplots-at-baseline-plot_boxplot"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">base</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span>, <span class="st">"IL4"</span>, <span class="st">"CCL11"</span><span class="op">)</span>,</span>
 <span>             group <span class="op">=</span> <span class="st">"Project"</span>, show_lod <span class="op">=</span> <span class="cn">TRUE</span>, show_significant <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/boxplot-1.png" class="r-plt" alt="" width="100%"></p>
@@ -260,7 +314,7 @@ Olink Target 96 panels).</li>
 <div class="section level3">
 <h3 id="linear-mixed-model-point-range-plot_lmer">3.6 Linear Mixed-Model Point-Range (<code>plot_lmer()</code>)<a class="anchor" aria-label="anchor" href="#linear-mixed-model-point-range-plot_lmer"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_lmer.html">plot_lmer</a></span><span class="op">(</span><span class="va">early_late</span>, assay <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6"</span>, <span class="st">"TNF"</span><span class="op">)</span>,</span>
 <span>          x <span class="op">=</span> <span class="st">"Timepoint_f"</span>, group <span class="op">=</span> <span class="st">"Project"</span>, random <span class="op">=</span> <span class="st">"PPID"</span>,</span>
 <span>          add_pvalue <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"lmerTest"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -270,7 +324,7 @@ Olink Target 96 panels).</li>
 <h3 id="continuous-regression-smooth-plot_regression">3.7 Continuous Regression Smooth
 (<code>plot_regression()</code>)<a class="anchor" aria-label="anchor" href="#continuous-regression-smooth-plot_regression"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_regression.html">plot_regression</a></span><span class="op">(</span><span class="va">PROBC</span>, assay <span class="op">=</span> <span class="st">"IL6"</span>, x <span class="op">=</span> <span class="st">"Time"</span>,</span>
 <span>                color_by <span class="op">=</span> <span class="st">"Project"</span>, title <span class="op">=</span> <span class="st">"IL6 Linear Trend Over Time"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/regression-1.png" class="r-plt" alt="" width="100%"></p>
@@ -280,7 +334,7 @@ Olink Target 96 panels).</li>
 <div class="section level2">
 <h2 id="multi-protein-differential-expression-roc-analysis">4. Multi-Protein Differential Expression &amp; ROC Analysis<a class="anchor" aria-label="anchor" href="#multi-protein-differential-expression-roc-analysis"></a>
 </h2>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dt_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/data.table/man/as.data.table.html" class="external-link">as.data.table</a></span><span class="op">(</span><span class="va">base</span><span class="op">)</span></span>
 <span><span class="va">de_probc</span> <span class="op">&lt;-</span> <span class="va">dt_base</span><span class="op">[</span>, <span class="op">{</span></span>
 <span>  <span class="va">g1</span> <span class="op">&lt;-</span> <span class="va">NPX</span><span class="op">[</span><span class="va">Project</span> <span class="op">==</span> <span class="st">"Group1"</span><span class="op">]</span></span>
@@ -297,7 +351,7 @@ Olink Target 96 panels).</li>
 <span><span class="va">de_probc</span><span class="op">[</span>, <span class="va">Adjusted_pval</span> <span class="op">:=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></span><span class="op">(</span><span class="va">p.value</span>, method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">de_probc</span> <span class="op">&lt;-</span> <span class="va">de_probc</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">top_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span><span class="op">$</span><span class="va">Assay</span>, <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_volcano.html">plot_volcano</a></span><span class="op">(</span><span class="va">de_probc</span>, pval_col <span class="op">=</span> <span class="st">"p.value"</span>, fc_col <span class="op">=</span> <span class="st">"estimate"</span>,</span>
 <span>                   fc_threshold <span class="op">=</span> <span class="fl">0.3</span>, max_labels <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"Baseline Volcano (Group2 vs Group1)"</span><span class="op">)</span></span>
@@ -310,7 +364,7 @@ Olink Target 96 panels).</li>
 <span>  <span class="va">pv</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/volcano-ma-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_dotplot.html">plot_dotplot</a></span><span class="op">(</span><span class="va">base</span>, group <span class="op">=</span> <span class="st">"Project"</span>, assays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span><span class="op">$</span><span class="va">Assay</span>, <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"Top 12 Baseline Assays"</span><span class="op">)</span></span>
 <span><span class="va">de_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">de_probc</span>, <span class="fl">12</span><span class="op">)</span></span>
@@ -327,7 +381,7 @@ Olink Target 96 panels).</li>
 <div class="section level3">
 <h3 id="correlation-matrix-plot_corr_triangle">4.1 Correlation Matrix (<code>plot_corr_triangle()</code>)<a class="anchor" aria-label="anchor" href="#correlation-matrix-plot_corr_triangle"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_corr_triangle.html">plot_corr_triangle</a></span><span class="op">(</span><span class="va">base</span>, method <span class="op">=</span> <span class="st">"spearman"</span>, top_n <span class="op">=</span> <span class="fl">15</span>,</span>
 <span>                   title <span class="op">=</span> <span class="st">"PROBC Baseline Correlation Triangle"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plots_using_simulated_data_files/figure-html/corr-1.png" class="r-plt" alt="" width="100%"></p>
@@ -336,7 +390,7 @@ Olink Target 96 panels).</li>
 <h3 id="roc-curves-with-95-ci-shade-paired-delong-test-plot_roc">4.2 ROC Curves with 95% CI Shade &amp; Paired DeLong Test
 (<code>plot_roc()</code>)<a class="anchor" aria-label="anchor" href="#roc-curves-with-95-ci-shade-paired-delong-test-plot_roc"></a>
 </h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_roc.html">plot_roc</a></span><span class="op">(</span><span class="va">base</span>, assays <span class="op">=</span> <span class="va">top_hits</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, group <span class="op">=</span> <span class="st">"Project"</span>,</span>
 <span>         add_ci <span class="op">=</span> <span class="cn">TRUE</span>, boot_n <span class="op">=</span> <span class="fl">100</span>, show_direction <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>         compare <span class="op">=</span> <span class="cn">TRUE</span>, compare_method <span class="op">=</span> <span class="st">"delong"</span>,</span>
