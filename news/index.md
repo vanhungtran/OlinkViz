@@ -53,10 +53,8 @@ assay that newer Olink panels call CXCL8).
   case-insensitively). Multiple types are plotted jointly as a single
   multi-panel figure, e.g.
   `plot_dim_reduc(oe, type = c("pca", "umap"), color = "Group")`.
-- [`plot_pca()`](https://vanhungtran.github.io/OlinkViz/reference/plot_pca.md)
-  has been removed; use `plot_dim_reduc(..., type = "pca")` instead (it
-  also accepts a long-format data.frame, as
-  [`plot_pca()`](https://vanhungtran.github.io/OlinkViz/reference/plot_pca.md)
+- `plot_pca()` has been removed; use `plot_dim_reduc(..., type = "pca")`
+  instead (it also accepts a long-format data.frame, as `plot_pca()`
   did).
 - [`plot_heatmap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_heatmap.md)
   now shows the sample covariates of an `OlinkExperiment` automatically:
@@ -272,9 +270,8 @@ assay that newer Olink panels call CXCL8).
   now keeps only sample-level metadata when pivoting (drops assay-level
   columns such as `OlinkID`, `UniProt`, `LOD`, and QC flags) and
   auto-detects `assay_col`/`value_col`/`sample_col`.
-- [`plot_pca()`](https://vanhungtran.github.io/OlinkViz/reference/plot_pca.md)/[`plot_umap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_umap.md)
-  recover grouping metadata (e.g. numeric time columns) that was
-  previously lost during pivoting.
+- `plot_pca()`/`plot_umap()` recover grouping metadata (e.g. numeric
+  time columns) that was previously lost during pivoting.
 - [`olinkviz_palette()`](https://vanhungtran.github.io/OlinkViz/reference/olinkviz_palette.md)
   no longer warns for 2-group palettes.
 - [`plot_heatmap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_heatmap.md)
@@ -292,11 +289,9 @@ assay that newer Olink panels call CXCL8).
   Clustered expression heatmaps accepting both long and wide format,
   with annotation tracks, row/column scaling, and NA imputation with
   warnings.
-- [`plot_pca()`](https://vanhungtran.github.io/OlinkViz/reference/plot_pca.md):
-  PCA biplots with group coloring, optional confidence ellipses, and
-  zero-variance column filtering.
-- [`plot_umap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_umap.md):
-  UMAP projections with group coloring, configurable
+- `plot_pca()`: PCA biplots with group coloring, optional confidence
+  ellipses, and zero-variance column filtering.
+- `plot_umap()`: UMAP projections with group coloring, configurable
   n_neighbors/min_dist/metric, and reproducible seed support.
 - [`plot_boxplot()`](https://vanhungtran.github.io/OlinkViz/reference/plot_boxplot.md):
   Single-protein boxplots with overlaid jittered points and optional

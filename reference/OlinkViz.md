@@ -28,8 +28,8 @@ to check your data structure.
 - [`plot_dim_reduc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_dim_reduc.md)
   — PCA/UMAP/t-SNE projections with group coloring
 
-- [`plot_umap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_umap.md)
-  — UMAP projections with group coloring
+- [`plot_dim_reduc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_dim_reduc.md)
+  — PCA, UMAP, and t-SNE projections with group coloring
 
 - [`plot_boxplot()`](https://vanhungtran.github.io/OlinkViz/reference/plot_boxplot.md)
   — Single- or multi-protein boxplots with stats

@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">OlinkViz
 Authors</h4>
             
-            <h4 data-toc-skip class="date">2026-11-16</h4>
+            <h4 data-toc-skip class="date">2026-11-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vanhungtran/OlinkViz/blob/HEAD/vignettes/OlinkViz.Rmd" class="external-link"><code>vignettes/OlinkViz.Rmd</code></a></small>
       <div class="d-none name"><code>OlinkViz.Rmd</code></div>
@@ -520,7 +520,7 @@ and can combine several reductions into one figure.</p>
 <p>UMAP captures non-linear structure that PCA may miss. The
 <code>seed</code> parameter ensures reproducibility.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_umap.html">plot_umap</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, color_by <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">beatmg_npx_merged</span>, type <span class="op">=</span> <span class="st">"umap"</span>, color <span class="op">=</span> <span class="st">"Timepoint"</span>,</span>
 <span>          n_neighbors <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>          title <span class="op">=</span> <span class="st">"BeatMG: UMAP by Timepoint"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="OlinkViz_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="768"></p>
@@ -1074,8 +1074,7 @@ interpolation when more colors are needed:</p>
 </li>
 <li>
 <strong>Explore global structure</strong> with
-<code><a href="../reference/plot_dim_reduc.html">plot_dim_reduc()</a></code> or <code><a href="../reference/plot_umap.html">plot_umap()</a></code>
-</li>
+<code><a href="../reference/plot_dim_reduc.html">plot_dim_reduc()</a></code> (PCA, UMAP, or t-SNE)</li>
 <li>
 <strong>Survey many proteins</strong> with
 <code><a href="../reference/plot_dotplot.html">plot_dotplot()</a></code> or <code><a href="../reference/plot_heatmap.html">plot_heatmap()</a></code>

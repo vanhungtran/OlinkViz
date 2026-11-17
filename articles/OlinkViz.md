@@ -380,7 +380,7 @@ UMAP captures non-linear structure that PCA may miss. The `seed`
 parameter ensures reproducibility.
 
 ``` r
-plot_umap(beatmg_npx_merged, color_by = "Timepoint",
+plot_dim_reduc(beatmg_npx_merged, type = "umap", color = "Timepoint",
           n_neighbors = 10, seed = 42,
           title = "BeatMG: UMAP by Timepoint")
 ```
@@ -1027,8 +1027,7 @@ A common analysis workflow using OlinkViz:
     [`validate_npx()`](https://vanhungtran.github.io/OlinkViz/reference/validate_npx.md)
 2.  **Explore global structure** with
     [`plot_dim_reduc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_dim_reduc.md)
-    or
-    [`plot_umap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_umap.md)
+    (PCA, UMAP, or t-SNE)
 3.  **Survey many proteins** with
     [`plot_dotplot()`](https://vanhungtran.github.io/OlinkViz/reference/plot_dotplot.md)
     or

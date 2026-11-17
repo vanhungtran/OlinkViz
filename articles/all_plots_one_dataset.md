@@ -109,12 +109,12 @@ plot_dim_reduc(base, type = c("pca", "umap", "tsne"),
 
 ![](all_plots_one_dataset_files/figure-html/dim-reduc-1.png)
 
-### 3.2 Standalone PCA (`plot_pca()`) & UMAP (`plot_umap()`)
+### 3.2 Standalone PCA & UMAP via `plot_dim_reduc()`
 
 ``` r
-p1 <- plot_pca(base, color_by = "Project", title = "Baseline PCA")
-p2 <- plot_umap(base, color_by = "Project", n_neighbors = 8, seed = 42,
-                title = "Baseline UMAP")
+p1 <- plot_dim_reduc(base, type = "pca", color = "Project", title = "Baseline PCA")
+p2 <- plot_dim_reduc(base, type = "umap", color = "Project", n_neighbors = 8,
+                     seed = 42, title = "Baseline UMAP")
 if (requireNamespace("patchwork", quietly = TRUE)) {
   olinkviz_combine(p1, p2, journal = "nature")
 } else {

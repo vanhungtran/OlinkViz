@@ -74,7 +74,7 @@
                         <h4 data-toc-skip class="author">OlinkViz
 Authors</h4>
             
-            <h4 data-toc-skip class="date">2026-11-16</h4>
+            <h4 data-toc-skip class="date">2026-11-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vanhungtran/OlinkViz/blob/HEAD/vignettes/all_plots_one_dataset.Rmd" class="external-link"><code>vignettes/all_plots_one_dataset.Rmd</code></a></small>
       <div class="d-none name"><code>all_plots_one_dataset.Rmd</code></div>
@@ -186,13 +186,12 @@ Target 96 panels, with <code>PlateID</code>, <code>MaxLOD</code>,
 <p><img src="all_plots_one_dataset_files/figure-html/dim-reduc-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">
-<h3 id="standalone-pca-plot_pca-umap-plot_umap">3.2 Standalone PCA (<code>plot_pca()</code>) &amp; UMAP
-(<code>plot_umap()</code>)<a class="anchor" aria-label="anchor" href="#standalone-pca-plot_pca-umap-plot_umap"></a>
+<h3 id="standalone-pca-umap-via-plot_dim_reduc">3.2 Standalone PCA &amp; UMAP via <code>plot_dim_reduc()</code><a class="anchor" aria-label="anchor" href="#standalone-pca-umap-via-plot_dim_reduc"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">base</span>, color_by <span class="op">=</span> <span class="st">"Project"</span>, title <span class="op">=</span> <span class="st">"Baseline PCA"</span><span class="op">)</span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_umap.html">plot_umap</a></span><span class="op">(</span><span class="va">base</span>, color_by <span class="op">=</span> <span class="st">"Project"</span>, n_neighbors <span class="op">=</span> <span class="fl">8</span>, seed <span class="op">=</span> <span class="fl">42</span>,</span>
-<span>                title <span class="op">=</span> <span class="st">"Baseline UMAP"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">base</span>, type <span class="op">=</span> <span class="st">"pca"</span>, color <span class="op">=</span> <span class="st">"Project"</span>, title <span class="op">=</span> <span class="st">"Baseline PCA"</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_dim_reduc.html">plot_dim_reduc</a></span><span class="op">(</span><span class="va">base</span>, type <span class="op">=</span> <span class="st">"umap"</span>, color <span class="op">=</span> <span class="st">"Project"</span>, n_neighbors <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>                     seed <span class="op">=</span> <span class="fl">42</span>, title <span class="op">=</span> <span class="st">"Baseline UMAP"</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"patchwork"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="../reference/olinkviz_combine.html">olinkviz_combine</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, journal <span class="op">=</span> <span class="st">"nature"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>

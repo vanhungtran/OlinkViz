@@ -33,10 +33,6 @@ PCA, UMAP, t-SNE, and heatmap projections
 
 - [`plot_dim_reduc()`](https://vanhungtran.github.io/OlinkViz/reference/plot_dim_reduc.md)
   : Plot one or more dimensionality reductions of an OlinkExperiment
-- [`plot_pca()`](https://vanhungtran.github.io/OlinkViz/reference/plot_pca.md)
-  : PCA scatter plot of protein expression data
-- [`plot_umap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_umap.md)
-  : UMAP projection of protein expression data
 - [`plot_heatmap()`](https://vanhungtran.github.io/OlinkViz/reference/plot_heatmap.md)
   : Heatmap of protein expression
 - [`plot_scree()`](https://vanhungtran.github.io/OlinkViz/reference/plot_scree.md)
