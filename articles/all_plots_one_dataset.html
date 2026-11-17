@@ -426,8 +426,8 @@ Overlap<a class="anchor" aria-label="anchor" href="#differential-expression-inte
 <p><img src="all_plots_one_dataset_files/figure-html/roc-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">
-<h3 id="pathway-panel-network-plot_pathway_network">6.3 Pathway / Panel Network
-(<code>plot_pathway_network()</code>)<a class="anchor" aria-label="anchor" href="#pathway-panel-network-plot_pathway_network"></a>
+<h3 id="pathway-panel-network-plot_pathway_network-circos-plot_circos">6.3 Pathway / Panel Network (<code>plot_pathway_network()</code>)
+&amp; Circos (<code>plot_circos()</code>)<a class="anchor" aria-label="anchor" href="#pathway-panel-network-plot_pathway_network-circos-plot_circos"></a>
 </h3>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pw_panel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">de_t1</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">Assay</span>, Pathway <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"Olink "</span>, <span class="st">""</span>, <span class="va">Panel</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -436,12 +436,15 @@ Overlap<a class="anchor" aria-label="anchor" href="#differential-expression-inte
 <span>                     palette <span class="op">=</span> <span class="st">"jewel"</span>,</span>
 <span>                     title <span class="op">=</span> <span class="st">"Top Baseline Proteins Grouped by Olink Panel"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="all_plots_one_dataset_files/figure-html/pathway-net-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_circos.html">plot_circos</a></span><span class="op">(</span><span class="va">base</span>, type <span class="op">=</span> <span class="st">"correlation"</span>, top_n <span class="op">=</span> <span class="fl">20</span>, r_cutoff <span class="op">=</span> <span class="fl">0.45</span><span class="op">)</span></span></code></pre></div>
+<p><img src="all_plots_one_dataset_files/figure-html/circos-all-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="string-protein-interaction-networks-functional-enrichment">6.4 STRING Protein Interaction Networks &amp; Functional
 Enrichment<a class="anchor" aria-label="anchor" href="#string-protein-interaction-networks-functional-enrichment"></a>
 </h3>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">net_tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"strnet_all_"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">net_tmp</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">net_tmp</span><span class="op">)</span></span>
